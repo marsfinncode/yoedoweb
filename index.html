@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต</title>
+    <meta name="description"
+        content="YOEDO (Durian Leaf Scanner) แอปช่วยชาวสวนทุเรียนตรวจดูโรคใบทุเรียนจากกล้องมือถือ ใช้งานได้ทันทีกลางสวนแม้ไม่มีสัญญาณอินเทอร์เน็ต ดาวน์โหลดฟรีบน Google Play">
+    <meta name="theme-color" content="#028c57">
+
+    <!-- Favicon & App Icon -->
+    <link rel="icon" type="image/png" href="./assets/yoedo-logo.png">
+    <link rel="apple-touch-icon" href="./assets/yoedo-logo.png">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="YOEDO - Real-Time Offline Durian Leaf Disease Scanner">
+    <meta property="og:description"
+        content="Scan durian leaves offline with your smartphone camera. Instant disease identification and care guidance.">
+    <meta property="og:image" content="./assets/yoedo-logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts (Sarabun) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'sans-serif'],
+                    },
+                    colors: {
+                        yoedo: {
+                            50: '#eef8f3',
+                            100: '#d5eee1',
+                            200: '#aeddc5',
+                            500: '#049b60',
+                            600: '#028c57',
+                            700: '#046c44',
+                            800: '#065638',
+                            900: '#073f2a',
+                        },
+                        linen: {
+                            50: '#fafaf7',
+                            100: '#f3f2ec',
+                            200: '#e6e4db',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+
+        @keyframes captionFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(4px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .caption-animate {
+            animation: captionFadeIn 0.28s ease-out;
+        }
+
+        @keyframes langFade {
+            from {
+                opacity: 0.35;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lang-fade {
+            animation: langFade 0.25s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-linen-50 text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-linen-50/90 backdrop-blur-md border-b border-linen-200">
+        <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+            <a href="#" class="flex items-center gap-3 group shrink-0">
+                <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
+                    class="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
+                <div class="leading-tight">
+                    <span class="font-bold text-lg text-stone-900 tracking-tight block">YOEDO</span>
+                    <span data-i18n="brandSub" class="text-[11px] text-stone-500 hidden sm:block">สแกนโรคใบทุเรียน</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+                <a href="#features" data-i18n="navFeatures" class="hover:text-yoedo-600 transition">ช่วยอะไรได้บ้าง</a>
+                <a href="#how-it-works" data-i18n="navHow" class="hover:text-yoedo-600 transition">วิธีใช้งาน</a>
+                <a href="#diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคที่ตรวจได้</a>
+                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Language Switcher -->
+                <div class="inline-flex items-center rounded-lg border border-linen-200 bg-white p-0.5 text-xs font-semibold shadow-sm"
+                    role="group" aria-label="Language switcher">
+                    <button type="button" data-set-lang="th"
+                        class="site-lang-btn px-2 py-1 rounded-md bg-yoedo-600 text-white transition">TH</button>
+                    <button type="button" data-set-lang="en"
+                        class="site-lang-btn px-2 py-1 rounded-md text-stone-600 hover:text-yoedo-600 transition">EN</button>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" aria-label="Get it on Google Play"
+                    class="inline-block shrink-0 transition transform hover:-translate-y-0.5 hover:opacity-95">
+                    <img src="./assets/google-play-badge.png" alt="Get it on Google Play"
+                        class="h-8 sm:h-10 w-auto rounded-lg shadow-sm">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" type="button" aria-label="Toggle menu"
+                    class="md:hidden p-2 rounded-lg text-stone-600 hover:bg-linen-100 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu"
+            class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent bg-white px-5 text-sm">
+            <div class="py-4 space-y-1.5">
+                <a href="#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
+                <a href="#how-it-works" data-i18n="navHow" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">วิธีใช้งาน</a>
+                <a href="#diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคที่ตรวจได้</a>
+                <a href="#faq" data-i18n="navFaq" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">คำถามที่พบบ่อย</a>
+                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="border-b border-linen-200 bg-gradient-to-b from-yoedo-50/60 to-linen-50">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6 py-14 lg:py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+
+                <!-- Left Content -->
+                <div class="lg:col-span-7 text-center lg:text-left">
+                    <p class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-yoedo-700 bg-yoedo-100/70 px-3.5 py-1 rounded-full mb-5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-yoedo-600"></span>
+                        <span data-i18n="heroBadge">แอปฟรีสำหรับชาวสวนทุเรียน (Android)</span>
+                    </p>
+
+                    <h1 data-i18n-html="heroTitle"
+                        class="text-3xl sm:text-5xl font-bold text-stone-900 tracking-tight leading-[1.45] sm:leading-[1.38] mb-5">
+                        ส่องกล้องตรวจใบทุเรียน
+                        <span class="block text-yoedo-600 mt-1.5 sm:mt-2">รู้โรคไว ใช้ได้แม้ไม่มีเน็ต</span>
+                    </h1>
+
+                    <p data-i18n-html="heroDesc"
+                        class="text-base sm:text-lg text-stone-600 max-w-xl mx-auto lg:mx-0 mb-8 leading-[1.8]">
+                        เดินดูสวนแล้วเจอใบจุด ใบเหลือง หรือใบไหม้ ไม่ต้องเดาเองหรือรอสัญญาณเน็ต
+                        แค่เปิดแอป <strong class="font-semibold text-stone-800">YOEDO</strong> ส่องไปที่ใบทุเรียน
+                        แอปจะช่วยบอกชื่อโรคที่น่าจะเป็น พร้อมวิธีดูแลเบื้องต้นให้ทันที
+                    </p>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-9">
+                        <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian"
+                            target="_blank" rel="noopener noreferrer" aria-label="Get it on Google Play"
+                            class="inline-block transition transform hover:-translate-y-0.5 hover:scale-[1.02]">
+                            <img src="./assets/google-play-badge.png" alt="Get it on Google Play"
+                                class="h-14 sm:h-[58px] w-auto rounded-xl shadow-md hover:shadow-lg">
+                        </a>
+
+                        <a href="#how-it-works"
+                            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-white border border-linen-200 hover:border-yoedo-500 text-stone-700 hover:text-yoedo-700 rounded-xl font-medium text-sm sm:text-base transition">
+                            <span data-i18n="heroHowBtn">ดูวิธีใช้งานง่ายๆ</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Simple Plain-Language Highlights -->
+                    <div class="flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2.5 text-sm text-stone-600 pt-5 border-t border-linen-200">
+                        <span class="inline-flex items-center gap-2">
+                            <svg class="w-4 h-4 text-yoedo-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span data-i18n="check1">ทำงานออฟไลน์ในสวนลึก</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2">
+                            <svg class="w-4 h-4 text-yoedo-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span data-i18n="check2">รองรับภาษาไทยและอังกฤษ</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2">
+                            <svg class="w-4 h-4 text-yoedo-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            <span data-i18n="check3">ฟรี ไม่มีโฆษณา</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Right Real App UI Showcase -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+                    <div class="relative flex flex-col items-center w-full max-w-[340px]">
+
+                        <!-- Phone Frame with Prev/Next Controls -->
+                        <div class="relative flex items-center justify-center">
+                            <button id="prevScreenBtn" type="button" aria-label="Previous screen"
+                                class="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-white hover:bg-yoedo-50 text-stone-700 hover:text-yoedo-600 shadow-sm border border-linen-200 absolute -left-5 z-20 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                                </svg>
+                            </button>
+
+                            <div
+                                class="relative w-[245px] sm:w-[265px] bg-stone-900 rounded-[2.4rem] p-2.5 shadow-xl border-[3px] border-stone-800">
+                                <div class="relative aspect-[460/1024] rounded-[1.85rem] overflow-hidden bg-white">
+                                    <img data-screen-img="home" src="./assets/screen-home.jpg"
+                                        alt="YOEDO Home Screen"
+                                        class="app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-100 scale-100 translate-y-0 z-10">
+                                    <img data-screen-img="live" src="./assets/screen-en-live.jpg"
+                                        alt="YOEDO Live Camera Scan"
+                                        class="app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-0 scale-[0.97] translate-y-1.5 pointer-events-none z-0">
+                                    <img data-screen-img="stats" src="./assets/screen-stats.jpg"
+                                        alt="YOEDO Whole Tree Scan Statistics"
+                                        class="app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-0 scale-[0.97] translate-y-1.5 pointer-events-none z-0">
+                                    <img data-screen-img="analyze" src="./assets/screen-analyze.jpg"
+                                        alt="YOEDO Image Analysis Results"
+                                        class="app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-0 scale-[0.97] translate-y-1.5 pointer-events-none z-0">
+                                    <img data-screen-img="database" src="./assets/screen-database.jpg"
+                                        alt="YOEDO Durian Disease Database"
+                                        class="app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-0 scale-[0.97] translate-y-1.5 pointer-events-none z-0">
+                                </div>
+                            </div>
+
+                            <button id="nextScreenBtn" type="button" aria-label="Next screen"
+                                class="hidden sm:flex items-center justify-center w-9 h-9 rounded-full bg-white hover:bg-yoedo-50 text-stone-700 hover:text-yoedo-600 shadow-sm border border-linen-200 absolute -right-5 z-20 transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <!-- Real UI Screen Switcher Tabs -->
+                        <div class="mt-4 w-full text-center">
+                            <div class="flex flex-wrap items-center justify-center gap-1.5 mb-2">
+                                <button type="button" data-screen="home"
+                                    class="screen-tab-btn px-3 py-1.5 rounded-full text-xs font-medium bg-yoedo-600 text-white shadow-sm transition-all duration-200 scale-105">
+                                    หน้าแรก
+                                </button>
+                                <button type="button" data-screen="live"
+                                    class="screen-tab-btn hidden px-3 py-1.5 rounded-full text-xs font-medium bg-white text-stone-600 border border-linen-200 hover:border-yoedo-500 transition-all duration-200">
+                                    Live Scan
+                                </button>
+                                <button type="button" data-screen="stats"
+                                    class="screen-tab-btn px-3 py-1.5 rounded-full text-xs font-medium bg-white text-stone-600 border border-linen-200 hover:border-yoedo-500 transition-all duration-200">
+                                    สถิติทั้งต้น
+                                </button>
+                                <button type="button" data-screen="analyze"
+                                    class="screen-tab-btn px-3 py-1.5 rounded-full text-xs font-medium bg-white text-stone-600 border border-linen-200 hover:border-yoedo-500 transition-all duration-200">
+                                    วิเคราะห์รูปภาพ
+                                </button>
+                                <button type="button" data-screen="database"
+                                    class="screen-tab-btn px-3 py-1.5 rounded-full text-xs font-medium bg-white text-stone-600 border border-linen-200 hover:border-yoedo-500 transition-all duration-200">
+                                    ฐานข้อมูลโรค
+                                </button>
+                            </div>
+                            <p id="appScreenCaption" class="text-xs text-stone-500 px-2 leading-relaxed">
+                                หน้าหลักภาษาไทย ปุ่มใหญ่กดง่าย เลือกสแกนใบ ดูสถิติ หรืออ่านวิธีรักษาได้ทันที
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- What YOEDO Helps With -->
+    <section id="features" class="max-w-5xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+        <div class="max-w-xl mb-10">
+            <h2 data-i18n="featuresTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
+                แอปนี้ช่วยชาวสวนทุเรียนเรื่องอะไรบ้าง
+            </h2>
+            <p data-i18n="featuresSubtitle" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                ออกแบบให้ใช้งานง่ายเหมือนถ่ายรูปทั่วไป ไม่ต้องมีความรู้ด้านคอมพิวเตอร์ก็ใช้ได้ทันที
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+                <div data-i18n="f1Tag" class="text-sm font-semibold text-yoedo-600 mb-2">01 • ใช้ได้แม้สวนอับสัญญาณ</div>
+                <h3 data-i18n="f1Title" class="text-lg font-bold text-stone-900 mb-2">ไม่ต้องต่ออินเทอร์เน็ตขณะสแกน</h3>
+                <p data-i18n="f1Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    ตัวช่วยตรวจโรคทำงานอยู่ในเครื่องมือถือโดยตรง เดินเข้าสวนลึกแค่ไหนหรือไม่มีคลื่นก็ยังเปิดกล้องสแกนได้ปกติ ไม่เปลืองค่าเน็ต
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+                <div data-i18n="f2Tag" class="text-sm font-semibold text-yoedo-600 mb-2">02 • แม่นยำแม้ใบเอียงหรือซ้อนกัน</div>
+                <h3 data-i18n="f2Title" class="text-lg font-bold text-stone-900 mb-2">กรอบตรวจจับหมุนตามทรงใบจริง</h3>
+                <p data-i18n="f2Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    ใบทุเรียนบนต้นมักเอียงและซ้อนกันหลายใบ ระบบจะจับกรอบเอียงตามแนวใบไม้แต่ละใบ เพื่อแยกแยะอาการโรคได้ตรงจุดกว่าเดิม
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+                <div data-i18n="f3Tag" class="text-sm font-semibold text-yoedo-600 mb-2">03 • ดูภาพรวมทั้งต้นได้</div>
+                <h3 data-i18n="f3Title" class="text-lg font-bold text-stone-900 mb-2">เดินสแกนรอบต้น สรุปเป็นกราฟดูง่าย</h3>
+                <p data-i18n="f3Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    นอกจากสแกนทีละใบ ยังเดินสแกนรอบต้นเพื่อดูสัดส่วนเป็นกราฟวงกลมว่าใบปกติกับใบที่เป็นโรคมีมากน้อยแค่ไหน หรือเลือกวิเคราะห์จากรูปที่ถ่ายเก็บไว้ก็ได้
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+                <div data-i18n="f4Tag" class="text-sm font-semibold text-yoedo-600 mb-2">04 • มีคู่มือติดเครื่อง</div>
+                <h3 data-i18n="f4Title" class="text-lg font-bold text-stone-900 mb-2">บอกสาเหตุและวิธีดูแลเบื้องต้นทันที</h3>
+                <p data-i18n="f4Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    เมื่อตรวจเจออาการผิดปกติ แอปจะบอกชื่อโรค ช่วงสภาพอากาศที่เสี่ยงระบาด และแนวทางดูแลเบื้องต้นให้ตัดสินใจได้ไวขึ้น
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section id="how-it-works" class="bg-white border-y border-linen-200 py-16 sm:py-20">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6">
+            <div class="max-w-xl mb-10">
+                <h2 data-i18n="howTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
+                    เริ่มต้นใช้งานง่ายๆ ใน 3 ขั้นตอน
+                </h2>
+                <p data-i18n="howSubtitle" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    ไม่ต้องสมัครสมาชิก ไม่ต้องตั้งค่าอะไรให้ยุ่งยาก
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 rounded-2xl bg-linen-50 border border-linen-200">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yoedo-600 text-white text-sm font-bold mb-4">1</span>
+                    <h3 data-i18n="step1Title" class="text-base sm:text-lg font-bold text-stone-900 mb-2">เปิดแอปแล้วส่องไปที่ใบ</h3>
+                    <p data-i18n="step1Desc" class="text-sm text-stone-600 leading-relaxed">
+                        เลือกโหมดสแกนหรือเลือกภาพจากอัลบั้ม แนะนำให้ส่องในจุดที่มีแสงสว่างพอประมาณเพื่อให้เห็นผิวใบชัดเจน
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-linen-50 border border-linen-200">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yoedo-600 text-white text-sm font-bold mb-4">2</span>
+                    <h3 data-i18n="step2Title" class="text-base sm:text-lg font-bold text-stone-900 mb-2">รอผลขึ้นบนหน้าจอทันที</h3>
+                    <p data-i18n="step2Desc" class="text-sm text-stone-600 leading-relaxed">
+                        แอปจะตีกรอบรอบใบและแสดงชื่อโรคพร้อมเปอร์เซ็นต์ความมั่นใจให้ดูได้ทันที
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-linen-50 border border-linen-200">
+                    <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yoedo-600 text-white text-sm font-bold mb-4">3</span>
+                    <h3 data-i18n="step3Title" class="text-base sm:text-lg font-bold text-stone-900 mb-2">อ่านคำแนะนำเพื่อดูแลต้น</h3>
+                    <p data-i18n="step3Desc" class="text-sm text-stone-600 leading-relaxed">
+                        เปิดดูข้อมูลเชื้อสาเหตุ ระดับความรุนแรง และวิธีจัดการเบื้องต้นเพื่อลดการลุกลามไปยังต้นอื่น
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Supported Diseases Section -->
+    <section id="diseases" class="max-w-5xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+        <div class="max-w-2xl mb-10">
+            <h2 data-i18n="diseasesTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
+                โรคและอาการบนใบทุเรียนที่แอปช่วยสังเกต
+            </h2>
+            <p data-i18n="diseasesSubtitle" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                ครอบคลุม 5 โรคใบทุเรียนที่พบบ่อยในสวนไทย รวมถึงใบปกติและอาการผิดปกติอื่นๆ
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- 1. Phytophthora -->
+            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-2 font-bold text-stone-900">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
+                        <span data-i18n="d1Name">รากเน่าโคนเน่า</span>
+                    </span>
+                    <span data-i18n="sevCritical" class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 text-xs font-semibold shrink-0">รุนแรง</span>
+                </div>
+                <p class="text-xs text-stone-400 mb-2">Phytophthora palmivora</p>
+                <p data-i18n="d1Desc" class="text-sm text-stone-600 leading-relaxed">
+                    ช่วยสังเกตใบเหลืองซีดหรือจุดแผลช้ำลามเร็ว ซึ่งมักพบคู่กับปัญหาเชื้อไฟทอปธอรา
+                </p>
+            </div>
+
+            <!-- 2. Anthracnose -->
+            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-2 font-bold text-stone-900">
+                        <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
+                        <span data-i18n="d2Name">แอนแทรคโนส</span>
+                    </span>
+                    <span data-i18n="sevCritical" class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 text-xs font-semibold shrink-0">รุนแรง</span>
+                </div>
+                <p class="text-xs text-stone-400 mb-2">Colletotrichum spp.</p>
+                <p data-i18n="d2Desc" class="text-sm text-stone-600 leading-relaxed">
+                    ใบมีแผลสีน้ำตาลเข้มถึงดำ ขอบแผลชัด มักเริ่มจากปลายใบหรือขอบใบแล้วลามเข้าด้านใน
+                </p>
+            </div>
+
+            <!-- 3. Rhizoctonia -->
+            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-2 font-bold text-stone-900">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
+                        <span data-i18n="d3Name">ใบติด</span>
+                    </span>
+                    <span data-i18n="sevWarning" class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold shrink-0">ระวัง</span>
+                </div>
+                <p class="text-xs text-stone-400 mb-2">Rhizoctonia solani</p>
+                <p data-i18n="d3Desc" class="text-sm text-stone-600 leading-relaxed">
+                    ใบไหม้เป็นหย่อมคล้ายน้ำร้อนลวกและแห้งสีน้ำตาล มีเส้นใยรารัดใบติดกันเป็นกระจุก
+                </p>
+            </div>
+
+            <!-- 4. Phomopsis -->
+            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-2 font-bold text-stone-900">
+                        <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
+                        <span data-i18n="d4Name">ใบจุดโฟมอปซิส</span>
+                    </span>
+                    <span data-i18n="sevWarning" class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold shrink-0">ระวัง</span>
+                </div>
+                <p class="text-xs text-stone-400 mb-2">Phomopsis spp.</p>
+                <p data-i18n="d4Desc" class="text-sm text-stone-600 leading-relaxed">
+                    เกิดจุดแผลแห้งสีน้ำตาลอ่อนถึงเข้มกระจายบนแผ่นใบ มักมีขอบแผลสีเข้มล้อมรอบ
+                </p>
+            </div>
+
+            <!-- 5. Algal Spot -->
+            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-2 font-bold text-stone-900">
+                        <span class="w-2.5 h-2.5 rounded-full bg-sky-500 shrink-0"></span>
+                        <span data-i18n="d5Name">จุดสาหร่าย</span>
+                    </span>
+                    <span data-i18n="sevMonitor" class="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 text-xs font-semibold shrink-0">เฝ้าดู</span>
+                </div>
+                <p class="text-xs text-stone-400 mb-2">Cephaleuros virescens</p>
+                <p data-i18n="d5Desc" class="text-sm text-stone-600 leading-relaxed">
+                    จุดกลมคล้ายกำมะหยี่สีเขียวเทาหรือส้มสนิมบนผิวใบ พบมากในพุ่มทึบที่อับชื้น
+                </p>
+            </div>
+
+            <!-- 6. Healthy -->
+            <div class="bg-yoedo-50/70 rounded-2xl p-5 border border-yoedo-200">
+                <div class="flex items-center justify-between gap-2 mb-2">
+                    <span class="inline-flex items-center gap-2 font-bold text-yoedo-900">
+                        <span class="w-2.5 h-2.5 rounded-full bg-yoedo-600 shrink-0"></span>
+                        <span data-i18n="d6Name">ใบปกติ</span>
+                    </span>
+                    <span data-i18n="sevNormal" class="px-2.5 py-0.5 rounded-full bg-yoedo-100 text-yoedo-800 text-xs font-semibold shrink-0">ปกติ</span>
+                </div>
+                <p class="text-xs text-yoedo-700/80 mb-2">Healthy</p>
+                <p data-i18n="d6Desc" class="text-sm text-yoedo-900/85 leading-relaxed">
+                    ใบสีเขียวเข้มสม่ำเสมอ ผิวใบเรียบสมบูรณ์ ไม่พบร่องรอยแผลจากเชื้อราหรือจุดโรค
+                </p>
+            </div>
+
+            <!-- 7. Others -->
+            <div class="sm:col-span-2 lg:col-span-3 bg-linen-100/70 rounded-2xl p-5 border border-linen-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="w-2.5 h-2.5 rounded-full bg-stone-500 shrink-0"></span>
+                        <h3 data-i18n="d7Name" class="font-bold text-stone-900">อาการอื่นๆ (Others)</h3>
+                    </div>
+                    <p data-i18n="d7Desc" class="text-sm text-stone-600">
+                        สำหรับร่องรอยบนใบที่ไม่ตรงกับ 5 โรคหลัก เช่น รอยแมลงกัด อาการขาดธาตุอาหาร หรือใบไหม้แดด
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <p data-i18n="diseasesNote" class="text-xs sm:text-sm text-stone-500 mt-6">
+            * แอปนี้เป็นเครื่องมือช่วยคัดกรองเบื้องต้นในสวน หากพบอาการรุนแรงหรือลุกลามเร็ว แนะนำให้ปรึกษานักวิชาการเกษตรเพิ่มเติม
+        </p>
+    </section>
+
+    <!-- Origin / Team Section (Warm & Understated) -->
+    <section id="research" class="bg-white border-y border-linen-200 py-14 sm:py-16">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6">
+            <div class="bg-linen-50 rounded-3xl p-6 sm:p-9 border border-linen-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7">
+                    <h2 data-i18n="originTitle" class="text-xl sm:text-2xl font-bold text-stone-900 mb-3 leading-[1.4]">
+                        พัฒนาจากปัญหาในสวนจริง สู่งานวิจัยระดับนานาชาติ
+                    </h2>
+                    <p data-i18n-html="originDesc" class="text-sm sm:text-base text-stone-600 leading-[1.8] mb-4">
+                        <strong class="font-semibold text-stone-800">YOEDO</strong> เกิดจากการลงพื้นที่พูดคุยกับชาวสวนทุเรียนและเก็บภาพใบทุเรียนจริง
+                        ณ ศูนย์พัฒนาไม้ผลตามพระราชดำริจังหวัดจันทบุรี โดยนักเรียนโรงเรียนมหิดลวิทยานุสรณ์
+                        ร่วมกับ คณะวิทยาศาสตร์ มหาวิทยาลัยบูรพา เป็นส่วนหนึ่งของงานวิจัยด้านโมเดลที่ได้นำเสนอในงานประชุมวิชาการระดับนานาชาติ
+                        <strong class="font-semibold text-stone-800">The 41st International Technical Conference on Circuits/Systems, Computers, and Communications (ITC-CSCC 2026)</strong>
+                        ณ กรุงเทพมหานคร และมีบทความวิจัยสำหรับนำไปนำเสนอในงาน <strong class="font-semibold text-stone-800">TJ-SIF 2026</strong>
+                    </p>
+                    <p data-i18n-html="originDevs" class="text-xs sm:text-sm text-stone-500 mb-2 leading-relaxed">
+                        <strong class="font-semibold text-stone-700">ผู้พัฒนา (นักเรียนโรงเรียนมหิดลวิทยานุสรณ์):</strong> นายศุภณัฐ กลัดสอาด (ผู้พัฒนาโมเดล) • นายภากร วงษ์อรุณ <a href="https://www.linkedin.com/in/pakorn-wng/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn of Pakorn Wongaroon" title="LinkedIn" class="inline-flex align-text-bottom text-[#0A66C2] hover:opacity-80 transition"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg></a> (ผู้พัฒนาแอปพลิเคชั่น) • นายณชนนท์ กรินชัย (ผู้ช่วยพัฒนาโมเดล)
+                    </p>
+                    <p data-i18n-html="originAdvisors" class="text-xs sm:text-sm text-stone-500 mb-5 leading-relaxed">
+                        <strong class="font-semibold text-stone-700">อาจารย์ที่ปรึกษา:</strong> ดร.สิทธิโชค โสมอ่ำ • ดร.ธวัชชัย สุดใจ (มหิดลวิทยานุสรณ์) • รศ. ดร.ภัทราพร ทองนิ่ม (ม.บูรพา)
+                    </p>
+                    <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
+                        <a href="./about.html" data-i18n="originReadMore"
+                            class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-yoedo-600 hover:bg-yoedo-700 text-white font-medium shadow-sm transition">
+                            อ่านที่มาและดูภาพลงพื้นที่ →
+                        </a>
+                        <a href="https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB"
+                            target="_blank" rel="noopener noreferrer" data-i18n="originPaper"
+                            class="text-yoedo-700 hover:underline font-medium px-2 py-1">
+                            บทความวิจัย (ResearchGate)
+                        </a>
+                    </div>
+                </div>
+                <div class="lg:col-span-5">
+                    <a href="./about.html" class="block group rounded-2xl overflow-hidden border border-linen-200 bg-white shadow-sm">
+                        <img src="./assets/about-itc-present.jpg" alt="YOEDO Research Presentation at ITC-CSCC 2026"
+                            class="w-full h-52 sm:h-56 object-cover group-hover:scale-[1.02] transition-transform duration-300">
+                        <div class="px-4 py-2.5 text-xs text-stone-500 flex items-center justify-between">
+                            <span data-i18n="originPhotoLabel">นำเสนอผลงานเวที ITC-CSCC 2026</span>
+                            <span data-i18n="originPhotoLink" class="text-yoedo-600 font-medium">ดูทั้งหมด →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="max-w-3xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+        <div class="text-center mb-10">
+            <h2 data-i18n="faqTitle" class="text-2xl sm:text-3xl font-bold text-stone-900">คำถามที่พบบ่อย</h2>
+        </div>
+
+        <div class="space-y-3">
+            <details class="group bg-white border border-linen-200 rounded-2xl p-5 transition" open>
+                <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold text-stone-900">
+                    <span data-i18n="q1">เดินเข้าสวนลึกไม่มีสัญญาณเน็ต แอปยังใช้งานได้ไหม?</span>
+                    <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p data-i18n="a1" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+                    ใช้งานได้เต็มรูปแบบครับ เพราะระบบตรวจโรคทำงานอยู่ในมือถือเครื่องนั้นเลย ไม่ต้องส่งรูปขึ้นอินเทอร์เน็ต จึงใช้ได้แม้ปิดเน็ตหรือไม่มีสัญญาณมือถือ
+                </p>
+            </details>
+
+            <details class="group bg-white border border-linen-200 rounded-2xl p-5 transition">
+                <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold text-stone-900">
+                    <span data-i18n="q2">รูปที่สแกนหรือถ่ายไว้จะถูกส่งไปที่ไหนไหม?</span>
+                    <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p data-i18n-html="a2" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+                    ไม่ส่งออกไปไหนเลยครับ ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของคุณเท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว (<a href="./privacy-policy.html" class="text-yoedo-600 hover:underline">อ่านรายละเอียดเพิ่ม</a>)
+                </p>
+            </details>
+
+            <details class="group bg-white border border-linen-200 rounded-2xl p-5 transition">
+                <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold text-stone-900">
+                    <span data-i18n="q3">ต้องเสียค่าใช้จ่ายหรือสมัครสมาชิกไหม ใช้กับมือถืออะไรได้บ้าง?</span>
+                    <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p data-i18n="a3" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+                    ดาวน์โหลดและใช้งานได้ฟรีทั้งหมด ไม่ต้องสมัครสมาชิก รองรับมือถือระบบ Android ผ่าน Google Play Store
+                </p>
+            </details>
+
+            <details class="group bg-white border border-linen-200 rounded-2xl p-5 transition">
+                <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold text-stone-900">
+                    <span data-i18n="q4">ผลจากแอปเชื่อถือได้แค่ไหน ใช้แทนการปรึกษาผู้เชี่ยวชาญได้ไหม?</span>
+                    <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p data-i18n="a4" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+                    แอปช่วยคัดกรองเบื้องต้นให้เห็นความผิดปกติเร็วขึ้นระหว่างเดินสำรวจสวน หากพบอาการหนักหรือยังไม่แน่ใจ ควรปรึกษานักวิชาการเกษตรหรือเจ้าหน้าที่ใกล้บ้านร่วมด้วยครับ
+                </p>
+            </details>
+        </div>
+    </section>
+
+    <!-- Calm Bottom Download Card -->
+    <section class="max-w-5xl mx-auto px-5 sm:px-6 pb-16">
+        <div class="rounded-3xl bg-yoedo-50 border border-yoedo-200 p-8 sm:p-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-7 text-center md:text-left">
+                <div class="flex flex-col sm:flex-row items-center gap-5">
+                    <img src="./assets/yoedo-logo.png" alt="YOEDO Durian Leaf Scanner"
+                        class="w-16 h-16 rounded-2xl shadow-sm shrink-0">
+                    <div>
+                        <h2 data-i18n="ctaTitle" class="text-xl sm:text-2xl font-bold text-stone-900 mb-1.5">
+                            โหลดแอป YOEDO ติดเครื่องไว้ใช้ในสวนได้เลย
+                        </h2>
+                        <p data-i18n="ctaDesc" class="text-stone-600 text-sm sm:text-base max-w-lg">
+                            ฟรี ใช้งานง่าย มีทั้งภาษาไทยและภาษาอังกฤษ เปิดสแกนได้ทันทีแม้ไม่มีอินเทอร์เน็ต
+                        </p>
+                    </div>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" aria-label="Get it on Google Play"
+                    class="shrink-0 inline-block transition transform hover:-translate-y-0.5 hover:scale-[1.02]">
+                    <img src="./assets/google-play-badge.png" alt="Get it on Google Play"
+                        class="h-14 sm:h-[58px] w-auto rounded-xl shadow-md">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-linen-200 bg-white">
+        <div
+            class="max-w-5xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+            <div class="flex items-center gap-2.5">
+                <img src="./assets/cateatmars-logo.jpg" alt="cateatmars.dev" class="w-7 h-7 rounded-lg object-cover shadow-sm">
+                <span>© 2026 cateatmars.dev • Open source under Apache-2.0 License.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
+                <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-yoedo-600 transition">GitHub</a>
+                <a href="#faq" data-i18n="navFaq" class="hover:text-yoedo-600 transition">คำถามที่พบบ่อย</a>
+                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bilingual + Showcase + Mobile Menu Script -->
+    <script>
+        const i18n = {
+            th: {
+                pageTitle: 'YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต',
+                brandSub: 'สแกนโรคใบทุเรียน',
+                navFeatures: 'ช่วยอะไรได้บ้าง',
+                navHow: 'วิธีใช้งาน',
+                navDiseases: 'โรคที่ตรวจได้',
+                navFaq: 'คำถามที่พบบ่อย',
+                navAbout: 'เกี่ยวกับ',
+                navPrivacy: 'ความเป็นส่วนตัว',
+                navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
+                heroBadge: 'แอปฟรีสำหรับชาวสวนทุเรียน (Android)',
+                heroTitle: 'ส่องกล้องตรวจใบทุเรียน<span class="block text-yoedo-600 mt-1.5 sm:mt-2">รู้โรคไว ใช้ได้แม้ไม่มีเน็ต</span>',
+                heroDesc: 'เดินดูสวนแล้วเจอใบจุด ใบเหลือง หรือใบไหม้ ไม่ต้องเดาเองหรือรอสัญญาณเน็ต แค่เปิดแอป <strong class="font-semibold text-stone-800">YOEDO</strong> ส่องไปที่ใบทุเรียน แอปจะช่วยบอกชื่อโรคที่น่าจะเป็น พร้อมวิธีดูแลเบื้องต้นให้ทันที',
+                heroHowBtn: 'ดูวิธีใช้งานง่ายๆ',
+                check1: 'ทำงานออฟไลน์ในสวนลึก',
+                check2: 'รองรับภาษาไทยและอังกฤษ',
+                check3: 'ฟรี ไม่มีโฆษณา',
+                featuresTitle: 'แอปนี้ช่วยชาวสวนทุเรียนเรื่องอะไรบ้าง',
+                featuresSubtitle: 'ออกแบบให้ใช้งานง่ายเหมือนถ่ายรูปทั่วไป ไม่ต้องมีความรู้ด้านคอมพิวเตอร์ก็ใช้ได้ทันที',
+                f1Tag: '01 • ใช้ได้แม้สวนอับสัญญาณ',
+                f1Title: 'ไม่ต้องต่ออินเทอร์เน็ตขณะสแกน',
+                f1Desc: 'ตัวช่วยตรวจโรคทำงานอยู่ในเครื่องมือถือโดยตรง เดินเข้าสวนลึกแค่ไหนหรือไม่มีคลื่นก็ยังเปิดกล้องสแกนได้ปกติ ไม่เปลืองค่าเน็ต',
+                f2Tag: '02 • แม่นยำแม้ใบเอียงหรือซ้อนกัน',
+                f2Title: 'กรอบตรวจจับหมุนตามทรงใบจริง',
+                f2Desc: 'ใบทุเรียนบนต้นมักเอียงและซ้อนกันหลายใบ ระบบจะจับกรอบเอียงตามแนวใบไม้แต่ละใบ เพื่อแยกแยะอาการโรคได้ตรงจุดกว่าเดิม',
+                f3Tag: '03 • ดูภาพรวมทั้งต้นได้',
+                f3Title: 'เดินสแกนรอบต้น สรุปเป็นกราฟดูง่าย',
+                f3Desc: 'นอกจากสแกนทีละใบ ยังเดินสแกนรอบต้นเพื่อดูสัดส่วนเป็นกราฟวงกลมว่าใบปกติกับใบที่เป็นโรคมีมากน้อยแค่ไหน หรือเลือกวิเคราะห์จากรูปที่ถ่ายเก็บไว้ก็ได้',
+                f4Tag: '04 • มีคู่มือติดเครื่อง',
+                f4Title: 'บอกสาเหตุและวิธีดูแลเบื้องต้นทันที',
+                f4Desc: 'เมื่อตรวจเจออาการผิดปกติ แอปจะบอกชื่อโรค ช่วงสภาพอากาศที่เสี่ยงระบาด และแนวทางดูแลเบื้องต้นให้ตัดสินใจได้ไวขึ้น',
+                howTitle: 'เริ่มต้นใช้งานง่ายๆ ใน 3 ขั้นตอน',
+                howSubtitle: 'ไม่ต้องสมัครสมาชิก ไม่ต้องตั้งค่าอะไรให้ยุ่งยาก',
+                step1Title: 'เปิดแอปแล้วส่องไปที่ใบ',
+                step1Desc: 'เลือกโหมดสแกนหรือเลือกภาพจากอัลบั้ม แนะนำให้ส่องในจุดที่มีแสงสว่างพอประมาณเพื่อให้เห็นผิวใบชัดเจน',
+                step2Title: 'รอผลขึ้นบนหน้าจอทันที',
+                step2Desc: 'แอปจะตีกรอบรอบใบและแสดงชื่อโรคพร้อมเปอร์เซ็นต์ความมั่นใจให้ดูได้ทันที',
+                step3Title: 'อ่านคำแนะนำเพื่อดูแลต้น',
+                step3Desc: 'เปิดดูข้อมูลเชื้อสาเหตุ ระดับความรุนแรง และวิธีจัดการเบื้องต้นเพื่อลดการลุกลามไปยังต้นอื่น',
+                diseasesTitle: 'โรคและอาการบนใบทุเรียนที่แอปช่วยสังเกต',
+                diseasesSubtitle: 'ครอบคลุม 5 โรคใบทุเรียนที่พบบ่อยในสวนไทย รวมถึงใบปกติและอาการผิดปกติอื่นๆ',
+                sevCritical: 'รุนแรง',
+                sevWarning: 'ระวัง',
+                sevMonitor: 'เฝ้าดู',
+                sevNormal: 'ปกติ',
+                d1Name: 'รากเน่าโคนเน่า',
+                d1Desc: 'ช่วยสังเกตใบเหลืองซีดหรือจุดแผลช้ำลามเร็ว ซึ่งมักพบคู่กับปัญหาเชื้อไฟทอปธอรา',
+                d2Name: 'แอนแทรคโนส',
+                d2Desc: 'ใบมีแผลสีน้ำตาลเข้มถึงดำ ขอบแผลชัด มักเริ่มจากปลายใบหรือขอบใบแล้วลามเข้าด้านใน',
+                d3Name: 'ใบติด',
+                d3Desc: 'ใบไหม้เป็นหย่อมคล้ายน้ำร้อนลวกและแห้งสีน้ำตาล มีเส้นใยรารัดใบติดกันเป็นกระจุก',
+                d4Name: 'ใบจุดโฟมอปซิส',
+                d4Desc: 'เกิดจุดแผลแห้งสีน้ำตาลอ่อนถึงเข้มกระจายบนแผ่นใบ มักมีขอบแผลสีเข้มล้อมรอบ',
+                d5Name: 'จุดสาหร่าย',
+                d5Desc: 'จุดกลมคล้ายกำมะหยี่สีเขียวเทาหรือส้มสนิมบนผิวใบ พบมากในพุ่มทึบที่อับชื้น',
+                d6Name: 'ใบปกติ',
+                d6Desc: 'ใบสีเขียวเข้มสม่ำเสมอ ผิวใบเรียบสมบูรณ์ ไม่พบร่องรอยแผลจากเชื้อราหรือจุดโรค',
+                d7Name: 'อาการอื่นๆ (Others)',
+                d7Desc: 'สำหรับร่องรอยบนใบที่ไม่ตรงกับ 5 โรคหลัก เช่น รอยแมลงกัด อาการขาดธาตุอาหาร หรือใบไหม้แดด',
+                diseasesNote: '* แอปนี้เป็นเครื่องมือช่วยคัดกรองเบื้องต้นในสวน หากพบอาการรุนแรงหรือลุกลามเร็ว แนะนำให้ปรึกษานักวิชาการเกษตรเพิ่มเติม',
+                originTitle: 'พัฒนาจากปัญหาในสวนจริง สู่งานวิจัยระดับนานาชาติ',
+                originDesc: '<strong class="font-semibold text-stone-800">YOEDO</strong> เกิดจากการลงพื้นที่พูดคุยกับชาวสวนทุเรียนและเก็บภาพใบทุเรียนจริง ณ ศูนย์พัฒนาไม้ผลตามพระราชดำริจังหวัดจันทบุรี โดยนักเรียนโรงเรียนมหิดลวิทยานุสรณ์ ร่วมกับ คณะวิทยาศาสตร์ มหาวิทยาลัยบูรพา เป็นส่วนหนึ่งของงานวิจัยด้านโมเดลที่ได้นำเสนอในงานประชุมวิชาการระดับนานาชาติ <strong class="font-semibold text-stone-800">The 41st International Technical Conference on Circuits/Systems, Computers, and Communications (ITC-CSCC 2026)</strong> ณ กรุงเทพมหานคร และมีบทความวิจัยสำหรับนำไปนำเสนอในงาน <strong class="font-semibold text-stone-800">TJ-SIF 2026</strong>',
+                originDevs: '<strong class="font-semibold text-stone-700">ผู้พัฒนา (นักเรียนโรงเรียนมหิดลวิทยานุสรณ์):</strong> นายศุภณัฐ กลัดสอาด (ผู้พัฒนาโมเดล) • นายภากร วงษ์อรุณ <a href="https://www.linkedin.com/in/pakorn-wng/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn ของนายภากร วงษ์อรุณ" title="LinkedIn" class="inline-flex align-text-bottom text-[#0A66C2] hover:opacity-80 transition"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg></a> (ผู้พัฒนาแอปพลิเคชั่น) • นายณชนนท์ กรินชัย (ผู้ช่วยพัฒนาโมเดล)',
+                originAdvisors: '<strong class="font-semibold text-stone-700">อาจารย์ที่ปรึกษา:</strong> ดร.สิทธิโชค โสมอ่ำ • ดร.ธวัชชัย สุดใจ (มหิดลวิทยานุสรณ์) • รศ. ดร.ภัทราพร ทองนิ่ม (ม.บูรพา)',
+                originReadMore: 'อ่านที่มาและดูภาพลงพื้นที่ →',
+                originPaper: 'บทความวิจัย (ResearchGate)',
+                originPhotoLabel: 'นำเสนอผลงานเวที ITC-CSCC 2026',
+                originPhotoLink: 'ดูทั้งหมด →',
+                faqTitle: 'คำถามที่พบบ่อย',
+                q1: 'เดินเข้าสวนลึกไม่มีสัญญาณเน็ต แอปยังใช้งานได้ไหม?',
+                a1: 'ใช้งานได้เต็มรูปแบบครับ เพราะระบบตรวจโรคทำงานอยู่ในมือถือเครื่องนั้นเลย ไม่ต้องส่งรูปขึ้นอินเทอร์เน็ต จึงใช้ได้แม้ปิดเน็ตหรือไม่มีสัญญาณมือถือ',
+                q2: 'รูปที่สแกนหรือถ่ายไว้จะถูกส่งไปที่ไหนไหม?',
+                a2: 'ไม่ส่งออกไปไหนเลยครับ ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของคุณเท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว (<a href="./privacy-policy.html" class="text-yoedo-600 hover:underline">อ่านรายละเอียดเพิ่ม</a>)',
+                q3: 'ต้องเสียค่าใช้จ่ายหรือสมัครสมาชิกไหม ใช้กับมือถืออะไรได้บ้าง?',
+                a3: 'ดาวน์โหลดและใช้งานได้ฟรีทั้งหมด ไม่ต้องสมัครสมาชิก รองรับมือถือระบบ Android ผ่าน Google Play Store',
+                q4: 'ผลจากแอปเชื่อถือได้แค่ไหน ใช้แทนการปรึกษาผู้เชี่ยวชาญได้ไหม?',
+                a4: 'แอปช่วยคัดกรองเบื้องต้นให้เห็นความผิดปกติเร็วขึ้นระหว่างเดินสำรวจสวน หากพบอาการหนักหรือยังไม่แน่ใจ ควรปรึกษานักวิชาการเกษตรหรือเจ้าหน้าที่ใกล้บ้านร่วมด้วยครับ',
+                ctaTitle: 'โหลดแอป YOEDO ติดเครื่องไว้ใช้ในสวนได้เลย',
+                ctaDesc: 'ฟรี ใช้งานง่าย มีทั้งภาษาไทยและภาษาอังกฤษ เปิดสแกนได้ทันทีแม้ไม่มีอินเทอร์เน็ต'
+            },
+            en: {
+                pageTitle: 'YOEDO - Offline Durian Leaf Disease Scanner App',
+                brandSub: 'Durian Leaf Scanner',
+                navFeatures: 'Features',
+                navHow: 'How to Use',
+                navDiseases: 'Diseases',
+                navFaq: 'FAQ',
+                navAbout: 'About',
+                navPrivacy: 'Privacy',
+                navPrivacyFull: 'Privacy Policy',
+                heroBadge: 'Free Android App for Durian Growers',
+                heroTitle: 'Scan Durian Leaves<span class="block text-yoedo-600 mt-1.5 sm:mt-2">Detect Diseases Offline</span>',
+                heroDesc: 'Spot yellow spots or leaf blight in your orchard without guessing or waiting for mobile signal. Open <strong class="font-semibold text-stone-800">YOEDO</strong> and point your phone camera at a durian leaf for instant disease identification and care advice.',
+                heroHowBtn: 'See How It Works',
+                check1: '100% offline in deep orchards',
+                check2: 'Thai & English interface',
+                check3: 'Free, no ads',
+                featuresTitle: 'How YOEDO Helps Durian Growers',
+                featuresSubtitle: 'Designed to be as simple as taking a photo—no technical background needed.',
+                f1Tag: '01 • Works Without Signal',
+                f1Title: 'No Internet Needed While Scanning',
+                f1Desc: 'All AI detection runs directly on your smartphone. Even in remote orchards with zero cellular coverage, you can scan leaves anytime without using mobile data.',
+                f2Tag: '02 • Handles Tilted & Overlapping Leaves',
+                f2Title: 'Detection Boxes Rotate With Each Leaf',
+                f2Desc: 'Real durian foliage hangs at natural angles and overlaps. The app rotates its detection frame to match each leaf orientation for more accurate orchard scanning.',
+                f3Tag: '03 • Whole-Tree Overview',
+                f3Title: 'Scan Around a Tree for Visual Statistics',
+                f3Desc: 'Beyond single-leaf checks, scan around an entire tree to summarize healthy vs. diseased leaf proportions in a clear chart, or analyze photos from your gallery.',
+                f4Tag: '04 • Built-In Care Guide',
+                f4Title: 'Pathogen Info & Early Care Guidance',
+                f4Desc: 'When a condition is detected, view the likely pathogen, high-risk weather conditions, and practical orchard management tips right away.',
+                howTitle: 'Simple to Start in 3 Steps',
+                howSubtitle: 'No sign-up or complicated setup required.',
+                step1Title: 'Open the App & Point at a Leaf',
+                step1Desc: 'Choose live camera scanning, whole-tree scan, or pick an existing photo from your gallery in well-lit conditions.',
+                step2Title: 'Get Instant On-Screen Results',
+                step2Desc: 'The app frames each leaf and displays the detected disease name along with a confidence percentage immediately.',
+                step3Title: 'Review Care Tips & Take Action',
+                step3Desc: 'Check severity levels, causal pathogens, and recommended care steps to help prevent spread across your orchard.',
+                diseasesTitle: '7 Durian Leaf Conditions Detected',
+                diseasesSubtitle: 'Covers 5 major foliar diseases found in durian orchards, plus Healthy leaves and Others.',
+                sevCritical: 'Critical',
+                sevWarning: 'Warning',
+                sevMonitor: 'Monitor',
+                sevNormal: 'Healthy',
+                d1Name: 'Phytophthora Root & Stem Rot',
+                d1Desc: 'Helps flag rapid leaf yellowing or water-soaked lesions associated with Phytophthora infection.',
+                d2Name: 'Anthracnose Leaf Blight',
+                d2Desc: 'Dark brown to black lesions with distinct borders, often starting from the leaf tip or margin.',
+                d3Name: 'Rhizoctonia Leaf Blight',
+                d3Desc: 'Scald-like blighted patches turning dry brown, with fungal threads binding adjacent leaves together.',
+                d4Name: 'Phomopsis Leaf Spot',
+                d4Desc: 'Dry light-to-dark brown spots scattered across the leaf blade, often surrounded by a darker rim.',
+                d5Name: 'Algal Leaf Spot (Cephaleuros)',
+                d5Desc: 'Velvety grey-green or rust-orange circular spots on leaves, common in dense, humid canopies.',
+                d6Name: 'Healthy Leaf',
+                d6Desc: 'Uniformly deep green, smooth leaf surface with no fungal lesions or disease spots.',
+                d7Name: 'Others',
+                d7Desc: 'Leaf anomalies outside the 5 main diseases, such as insect damage, nutrient deficiency, or sun scorch.',
+                diseasesNote: '* YOEDO is an early field-screening aid. For severe or rapidly spreading outbreaks, please consult a local agronomist.',
+                originTitle: 'From Real Orchards to International Research',
+                originDesc: '<strong class="font-semibold text-stone-800">YOEDO</strong> began by interviewing growers and collecting real orchard leaf images at the Chanthaburi Royal-Initiated Fruit Development Center, developed by Mahidol Wittayanusorn School students with the Faculty of Science, Burapha University. The app is part of model research presented at <strong class="font-semibold text-stone-800">The 41st International Technical Conference on Circuits/Systems, Computers, and Communications (ITC-CSCC 2026)</strong> in Bangkok, with an application paper prepared for <strong class="font-semibold text-stone-800">TJ-SIF 2026</strong>.',
+                originDevs: '<strong class="font-semibold text-stone-700">Developers (Mahidol Wittayanusorn School):</strong> Suphanat Kladsa-Ard (Model Developer) • Pakorn Wongaroon <a href="https://www.linkedin.com/in/pakorn-wng/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn of Pakorn Wongaroon" title="LinkedIn" class="inline-flex align-text-bottom text-[#0A66C2] hover:opacity-80 transition"><svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" /></svg></a> (App Developer) • Nachanon Krinchai (Co-Model Developer)',
+                originAdvisors: '<strong class="font-semibold text-stone-700">Advisors:</strong> Dr. Sittichoke Som-Am • Dr. Thawatchai Sudjai (MWIT) • Assoc. Prof. Dr. Pattharaporn Thongnim (Burapha University)',
+                originReadMore: 'Read Story & Field Photos →',
+                originPaper: 'Research Paper (ResearchGate)',
+                originPhotoLabel: 'Presented at ITC-CSCC 2026',
+                originPhotoLink: 'View Story →',
+                faqTitle: 'Frequently Asked Questions',
+                q1: 'Can I still use the app deep inside an orchard with no internet?',
+                a1: 'Yes. All AI processing runs locally on your phone, so you can scan leaves and browse the disease database without mobile data or Wi-Fi.',
+                q2: 'Are my leaf photos or scan history uploaded anywhere?',
+                a2: 'Never. All camera frames, photos, and scan statistics stay strictly on your own device with zero ads or tracking (<a href="./privacy-policy.html" class="text-yoedo-600 hover:underline">read Privacy Policy</a>).',
+                q3: 'Is YOEDO free to use, and which phones are supported?',
+                a3: 'Yes, it is completely free with no account required, available for Android devices on Google Play.',
+                q4: 'Can the app replace an agricultural specialist?',
+                a4: 'YOEDO is designed as a fast field-screening tool to help spot symptoms early. For severe outbreaks or complex cases, please consult an agricultural specialist.',
+                ctaTitle: 'Take YOEDO With You Into the Orchard',
+                ctaDesc: 'Free, bilingual (Thai & English), and ready to scan offline anytime.'
+            }
+        };
+
+        const screenSets = {
+            th: {
+                order: ['home', 'stats', 'analyze', 'database'],
+                labels: {
+                    home: 'หน้าแรก',
+                    stats: 'สถิติทั้งต้น',
+                    analyze: 'วิเคราะห์รูปภาพ',
+                    database: 'ฐานข้อมูลโรค'
+                },
+                srcs: {
+                    home: './assets/screen-home.jpg',
+                    stats: './assets/screen-stats.jpg',
+                    analyze: './assets/screen-analyze.jpg',
+                    database: './assets/screen-database.jpg'
+                },
+                captions: {
+                    home: 'หน้าหลักภาษาไทย ปุ่มใหญ่กดง่าย เลือกสแกนใบ ดูสถิติ หรืออ่านวิธีรักษาได้ทันที',
+                    stats: 'เดินสแกนรอบต้นเพื่อดูสัดส่วนใบปกติและโรคที่พบเป็นกราฟวงกลมเข้าใจง่าย',
+                    analyze: 'แสดงกรอบตรวจจับตามแนวใบ พร้อมบอกชื่อโรค เชื้อสาเหตุ และช่วงเสี่ยงระบาด',
+                    database: 'คลังข้อมูลโรคใบทุเรียน 7 ประเภท พร้อมระดับความรุนแรงและวิธีดูแลเบื้องต้น'
+                }
+            },
+            en: {
+                order: ['home', 'live', 'stats', 'analyze', 'database'],
+                labels: {
+                    home: 'Home',
+                    live: 'Live Scan',
+                    stats: 'Tree Stats',
+                    analyze: 'Image Analysis',
+                    database: 'Database'
+                },
+                srcs: {
+                    home: './assets/screen-en-home.jpg',
+                    live: './assets/screen-en-live.jpg',
+                    stats: './assets/screen-en-stats.jpg',
+                    analyze: './assets/screen-en-analyze.jpg',
+                    database: './assets/screen-en-database.jpg'
+                },
+                captions: {
+                    home: 'English Home Screen with quick access to leaf scanning, whole-tree stats, gallery analysis, and disease guide.',
+                    live: 'Real-time camera detection with oriented bounding boxes tracking tilted durian leaves on-device.',
+                    stats: 'Whole-tree scan summary displaying detected disease proportions vs. healthy leaves in a donut chart.',
+                    analyze: 'Detailed gallery image analysis showing confidence score, causal pathogen, and high-risk conditions.',
+                    database: 'Built-in 7-class durian leaf disease database with severity badges and pathogen references.'
+                }
+            }
+        };
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMobileMenuOpen = false;
+
+        function setMobileMenu(open) {
+            if (!mobileMenu) return;
+            isMobileMenuOpen = open;
+            if (open) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0', 'border-transparent');
+                mobileMenu.classList.add('max-h-96', 'opacity-100', 'border-linen-200');
+            } else {
+                mobileMenu.classList.add('max-h-0', 'opacity-0', 'border-transparent');
+                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'border-linen-200');
+            }
+        }
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => setMobileMenu(!isMobileMenuOpen));
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => setMobileMenu(false));
+            });
+        }
+
+        // Showcase state
+        let currentLang = 'th';
+        let currentScreenKey = 'home';
+
+        const appScreenSlides = document.querySelectorAll('.app-screen-slide');
+        const appScreenCaption = document.getElementById('appScreenCaption');
+        const screenTabBtns = document.querySelectorAll('.screen-tab-btn');
+        const prevScreenBtn = document.getElementById('prevScreenBtn');
+        const nextScreenBtn = document.getElementById('nextScreenBtn');
+        const siteLangBtns = document.querySelectorAll('.site-lang-btn');
+
+        function setActiveScreen(key) {
+            const set = screenSets[currentLang];
+            if (!set || !set.srcs[key]) {
+                key = 'home';
+            }
+            currentScreenKey = key;
+
+            appScreenSlides.forEach((slide) => {
+                const slideKey = slide.dataset.screenImg;
+                const isActive = slideKey === key;
+                slide.className = isActive
+                    ? 'app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-100 scale-100 translate-y-0 z-10'
+                    : 'app-screen-slide absolute inset-0 w-full h-full object-cover select-none transition-all duration-300 ease-out opacity-0 scale-[0.97] translate-y-1.5 pointer-events-none z-0';
+            });
+
+            if (appScreenCaption) {
+                appScreenCaption.classList.remove('caption-animate');
+                void appScreenCaption.offsetWidth;
+                appScreenCaption.textContent = set.captions[key];
+                appScreenCaption.classList.add('caption-animate');
+            }
+
+            screenTabBtns.forEach((btn) => {
+                const btnKey = btn.dataset.screen;
+                const isAvailable = Boolean(set.srcs[btnKey]);
+                const isActive = btnKey === key;
+
+                if (!isAvailable) {
+                    btn.className = 'screen-tab-btn hidden';
+                    return;
+                }
+
+                btn.textContent = set.labels[btnKey];
+                btn.className = isActive
+                    ? 'screen-tab-btn px-3 py-1.5 rounded-full text-xs font-medium bg-yoedo-600 text-white shadow-sm transition-all duration-200 scale-105'
+                    : 'screen-tab-btn px-3 py-1.5 rounded-full text-xs font-medium bg-white text-stone-600 border border-linen-200 hover:border-yoedo-500 transition-all duration-200';
+            });
+        }
+
+        function setSiteLanguage(lang, persist = true) {
+            if (!i18n[lang]) return;
+            currentLang = lang;
+            if (persist) {
+                try {
+                    localStorage.setItem('yoedo_lang', lang);
+                } catch (_) {}
+            }
+
+            document.documentElement.lang = lang;
+            document.title = i18n[lang].pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.dataset.i18n;
+                if (i18n[lang][key] !== undefined) {
+                    el.textContent = i18n[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+                const key = el.dataset.i18nHtml;
+                if (i18n[lang][key] !== undefined) {
+                    el.innerHTML = i18n[lang][key];
+                }
+            });
+
+            // Update phone screenshot sources for the active language
+            const set = screenSets[lang];
+            appScreenSlides.forEach((slide) => {
+                const slideKey = slide.dataset.screenImg;
+                if (set.srcs[slideKey]) {
+                    slide.src = set.srcs[slideKey];
+                }
+            });
+
+            setActiveScreen(set.srcs[currentScreenKey] ? currentScreenKey : 'home');
+
+            siteLangBtns.forEach((btn) => {
+                const isActive = btn.dataset.setLang === lang;
+                btn.className = isActive
+                    ? 'site-lang-btn px-2 py-1 rounded-md bg-yoedo-600 text-white transition'
+                    : 'site-lang-btn px-2 py-1 rounded-md text-stone-600 hover:text-yoedo-600 transition';
+            });
+
+            document.body.classList.remove('lang-fade');
+            void document.body.offsetWidth;
+            document.body.classList.add('lang-fade');
+        }
+
+        screenTabBtns.forEach((btn) => {
+            btn.addEventListener('click', () => setActiveScreen(btn.dataset.screen));
+        });
+
+        if (prevScreenBtn) {
+            prevScreenBtn.addEventListener('click', () => {
+                const order = screenSets[currentLang].order;
+                const idx = order.indexOf(currentScreenKey);
+                const prevIdx = (idx - 1 + order.length) % order.length;
+                setActiveScreen(order[prevIdx]);
+            });
+        }
+
+        if (nextScreenBtn) {
+            nextScreenBtn.addEventListener('click', () => {
+                const order = screenSets[currentLang].order;
+                const idx = order.indexOf(currentScreenKey);
+                const nextIdx = (idx + 1) % order.length;
+                setActiveScreen(order[nextIdx]);
+            });
+        }
+
+        siteLangBtns.forEach((btn) => {
+            btn.addEventListener('click', () => setSiteLanguage(btn.dataset.setLang));
+        });
+
+        // Initial language detection (?lang=en or saved preference)
+        const urlLang = new URLSearchParams(window.location.search).get('lang');
+        let savedLang = 'th';
+        try {
+            savedLang = localStorage.getItem('yoedo_lang') || 'th';
+        } catch (_) {}
+        const initialLang = urlLang === 'en' || urlLang === 'th' ? urlLang : savedLang;
+        if (initialLang === 'en') {
+            setSiteLanguage('en', false);
+        }
+    </script>
+</body>
+
+</html>
