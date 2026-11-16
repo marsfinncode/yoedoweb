@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# AI & Search Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://yoedo.vercel.app/sitemap.xml

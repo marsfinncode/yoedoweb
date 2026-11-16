@@ -1,0 +1,48 @@
+# YOEDO (You Only Eat Durian Once) — Durian Leaf Scanner
+
+> YOEDO is a free, 100% offline Android mobile application for real-time durian leaf disease detection, built for durian farmers and researchers.
+
+## Key Facts
+- **Website:** https://yoedo.vercel.app/
+- **About & Research Page:** https://yoedo.vercel.app/about
+- **Privacy Policy:** https://yoedo.vercel.app/privacy-policy
+- **App Name:** YOEDO (Durian Leaf Scanner)
+- **Package ID:** `com.cateatmars_dev.yoedodurian`
+- **Google Play Store:** https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian
+- **Open-Source Repository (Apache-2.0):** https://github.com/marsfinncode/cnn-durian
+- **Research Paper (ResearchGate):** https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB
+- **Languages Supported in App:** Thai and English
+- **Operation:** 100% on-device offline AI inference using YOLO-OBB quantized to TensorFlow Lite (LiteRT)
+- **Dataset:** 4,668 annotated durian leaf instances collected from real orchard environments
+
+## Supported Detection Classes (7 Classes)
+1. **Phytophthora Root & Stem Rot** (*Phytophthora palmivora*) — Critical
+2. **Anthracnose Leaf Blight** (*Colletotrichum spp.*) — Critical
+3. **Rhizoctonia Leaf Blight** (*Rhizoctonia solani*) — Warning
+4. **Phomopsis Leaf Spot** (*Phomopsis spp.*) — Warning
+5. **Algal Leaf Spot** (*Cephaleuros virescens*) — Monitor
+6. **Healthy Leaf** — Normal
+7. **Others** — Other anomalies outside the 5 main diseases
+
+## Features
+- Real-time live camera scanning with oriented bounding boxes (YOLO-OBB)
+- Whole-tree scan statistics (donut chart summarizing healthy vs. diseased leaf proportions)
+- Gallery image analysis
+- Built-in 7-class durian leaf disease database with pathogen details and early care guidance
+- Privacy by Design: zero personal data collection, zero tracking, no ads
+
+## Developers (Mahidol Wittayanusorn School)
+1. Suphanat Kladsa-Ard — Model Developer
+2. Pakorn Wongaroon — Application Developer (https://www.linkedin.com/in/pakorn-wng/)
+3. Nachanon Krinchai — Co-Model Developer
+
+## Advisors
+1. Dr. Sittichoke Som-Am — Department of Mathematics and Computer Science, Mahidol Wittayanusorn School
+2. Dr. Thawatchai Sudjai — Department of Physics, Mahidol Wittayanusorn School
+3. Assoc. Prof. Dr. Pattharaporn Thongnim — Department of Mathematics, Faculty of Science, Burapha University
+
+## Academic Milestones
+- Model research presented at **The 41st International Technical Conference on Circuits/Systems, Computers, and Communications (ITC-CSCC 2026)** in Bangkok, Thailand.
+- Application paper *“YOEDO: A Real-Time Mobile Application for Durian Leaf Disease Detection Using YOLO-OBB”* prepared for **Thailand-Japan Student ICT Fair 2026 (TJ-SIF 2026)**.
+- Field visits and orchard data collection conducted at the Chanthaburi Royal-Initiated Fruit Development Center, Thailand.
+

@@ -7,18 +7,98 @@
     <title>YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต</title>
     <meta name="description"
         content="YOEDO (Durian Leaf Scanner) แอปช่วยชาวสวนทุเรียนตรวจดูโรคใบทุเรียนจากกล้องมือถือ ใช้งานได้ทันทีกลางสวนแม้ไม่มีสัญญาณอินเทอร์เน็ต ดาวน์โหลดฟรีบน Google Play">
+    <meta name="keywords"
+        content="YOEDO, YOEDO Durian Leaf Scanner, You Only Eat Durian Once, สแกนโรคใบทุเรียน, แอปตรวจโรคใบทุเรียน, โรคใบทุเรียน, YOLO-OBB, cateatmars.dev, MWIT, มหิดลวิทยานุสรณ์">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="author" content="cateatmars.dev">
     <meta name="theme-color" content="#028c57">
+    <link rel="canonical" href="https://yoedo.vercel.app/">
 
     <!-- Favicon & App Icon -->
     <link rel="icon" type="image/png" href="./assets/yoedo-logo.png">
     <link rel="apple-touch-icon" href="./assets/yoedo-logo.png">
 
-    <!-- Open Graph -->
+    <!-- Open Graph & Twitter -->
+    <meta property="og:url" content="https://yoedo.vercel.app/">
     <meta property="og:title" content="YOEDO - Real-Time Offline Durian Leaf Disease Scanner">
     <meta property="og:description"
         content="Scan durian leaves offline with your smartphone camera. Instant disease identification and care guidance.">
-    <meta property="og:image" content="./assets/yoedo-logo.png">
+    <meta property="og:image" content="https://yoedo.vercel.app/assets/yoedo-logo.png">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต">
+    <meta name="twitter:description"
+        content="Free offline Android app for durian leaf disease detection with 7 classes and care guidance.">
+    <meta name="twitter:image" content="https://yoedo.vercel.app/assets/yoedo-logo.png">
+
+    <!-- Structured Data (JSON-LD) for Google Search & AI Grounding -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "MobileApplication",
+          "name": "YOEDO - Durian Leaf Scanner",
+          "alternateName": "You Only Eat Durian Once",
+          "url": "https://yoedo.vercel.app/",
+          "operatingSystem": "Android",
+          "applicationCategory": "UtilitiesApplication",
+          "description": "Free 100% offline Android application for real-time durian leaf disease detection using YOLO-OBB and TensorFlow Lite, supporting Thai and English across 7 leaf classes.",
+          "inLanguage": ["th", "en"],
+          "downloadUrl": "https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian",
+          "installUrl": "https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "THB"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "cateatmars.dev"
+          },
+          "author": [
+            { "@type": "Person", "name": "Suphanat Kladsa-Ard" },
+            { "@type": "Person", "name": "Pakorn Wongaroon", "sameAs": "https://www.linkedin.com/in/pakorn-wng/" },
+            { "@type": "Person", "name": "Nachanon Krinchai" }
+          ],
+          "sameAs": [
+            "https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian",
+            "https://github.com/marsfinncode/cnn-durian",
+            "https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "เดินเข้าสวนลึกไม่มีสัญญาณเน็ต แอปยังใช้งานได้ไหม?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ใช้งานได้เต็มรูปแบบ เพราะระบบตรวจโรคทำงานอยู่ในมือถือเครื่องนั้นเลย ไม่ต้องส่งรูปขึ้นอินเทอร์เน็ต จึงใช้ได้แม้ไม่มีสัญญาณมือถือ"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "รูปที่สแกนหรือถ่ายไว้จะถูกส่งไปที่ไหนไหม?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ไม่ส่งออกไปไหน ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของผู้ใช้เท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว"
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "ต้องเสียค่าใช้จ่ายหรือสมัครสมาชิกไหม ใช้กับมือถืออะไรได้บ้าง?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "ดาวน์โหลดและใช้งานได้ฟรีทั้งหมด ไม่ต้องสมัครสมาชิก รองรับมือถือระบบ Android ผ่าน Google Play Store"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Google Fonts (Sarabun) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
