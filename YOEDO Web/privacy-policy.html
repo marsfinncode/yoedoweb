@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นโยบายความเป็นส่วนตัว (Privacy Policy) - YOEDO</title>
+    <meta name="description"
+        content="นโยบายความเป็นส่วนตัวของแอปพลิเคชัน YOEDO (You Only Eat Durian Once) ประมวลผล AI บนเครื่อง 100% ไม่เก็บหรือส่งต่อข้อมูลส่วนบุคคล">
+    <meta name="theme-color" content="#058c58">
+
+    <!-- Favicon & App Icon -->
+    <link rel="icon" type="image/png" href="./assets/yoedo-logo.png">
+    <link rel="apple-touch-icon" href="./assets/yoedo-logo.png">
+
+    <!-- Google Fonts (Sarabun) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'sans-serif'],
+                    },
+                    colors: {
+                        yoedo: {
+                            50: '#eef8f3',
+                            100: '#d5eee1',
+                            200: '#aeddc5',
+                            500: '#049b60',
+                            600: '#028c57',
+                            700: '#046c44',
+                            800: '#065638',
+                            900: '#073f2a',
+                        },
+                        linen: {
+                            50: '#fafaf7',
+                            100: '#f3f2ec',
+                            200: '#e6e4db',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .policy-fade-in {
+            animation: fadeSlideUp 0.28s ease-out;
+        }
+
+        @keyframes langFade {
+            from {
+                opacity: 0.35;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lang-fade {
+            animation: langFade 0.25s ease-out;
+        }
+    </style>
+</head>
+
+<body class="bg-linen-50 text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
+
+    <!-- Sticky Glass Navigation -->
+    <header class="sticky top-0 z-50 bg-linen-50/90 backdrop-blur-md border-b border-linen-200">
+        <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+            <a href="./index.html" class="flex items-center gap-3 group shrink-0">
+                <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
+                    class="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
+                <div class="leading-tight">
+                    <span class="font-bold text-lg text-stone-900 tracking-tight block">YOEDO</span>
+                    <span data-i18n="brandSub" class="text-[11px] text-stone-500 hidden sm:block">สแกนโรคใบทุเรียน</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="./index.html#features" data-i18n="navFeatures" class="hover:text-yoedo-600 transition">ช่วยอะไรได้บ้าง</a>
+                <a href="./index.html#diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคที่ตรวจได้</a>
+                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="text-yoedo-600 font-semibold">ความเป็นส่วนตัว</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Language Switcher -->
+                <div class="inline-flex items-center rounded-lg border border-linen-200 bg-white p-0.5 text-xs font-semibold shadow-sm"
+                    role="group" aria-label="Language switcher">
+                    <button type="button" data-set-lang="th"
+                        class="site-lang-btn px-2 py-1 rounded-md bg-yoedo-600 text-white transition">TH</button>
+                    <button type="button" data-set-lang="en"
+                        class="site-lang-btn px-2 py-1 rounded-md text-stone-600 hover:text-yoedo-600 transition">EN</button>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" aria-label="Get it on Google Play"
+                    class="inline-block shrink-0 transition transform hover:-translate-y-0.5 hover:opacity-95">
+                    <img src="./assets/google-play-badge.png" alt="Get it on Google Play"
+                        class="h-8 sm:h-10 w-auto rounded-lg shadow-sm">
+                </a>
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" type="button" aria-label="Toggle menu"
+                    class="md:hidden p-2 rounded-lg text-stone-600 hover:bg-linen-100 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu"
+            class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent bg-white px-5 text-sm">
+            <div class="py-4 space-y-1.5">
+                <a href="./index.html" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
+                <a href="./index.html#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
+                <a href="./index.html#diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคที่ตรวจได้</a>
+                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">นโยบายความเป็นส่วนตัว</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header Banner -->
+    <section class="border-b border-linen-200 bg-gradient-to-b from-yoedo-50/60 to-linen-50">
+        <div class="max-w-4xl mx-auto px-5 sm:px-6 pt-12 pb-12 text-center">
+            <h1 data-i18n-html="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.4] mb-3">
+                นโยบายความเป็นส่วนตัว
+                <span class="block sm:inline text-yoedo-600">/ Privacy Policy</span>
+            </h1>
+
+            <p class="text-stone-600 text-base sm:text-lg mb-2.5">
+                <span data-i18n="heroAppPrefix">แอปพลิเคชัน</span> <strong class="font-semibold text-stone-800">YOEDO (You Only Eat Durian Once)</strong>
+            </p>
+            <p data-i18n="effectiveDate" class="text-xs sm:text-sm text-stone-500">
+                วันที่มีผลบังคับใช้ (Effective Date): 2 พฤศจิกายน 2569 / November 2, 2026
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Policy Content -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
+
+        <!-- Language Switcher -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+            <button type="button" data-lang="thai"
+                class="policy-lang-btn px-4 py-2 rounded-full text-sm font-semibold bg-yoedo-600 text-white shadow-sm transition-all duration-200">
+                🇹🇭 ภาษาไทย (TH)
+            </button>
+            <button type="button" data-lang="english"
+                class="policy-lang-btn px-4 py-2 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-yoedo-500 transition-all duration-200">
+                🇺🇸 English (EN)
+            </button>
+        </div>
+
+        <!-- Thai Policy Card -->
+        <article id="thai"
+            class="policy-card policy-fade-in bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm mb-8">
+            <div class="flex items-center gap-3 pb-4 mb-6 border-b border-yoedo-100">
+                <span class="text-2xl">🇹🇭</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">นโยบายความเป็นส่วนตัว (ภาษาไทย)</h2>
+            </div>
+
+            <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                <p>
+                    ขอขอบคุณที่เลือกใช้งานแอปพลิเคชัน <strong class="text-slate-800">YOEDO (You Only Eat Durian Once)</strong> ("เรา" หรือ "แอปพลิเคชัน")
+                    เราตระหนักและให้ความสำคัญอย่างยิ่งต่อสิทธิในความเป็นส่วนตัวและการคุ้มครองข้อมูลส่วนบุคคลของผู้ใช้งาน
+                    ตามพระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562 (PDPA) รวมถึงนโยบายข้อมูลผู้ใช้ของ Google Play (Google Play User Data Policy)
+                </p>
+                <p>
+                    นโยบายความเป็นส่วนตัวฉบับนี้จัดทำขึ้นเพื่อชี้แจงแนวปฏิบัติเกี่ยวกับการเข้าถึง การใช้งาน และการคุ้มครองข้อมูลในการใช้งานแอปพลิเคชัน ดังมีรายละเอียดต่อไปนี้:
+                </p>
+
+                <!-- Callout -->
+                <div class="bg-yoedo-50 border-l-4 border-yoedo-600 rounded-r-2xl p-4 sm:p-5 text-yoedo-900 my-6">
+                    <strong class="font-bold text-slate-900">หลักการสำคัญ:</strong>
+                    แอปพลิเคชัน YOEDO ทำงานแบบประมวลผลบนเครื่อง (On-Device Local AI) โดยสมบูรณ์
+                    <span class="underline decoration-yoedo-600/60 underline-offset-4 font-medium">ไม่มีการเก็บรวบรวม บันทึก ส่งต่อ หรือเปิดเผยข้อมูลส่วนบุคคลหรือภาพถ่ายใด ๆ ของผู้ใช้งานสู่ภายนอก</span>
+                </div>
+
+                <section class="pt-2">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">1. ข้อมูลที่เราเก็บรวบรวม (Data Collection)</h3>
+                    <p class="mb-2">แอปพลิเคชัน YOEDO ถูกพัฒนาขึ้นภายใต้หลักการความเป็นส่วนตัวตั้งแต่การออกแบบ (Privacy by Design):</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>
+                            <strong class="text-slate-800">ไม่มีการเก็บรวบรวมข้อมูลส่วนบุคคล:</strong>
+                            เราไม่มีการเก็บ รวบรวม จัดเก็บ ถ่ายโอน หรือเปิดเผยข้อมูลที่สามารถระบุตัวตนของผู้ใช้งาน (Personally Identifiable Information: PII)
+                            เช่น ชื่อ, ที่อยู่, หมายเลขโทรศัพท์, บัญชีอีเมล หรือข้อมูลระบุตัวตนของอุปกรณ์ (Device Identifiers)
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">ไม่มีการติดตามพฤติกรรมผู้ใช้:</strong>
+                            แอปพลิเคชันไม่มีระบบวิเคราะห์สถิติพฤติกรรมผู้ใช้ (Analytics SDKs), ไม่มีระบบระบุหรือติดตามตำแหน่งพิกัด (GPS/Location),
+                            และไม่มีการติดตั้งคุกกี้ (Cookies) หรือโค้ดโฆษณาจากบุคคลภายนอก
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">2. การขอสิทธิ์และการใช้งานกล้องถ่ายรูป (Camera Permission)</h3>
+                    <p class="mb-2">
+                        เพื่อให้แอปพลิเคชันสามารถตรวจวินิจฉัยโรคใบทุเรียนได้ แอปพลิเคชันมีความจำเป็นต้องขอสิทธิ์เข้าถึงกล้องถ่ายรูปของอุปกรณ์
+                        (<code class="px-1.5 py-0.5 rounded bg-slate-100 text-yoedo-700 text-xs font-mono">android.permission.CAMERA</code>):
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>
+                            <strong class="text-slate-800">วัตถุประสงค์การใช้งาน:</strong>
+                            เข้าถึงกล้องเพื่อตรวจจับภาพเฟรมวิดีโอแบบเรียลไทม์ หรือรับภาพถ่ายใบพืชเพื่อนำมาวิเคราะห์โรคด้วยโมเดลปัญญาประดิษฐ์
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">การประมวลผลภายในเครื่อง (On-Device Local AI):</strong>
+                            ข้อมูลภาพทั้งหมดจะถูกส่งเข้าโมเดล LiteRT (TensorFlow Lite) เพื่อประมวลผลบนหน่วยประมวลผลของสมาร์ตโฟนของผู้ใช้งานโดยตรง
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">ไม่มีการส่งออกหรืออัปโหลดข้อมูลภาพ:</strong>
+                            ภาพถ่าย วิดีโอ หรือสตรีมภาพจากกล้อง <strong class="text-slate-800">จะไม่ถูกบันทึก อัปโหลด หรือส่งไปยังเซิร์ฟเวอร์ภายนอก ระบบคลาวด์ หรือบุคคลที่สามใด ๆ ทั้งสิ้น</strong>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">การบันทึกประวัติภายในเครื่อง:</strong>
+                            หากผู้ใช้งานเลือกบันทึกผลการสแกนหรือสถิติโรค ข้อมูลดังกล่าวจะถูกจัดเก็บไว้ในหน่วยความจำเฉพาะของแอปพลิเคชันบนอุปกรณ์ (Private SharedPreferences) ของผู้ใช้งานเองเท่านั้น และไม่มีการสำรองออกนอกอุปกรณ์
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">3. การเชื่อมต่อเครือข่ายอินเทอร์เน็ต (Internet Access)</h3>
+                    <p>
+                        แอปพลิเคชันมีสิทธิ์การเข้าถึงอินเทอร์เน็ต (<code class="px-1.5 py-0.5 rounded bg-slate-100 text-yoedo-700 text-xs font-mono">android.permission.INTERNET</code>)
+                        สำหรับกรณีที่ผู้ใช้งานเลือกแตะเปิดลิงก์ภายนอกผ่านเว็บเบราว์เซอร์ของระบบ เช่น การเปิดอ่านเอกสารวิชาการอ้างอิงจากกรมวิชาการเกษตร/กรมส่งเสริมการเกษตร
+                        หรือการเข้าสู่เว็บไซต์สถาบันการศึกษา (มหาวิทยาลัยบูรพา, โรงเรียนมหิดลวิทยานุสรณ์) โดยตัวแอปพลิเคชันไม่มีการส่งข้อมูลการใช้งานใด ๆ ผ่านอินเทอร์เน็ต
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">4. ความปลอดภัยของข้อมูล (Data Security)</h3>
+                    <p>
+                        เนื่องจากแอปพลิเคชันไม่มีการจัดเก็บหรือส่งผ่านข้อมูลส่วนบุคคลของผู้ใช้ไปยังเครือข่ายอินเทอร์เน็ต
+                        ข้อมูลการใช้งานทั้งหมดจึงได้รับการคุ้มครองภายใต้ระบบรักษาความปลอดภัยระดับ Sandbox ของระบบปฏิบัติการ Android บนอุปกรณ์ของผู้ใช้งานเอง
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">5. นโยบายคุ้มครองความเป็นส่วนตัวของเด็ก (Children's Privacy)</h3>
+                    <p>
+                        แอปพลิเคชันนี้ไม่ได้มุ่งเป้าไปยังเด็กที่มีอายุต่ำกว่า 13 ปี และไม่มีการเก็บรวบรวมข้อมูลส่วนบุคคลจากเด็ก
+                        หากท่านเป็นบิดามารดาหรือผู้ปกครองและพบว่าบุตรหลานได้ให้ข้อมูลแก่เรา โปรดติดต่อเราเพื่อดำเนินการตรวจสอบต่อไป
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">6. การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว (Changes to Privacy Policy)</h3>
+                    <p>
+                        เราอาจปรับปรุงหรือแก้ไขนโยบายความเป็นส่วนตัวนี้เป็นครั้งคราว เพื่อให้สอดคล้องกับการพัฒนาแอปพลิเคชันและข้อกำหนดทางกฎหมาย
+                        โดยการเปลี่ยนแปลงจะมีผลบังคับใช้ทันทีเมื่อเผยแพร่บนหน้านี้
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">7. ช่องทางการติดต่อ (Contact Us)</h3>
+                    <p class="mb-2">หากท่านมีข้อสงสัย ข้อเสนอแนะ หรือข้อร้องเรียนเกี่ยวกับนโยบายความเป็นส่วนตัวนี้ สามารถติดต่อทีมผู้พัฒนาได้ที่:</p>
+                    <ul class="list-disc pl-6 space-y-1.5">
+                        <li>
+                            <strong class="text-slate-800">อีเมล (Email):</strong>
+                            <a href="mailto:plabooworld@outlook.com" class="text-yoedo-600 hover:underline font-medium">plabooworld@outlook.com</a>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">โครงการโอเพนซอร์ส (GitHub):</strong>
+                            <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
+                                class="text-yoedo-600 hover:underline font-medium break-all">https://github.com/marsfinncode/cnn-durian</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+
+        <!-- English Policy Card -->
+        <article id="english"
+            class="hidden policy-card policy-fade-in bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm mb-8">
+            <div class="flex items-center gap-3 pb-4 mb-6 border-b border-yoedo-100">
+                <span class="text-2xl">🇺🇸</span>
+                <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Privacy Policy (English)</h2>
+            </div>
+
+            <div class="space-y-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+                <p>
+                    Thank you for choosing <strong class="text-slate-800">YOEDO (You Only Eat Durian Once)</strong> ("we", "us", or "our").
+                    We are dedicated to protecting your privacy and personal data in strict compliance with applicable data protection regulations,
+                    including the Personal Data Protection Act (PDPA) and Google Play User Data Policies.
+                </p>
+                <p>
+                    This Privacy Policy outlines our standards and practices concerning data access, processing, and protection within the YOEDO application:
+                </p>
+
+                <!-- Callout -->
+                <div class="bg-yoedo-50 border-l-4 border-yoedo-600 rounded-r-2xl p-4 sm:p-5 text-yoedo-900 my-6">
+                    <strong class="font-bold text-slate-900">Key Principle:</strong>
+                    YOEDO operates entirely via local, on-device artificial intelligence inference.
+                    <span class="underline decoration-yoedo-600/60 underline-offset-4 font-medium">We do not collect, store, transmit, or share any personal data or images to external servers or third parties.</span>
+                </div>
+
+                <section class="pt-2">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">1. Information We Collect</h3>
+                    <p class="mb-2">YOEDO is engineered following strict "Privacy by Design" architecture:</p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>
+                            <strong class="text-slate-800">No Personal Data Collected:</strong>
+                            We do not collect, harvest, store, transmit, or disclose any Personally Identifiable Information (PII),
+                            such as full name, contact information, email address, physical address, or unique device identifiers.
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">No Analytics or Tracking:</strong>
+                            The application does not incorporate third-party tracking frameworks, behavioral analytics SDKs, advertising networks, or geographic location (GPS) services.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">2. Camera Permission &amp; On-Device Processing</h3>
+                    <p class="mb-2">
+                        To enable durian leaf disease diagnosis, the application requires access to the device's camera
+                        (<code class="px-1.5 py-0.5 rounded bg-slate-100 text-yoedo-700 text-xs font-mono">android.permission.CAMERA</code>):
+                    </p>
+                    <ul class="list-disc pl-6 space-y-2">
+                        <li>
+                            <strong class="text-slate-800">Purpose of Access:</strong>
+                            Used strictly to capture real-time viewfinder frames or leaf photographs for disease identification.
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Local On-Device AI Inference:</strong>
+                            All computer vision processing and neural network inference (via LiteRT / TensorFlow Lite) occur locally on your device's internal processor.
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Zero External Data Transmission:</strong>
+                            Neither camera frames, still photos, nor diagnosis results are ever uploaded to remote servers, cloud databases, or third parties.
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Local Storage:</strong>
+                            If you choose to save scan logs or disease statistics, these records remain stored strictly within the app's sandboxed local storage on your device and are never synchronized off-device.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">3. Internet Connectivity</h3>
+                    <p>
+                        The application requests network access (<code class="px-1.5 py-0.5 rounded bg-slate-100 text-yoedo-700 text-xs font-mono">android.permission.INTERNET</code>)
+                        solely to allow users to open external web links in their system browser (e.g., official agricultural publications or academic institution links such as Burapha University and Mahidol Wittayanusorn School).
+                        The application does not transmit any user telemetry or analytics over the internet.
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">4. Data Security</h3>
+                    <p>
+                        Because no personal data or images are collected or transmitted across networks, your data remains secured within the sandbox boundaries enforced by the Android operating system.
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">5. Children's Privacy</h3>
+                    <p>
+                        Our application is not directed at children under the age of 13. We do not knowingly solicit or collect personal information from children.
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">6. Changes to This Privacy Policy</h3>
+                    <p>
+                        We may revise this Privacy Policy periodically to reflect technological updates or regulatory compliance requirements.
+                        Any revisions will become effective immediately upon publication on this page.
+                    </p>
+                </section>
+
+                <section class="pt-3">
+                    <h3 class="text-lg font-bold text-yoedo-800 mb-2">7. Contact Us</h3>
+                    <p class="mb-2">If you have any questions, suggestions, or concerns regarding this Privacy Policy, please contact our development team at:</p>
+                    <ul class="list-disc pl-6 space-y-1.5">
+                        <li>
+                            <strong class="text-slate-800">Email:</strong>
+                            <a href="mailto:plabooworld@outlook.com" class="text-yoedo-600 hover:underline font-medium">plabooworld@outlook.com</a>
+                        </li>
+                        <li>
+                            <strong class="text-slate-800">Open Source Repository:</strong>
+                            <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
+                                class="text-yoedo-600 hover:underline font-medium break-all">https://github.com/marsfinncode/cnn-durian</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </article>
+
+        <!-- Back to Home Button -->
+        <div class="text-center pt-2">
+            <a href="./index.html"
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-linen-200 hover:border-yoedo-500 text-stone-700 hover:text-yoedo-700 font-medium text-sm shadow-sm hover:shadow transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span data-i18n="backHome">กลับไปหน้าแนะนำแอป YOEDO</span>
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-linen-200 bg-white mt-8">
+        <div
+            class="max-w-5xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+            <div class="flex items-center gap-2.5">
+                <img src="./assets/cateatmars-logo.jpg" alt="cateatmars.dev" class="w-7 h-7 rounded-lg object-cover shadow-sm">
+                <span>© 2026 cateatmars.dev • Open source under Apache-2.0 License.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
+                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
+                <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-yoedo-600 transition">GitHub</a>
+                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="text-yoedo-600 font-semibold">นโยบายความเป็นส่วนตัว</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Language Switch & Mobile Menu Script -->
+    <script>
+        const privacyI18n = {
+            th: {
+                pageTitle: 'นโยบายความเป็นส่วนตัว (Privacy Policy) - YOEDO',
+                brandSub: 'สแกนโรคใบทุเรียน',
+                navHome: 'หน้าแรก',
+                navFeatures: 'ช่วยอะไรได้บ้าง',
+                navDiseases: 'โรคที่ตรวจได้',
+                navAbout: 'เกี่ยวกับ',
+                navPrivacy: 'ความเป็นส่วนตัว',
+                navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
+                heroTitle: 'นโยบายความเป็นส่วนตัว<span class="block sm:inline text-yoedo-600"> / Privacy Policy</span>',
+                heroAppPrefix: 'แอปพลิเคชัน',
+                effectiveDate: 'วันที่มีผลบังคับใช้ (Effective Date): 2 พฤศจิกายน 2569 / November 2, 2026',
+                backHome: 'กลับไปหน้าแนะนำแอป YOEDO'
+            },
+            en: {
+                pageTitle: 'Privacy Policy - YOEDO',
+                brandSub: 'Durian Leaf Scanner',
+                navHome: 'Home',
+                navFeatures: 'Features',
+                navDiseases: 'Diseases',
+                navAbout: 'About',
+                navPrivacy: 'Privacy',
+                navPrivacyFull: 'Privacy Policy',
+                heroTitle: 'Privacy Policy',
+                heroAppPrefix: 'Application:',
+                effectiveDate: 'Effective Date: November 2, 2026',
+                backHome: 'Back to YOEDO Home'
+            }
+        };
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMobileMenuOpen = false;
+
+        function setMobileMenu(open) {
+            if (!mobileMenu) return;
+            isMobileMenuOpen = open;
+            if (open) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0', 'border-transparent');
+                mobileMenu.classList.add('max-h-96', 'opacity-100', 'border-linen-200');
+            } else {
+                mobileMenu.classList.add('max-h-0', 'opacity-0', 'border-transparent');
+                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'border-linen-200');
+            }
+        }
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => setMobileMenu(!isMobileMenuOpen));
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => setMobileMenu(false));
+            });
+        }
+
+        // Language switcher with smooth fade
+        const langBtns = document.querySelectorAll('.policy-lang-btn');
+        const siteLangBtns = document.querySelectorAll('.site-lang-btn');
+        const thaiCard = document.getElementById('thai');
+        const englishCard = document.getElementById('english');
+
+        function setPolicyLang(lang, persist = true) {
+            if (!thaiCard || !englishCard) return;
+
+            const isEnglish = lang === 'english' || lang === 'en';
+            const siteLang = isEnglish ? 'en' : 'th';
+            const policyKey = isEnglish ? 'english' : 'thai';
+
+            if (persist) {
+                try {
+                    localStorage.setItem('yoedo_lang', siteLang);
+                } catch (_) {}
+            }
+
+            document.documentElement.lang = siteLang;
+            document.title = privacyI18n[siteLang].pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.dataset.i18n;
+                if (privacyI18n[siteLang][key] !== undefined) {
+                    el.textContent = privacyI18n[siteLang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+                const key = el.dataset.i18nHtml;
+                if (privacyI18n[siteLang][key] !== undefined) {
+                    el.innerHTML = privacyI18n[siteLang][key];
+                }
+            });
+
+            thaiCard.classList.toggle('hidden', isEnglish);
+            englishCard.classList.toggle('hidden', !isEnglish);
+
+            const activeCard = isEnglish ? englishCard : thaiCard;
+            activeCard.classList.remove('policy-fade-in');
+            void activeCard.offsetWidth;
+            activeCard.classList.add('policy-fade-in');
+
+            langBtns.forEach((btn) => {
+                const isActive = btn.dataset.lang === policyKey;
+                btn.className = isActive
+                    ? 'policy-lang-btn px-4 py-2 rounded-full text-sm font-semibold bg-yoedo-600 text-white shadow-sm transition-all duration-200'
+                    : 'policy-lang-btn px-4 py-2 rounded-full text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-yoedo-500 transition-all duration-200';
+            });
+
+            siteLangBtns.forEach((btn) => {
+                const isActive = btn.dataset.setLang === siteLang;
+                btn.className = isActive
+                    ? 'site-lang-btn px-2 py-1 rounded-md bg-yoedo-600 text-white transition'
+                    : 'site-lang-btn px-2 py-1 rounded-md text-stone-600 hover:text-yoedo-600 transition';
+            });
+        }
+
+        langBtns.forEach((btn) => {
+            btn.addEventListener('click', () => setPolicyLang(btn.dataset.lang));
+        });
+
+        siteLangBtns.forEach((btn) => {
+            btn.addEventListener('click', () => setPolicyLang(btn.dataset.setLang));
+        });
+
+        // Respect URL hash (#english), ?lang=en, or saved language
+        const urlLang = new URLSearchParams(window.location.search).get('lang');
+        let savedLang = 'th';
+        try {
+            savedLang = localStorage.getItem('yoedo_lang') || 'th';
+        } catch (_) {}
+
+        if (window.location.hash === '#english' || urlLang === 'en' || (!urlLang && savedLang === 'en')) {
+            setPolicyLang('english', false);
+        }
+    </script>
+</body>
+
+</html>
+
