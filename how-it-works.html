@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ทำงานอย่างไร - เบื้องหลังโมเดล YOLO26-OBB และการทดลอง | YOEDO App</title>
+    <meta name="description"
+        content="เจาะลึกเบื้องหลังการทำงานของแอป YOEDO ตั้งแต่ชุดข้อมูลใบทุเรียน 4,668 ตัวอย่าง โมเดล YOLO26-OBB เทคนิค E-IRFS และ Optuna ผลทดสอบ mAP@0.5 0.664 จนถึงการรันออฟไลน์ด้วย TensorFlow Lite">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#028c57">
+    <link rel="canonical" href="https://yoedo.vercel.app/how-it-works">
+
+    <!-- Favicon & App Icon (48px multiples for Google Search) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/assets/favicon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192x192.png">
+
+    <!-- Open Graph -->
+    <meta property="og:url" content="https://yoedo.vercel.app/how-it-works">
+    <meta property="og:title" content="How YOEDO Works - YOLO26-OBB Model & Experiments">
+    <meta property="og:description"
+        content="How YOEDO detects durian leaf diseases offline using YOLO26-OBB, E-IRFS sampling, Optuna tuning, and TensorFlow Lite quantization.">
+    <meta property="og:image" content="https://yoedo.vercel.app/assets/about-field-data.jpg">
+    <meta property="og:type" content="article">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TechArticle",
+      "url": "https://yoedo.vercel.app/how-it-works",
+      "headline": "How YOEDO Works - YOLO26-OBB Durian Leaf Disease Detection Model & Experiments",
+      "description": "Technical overview of the YOEDO dataset (4,668 instances), YOLO26-OBB architecture, E-IRFS class balancing, Optuna hyperparameter tuning, mAP evaluation, and TensorFlow Lite mobile deployment.",
+      "about": {
+        "@type": "MobileApplication",
+        "name": "YOEDO - Durian Leaf Scanner",
+        "operatingSystem": "Android"
+      },
+      "citation": "https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB"
+    }
+    </script>
+
+    <!-- Google Fonts (Sarabun + IBM Plex Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'sans-serif'],
+                    },
+                    colors: {
+                        yoedo: {
+                            50: '#eef8f3',
+                            100: '#d5eee1',
+                            200: '#aeddc5',
+                            500: '#049b60',
+                            600: '#028c57',
+                            700: '#046c44',
+                            800: '#065638',
+                            900: '#073f2a',
+                        },
+                        linen: {
+                            50: '#fafaf7',
+                            100: '#f3f2ec',
+                            200: '#e6e4db',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        html[lang="en"],
+        html[lang="en"] body {
+            font-family: 'IBM Plex Sans', 'Sarabun', sans-serif;
+        }
+
+        .minimal-hero-bg {
+            background-color: #f5f7f4;
+            background-image:
+                radial-gradient(ellipse 70% 55% at 15% 15%, rgba(2, 140, 87, 0.075), transparent 70%),
+                radial-gradient(ellipse 50% 45% at 88% 20%, rgba(217, 119, 6, 0.035), transparent 70%);
+        }
+
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-enter {
+            animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes langFade {
+            from {
+                opacity: 0.35;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .lang-fade {
+            animation: langFade 0.25s ease-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-enter,
+            .reveal,
+            .lang-fade {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#F5F7F4] text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
+
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 bg-[#F5F7F4]/88 backdrop-blur-md border-b border-[#DFE7E1]">
+        <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
+            <a href="./index.html" class="flex items-center gap-3 group shrink-0">
+                <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
+                    class="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
+                <div class="leading-tight">
+                    <span class="font-bold text-lg text-stone-900 tracking-tight block">YOEDO</span>
+                    <span data-i18n="brandSub" class="text-[11px] text-stone-500 hidden sm:block">สแกนโรคใบทุเรียน</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
+                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="text-yoedo-600 font-semibold">ทำงานอย่างไร</a>
+                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-2 sm:gap-2.5">
+                <!-- Language Switcher -->
+                <div class="inline-flex items-center rounded-lg border border-linen-200 bg-white p-0.5 text-xs font-semibold shadow-sm"
+                    role="group" aria-label="Language switcher">
+                    <button type="button" data-set-lang="th"
+                        class="site-lang-btn px-2 py-1 rounded-md bg-yoedo-600 text-white transition">TH</button>
+                    <button type="button" data-set-lang="en"
+                        class="site-lang-btn px-2 py-1 rounded-md text-stone-600 hover:text-yoedo-600 transition">EN</button>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" aria-label="Get it on Google Play"
+                    class="inline-block shrink-0 transition transform hover:-translate-y-0.5 hover:opacity-95">
+                    <img src="./assets/google-play-badge.png" alt="Get it on Google Play"
+                        class="h-8 sm:h-10 w-auto rounded-lg shadow-sm">
+                </a>
+
+                <!-- Mobile Menu Toggle -->
+                <button id="mobileMenuBtn" type="button" aria-label="Toggle menu"
+                    class="md:hidden p-2 rounded-lg text-stone-600 hover:bg-linen-100 transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobileMenu"
+            class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent bg-white px-5 text-sm">
+            <div class="py-4 space-y-1.5">
+                <a href="./index.html" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
+                <a href="./diseases.html" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">ทำงานอย่างไร</a>
+                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header -->
+    <section class="border-b border-[#DFE7E1] minimal-hero-bg">
+        <div class="max-w-4xl mx-auto px-5 sm:px-6 pt-12 pb-14 hero-enter">
+            <span data-i18n="heroBadge" class="inline-block text-xs font-semibold text-yoedo-700 bg-yoedo-100/80 px-3 py-1 rounded-full mb-4">
+                เบื้องหลังการทำงานและการทดลองโมเดล
+            </span>
+
+            <h1 data-i18n-html="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.42] mb-5">
+                YOEDO ทำงานอย่างไร
+                <span class="block text-yoedo-600 mt-1">จากภาพใบทุเรียนในสวน สู่การตรวจจับบนมือถือ</span>
+            </h1>
+
+            <p data-i18n-html="heroDesc" class="text-base sm:text-lg text-stone-600 leading-[1.85] max-w-3xl">
+                หน้านี้สรุปแนวคิดและขั้นตอนการทดลองวิจัยเบื้องหลังแอปพลิเคชัน <strong class="font-semibold text-stone-800">YOEDO</strong>
+                ตั้งแต่การสร้างชุดข้อมูลในสภาพสวนจริง การเลือกใช้กรอบตรวจจับแบบหมุนตามแนวใบ (<strong class="font-semibold text-stone-800">YOLO26-OBB</strong>)
+                การแก้ปัญหาจำนวนข้อมูลแต่ละโรคไม่เท่ากัน ไปจนถึงการย่อโมเดลให้ทำงานแบบออฟไลน์บนสมาร์ตโฟน Android
+            </p>
+        </div>
+    </section>
+
+    <main class="max-w-5xl mx-auto px-5 sm:px-6 py-14 sm:py-16 space-y-16">
+
+        <!-- Pipeline Overview (4 Stages) -->
+        <section class="reveal space-y-6">
+            <div class="max-w-2xl">
+                <h2 data-i18n="pipeTitle" class="text-2xl font-bold text-stone-900 leading-[1.4] mb-2">
+                    ภาพรวมกระบวนการพัฒนาโมเดล (4 ขั้นตอน)
+                </h2>
+                <p data-i18n="pipeSubtitle" class="text-sm sm:text-base text-stone-600 leading-relaxed">
+                    ทุกขั้นตอนถูกออกแบบให้รองรับสภาพแสง ฉากหลังซับซ้อน และข้อจำกัดของมือถือที่ใช้งานจริงในสวน
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div class="text-xs font-bold text-yoedo-600 mb-2">01 • DATASET</div>
+                    <h3 data-i18n="p1Title" class="font-bold text-stone-900 mb-1.5">เก็บข้อมูลและติดป้าย OBB</h3>
+                    <p data-i18n="p1Desc" class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                        รวบรวมภาพใบทุเรียนจริงและมุมจำลอง 4,668 ตัวอย่าง ครอบคลุม 7 ประเภท
+                    </p>
+                </div>
+
+                <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div class="text-xs font-bold text-yoedo-600 mb-2">02 • TRAINING</div>
+                    <h3 data-i18n="p2Title" class="font-bold text-stone-900 mb-1.5">ถ่วงสมดุลด้วย E-IRFS + Optuna</h3>
+                    <p data-i18n="p2Desc" class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                        ช่วยเพิ่มความแม่นยำในโรคที่พบตัวอย่างน้อย และปรับจูนพารามิเตอร์อัตโนมัติ
+                    </p>
+                </div>
+
+                <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div class="text-xs font-bold text-yoedo-600 mb-2">03 • EVALUATION</div>
+                    <h3 data-i18n="p3Title" class="font-bold text-stone-900 mb-1.5">วัดผลด้วย YOLO26-OBB</h3>
+                    <p data-i18n="p3Desc" class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                        ประเมินความแม่นยำการตรวจจับบนชุดทดสอบ ได้ mAP@0.5 = 0.664 และ mAP@0.5:0.95 = 0.507
+                    </p>
+                </div>
+
+                <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div class="text-xs font-bold text-yoedo-600 mb-2">04 • MOBILE EDGE</div>
+                    <h3 data-i18n="p4Title" class="font-bold text-stone-900 mb-1.5">แปลงเป็น TensorFlow Lite</h3>
+                    <p data-i18n="p4Desc" class="text-xs sm:text-sm text-stone-600 leading-relaxed">
+                        Quantize โมเดลให้เบาและเร็วพอสำหรับรันออฟไลน์บนแอป Android (Kotlin)
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: Why YOLO-OBB vs Standard Bounding Box -->
+        <section class="reveal grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-10 border-t border-[#DFE7E1]">
+            <div class="lg:col-span-6 space-y-3">
+                <span data-i18n="obbBadge" class="text-xs font-semibold text-yoedo-700 bg-yoedo-100/80 px-3 py-1 rounded-full">
+                    แนวคิดสำคัญ • Oriented Bounding Box (OBB)
+                </span>
+                <h2 data-i18n="obbTitle" class="text-2xl font-bold text-stone-900 leading-[1.4]">
+                    ทำไมต้องใช้ YOLO26-OBB แทนกรอบสี่เหลี่ยมแนวนอนทั่วไป?
+                </h2>
+                <p data-i18n="obbP1" class="text-sm sm:text-base text-stone-600 leading-[1.85]">
+                    ใบทุเรียนบนต้นจริงไม่ได้วางเรียงตัวในแนวตั้งหรือแนวนอนเสมอไป แต่มักห้อยเอียงเป็นมุมต่างๆ
+                    และซ้อนทับกันเป็นพุ่ม หากใช้กรอบสี่เหลี่ยมแนวตรงแบบเดิม (Horizontal Bounding Box)
+                    กรอบจะกว้างเกินจำเป็นจนติดพื้นหลัง กิ่งไม้ หรือใบข้างเคียงเข้ามาปะปน ทำให้โมเดลสับสนได้ง่าย
+                </p>
+                <p data-i18n="obbP2" class="text-sm sm:text-base text-stone-600 leading-[1.85]">
+                    กรอบแบบ OBB (Oriented Bounding Box) จึงเพิ่มมุมเอียงเข้ามาในกรอบตรวจจับ ทำให้กรอบหมุนแนบไปตามทรงใบทุเรียนแต่ละใบ ลดสัญญาณรบกวนจากฉากหลัง
+                    และแยกใบที่ซ้อนทับกันในพุ่มได้อย่างชัดเจน
+                </p>
+                <div class="pt-1">
+                    <a href="https://docs.ultralytics.com/tasks/obb" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1.5 text-sm font-medium text-yoedo-700 hover:underline">
+                        <span data-i18n="obbDocLink">ศึกษาเพิ่มเติมเกี่ยวกับโมเดล: Ultralytics YOLO OBB Documentation →</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Clean Minimalist Visual Comparison SVG + Real Photo -->
+            <div class="lg:col-span-6 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <!-- HBB Diagram -->
+                    <div class="bg-white/95 rounded-2xl p-4 border border-[#E2E8E3] text-center">
+                        <svg class="w-full h-36 mx-auto mb-2" viewBox="0 0 180 130" fill="none">
+                            <!-- Tilted leaf -->
+                            <g transform="rotate(-36 90 65)">
+                                <path d="M22 65C48 39 124 38 158 65C124 92 48 91 22 65Z" fill="#059669" fill-opacity="0.22" stroke="#047857" stroke-width="2.5"/>
+                                <path d="M26 65H154" stroke="#047857" stroke-width="1.5"/>
+                            </g>
+                            <!-- Large axis-aligned HBB with wasted background -->
+                            <rect x="28" y="14" width="124" height="102" rx="4" stroke="#d97706" stroke-width="2" stroke-dasharray="5 4" fill="#d97706" fill-opacity="0.06"/>
+                        </svg>
+                        <div data-i18n="hbbLabel" class="text-xs font-bold text-amber-700">กรอบแนวนอนทั่วไป (HBB)</div>
+                        <p data-i18n="hbbNote" class="text-[11px] text-stone-500 mt-0.5">กินพื้นที่ฉากหลังและใบข้างเคียงมาก</p>
+                    </div>
+
+                    <!-- OBB Diagram -->
+                    <div class="bg-white/95 rounded-2xl p-4 border border-[#C8E3D4] text-center">
+                        <svg class="w-full h-36 mx-auto mb-2" viewBox="0 0 180 130" fill="none">
+                            <g transform="rotate(-36 90 65)">
+                                <path d="M22 65C48 39 124 38 158 65C124 92 48 91 22 65Z" fill="#059669" fill-opacity="0.28" stroke="#047857" stroke-width="2.5"/>
+                                <path d="M26 65H154" stroke="#047857" stroke-width="1.5"/>
+                                <!-- Tight rotated OBB -->
+                                <rect x="17" y="34" width="146" height="62" rx="4" stroke="#028c57" stroke-width="2.2" fill="#028c57" fill-opacity="0.08"/>
+                            </g>
+                        </svg>
+                        <div data-i18n="obbLabel" class="text-xs font-bold text-yoedo-700">กรอบหมุนตามใบ (YOLO-OBB)</div>
+                        <p data-i18n="obbNote" class="text-[11px] text-stone-500 mt-0.5">แนบสนิทตามมุมเอียง ลดฉากหลังรบกวน</p>
+                    </div>
+                </div>
+
+                <figure class="bg-white/95 rounded-2xl overflow-hidden border border-[#E2E8E3] shadow-sm">
+                    <img src="./assets/about-field-data.jpg" alt="Real orchard leaves annotated with YOLO-OBB"
+                        class="w-full h-44 object-cover">
+                    <figcaption data-i18n="obbPhotoCap" class="px-4 py-2.5 text-xs text-stone-500">
+                        ตัวอย่างการตีกรอบเอียง (OBB) บนใบทุเรียนจริงที่ซ้อนกันในสวน
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Section 2: Dataset & Class Imbalance (E-IRFS + Optuna) -->
+        <section class="reveal bg-[#ECF2EE]/75 rounded-3xl p-6 sm:p-9 border border-[#DFE7E1] space-y-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-6 space-y-3">
+                    <span data-i18n="trainBadge" class="text-xs font-semibold text-yoedo-700 bg-white px-3 py-1 rounded-full border border-[#DFE7E1]">
+                        การสร้างชุดข้อมูลและการฝึกสอนโมเดล
+                    </span>
+                    <h2 data-i18n="trainTitle" class="text-2xl font-bold text-stone-900 leading-[1.4]">
+                        แก้ปัญหาโรคที่พบน้อยด้วย E-IRFS และจูนโมเดลด้วย Optuna
+                    </h2>
+                    <p data-i18n-html="trainP1" class="text-sm sm:text-base text-stone-600 leading-[1.85]">
+                        ในชุดข้อมูลจริงจำนวน <strong class="font-semibold text-stone-800">4,668 ตัวอย่าง</strong>
+                        จำนวนใบของแต่ละโรคในธรรมชาติไม่ได้เท่ากัน (Class Imbalance) บางอาการพบมากในสวน ขณะที่บางโรคพบน้อยกว่า
+                        หากเทรนตรงๆ โมเดลมักเอียงไปทายกลุ่มที่พบบ่อยได้ดีแต่พลาดในโรคที่พบน้อย
+                    </p>
+                    <p data-i18n-html="trainP2" class="text-sm sm:text-base text-stone-600 leading-[1.85]">
+                        งานวิจัยนี้จึงนำเทคนิค <strong class="font-semibold text-stone-800">E-IRFS (Exponentially Weighted Instance-Aware Repeat Factor Sampling)</strong>
+                        มาช่วยจัดสัดส่วนการสุ่มภาพระหว่างฝึกสอน โดยคำนวณน้ำหนักซ้ำตามจำนวนชิ้นใบ (Instance) ในแต่ละคลาส
+                        ควบคู่กับการใช้เฟรมเวิร์ก <strong class="font-semibold text-stone-800">Optuna</strong>
+                        เพื่อค้นหาค่า Hyperparameters ที่เหมาะสมที่สุดสำหรับชุดข้อมูลใบทุเรียน
+                    </p>
+                </div>
+
+                <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3]">
+                        <div class="text-2xl font-bold text-yoedo-700 mb-1">4,668</div>
+                        <div data-i18n="dsStat1Title" class="text-sm font-semibold text-stone-900 mb-1">จำนวนตัวอย่างใบทุเรียน</div>
+                        <p data-i18n="dsStat1Desc" class="text-xs text-stone-500 leading-relaxed">
+                            ภาพจากสวนจริงและมุมมองจำลอง ครอบคลุมแสง เงา และการซ้อนทับของใบ
+                        </p>
+                    </div>
+
+                    <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3]">
+                        <div data-i18n="dsStat2Val" class="text-2xl font-bold text-yoedo-700 mb-1">7 กลุ่ม</div>
+                        <div data-i18n="dsStat2Title" class="text-sm font-semibold text-stone-900 mb-1">คลาสการตรวจจับ</div>
+                        <p data-i18n="dsStat2Desc" class="text-xs text-stone-500 leading-relaxed">
+                            Phytophthora, Anthracnose, Rhizoctonia, Phomopsis, Algal Spot, Healthy และ Others
+                        </p>
+                    </div>
+
+                    <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3]">
+                        <div class="text-xl font-bold text-stone-900 mb-1">E-IRFS</div>
+                        <div data-i18n="dsStat3Title" class="text-sm font-semibold text-yoedo-700 mb-1">Instance-Aware Sampling</div>
+                        <p data-i18n="dsStat3Desc" class="text-xs text-stone-500 leading-relaxed">
+                            สุ่มถ่วงน้ำหนักแบบเอกซ์โพเนนเชียล ลดความลำเอียงต่อโรคที่พบน้อย
+                        </p>
+                    </div>
+
+                    <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3]">
+                        <div class="text-xl font-bold text-stone-900 mb-1">Optuna</div>
+                        <div data-i18n="dsStat4Title" class="text-sm font-semibold text-yoedo-700 mb-1">Hyperparameter Tuning</div>
+                        <p data-i18n="dsStat4Desc" class="text-xs text-stone-500 leading-relaxed">
+                            ปรับจูนค่าการเรียนรู้และการขยายข้อมูลอย่างเป็นระบบก่อนแปลงสู่ TFLite
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Experimental Benchmark & Mobile Deployment -->
+        <section class="reveal grid grid-cols-1 lg:grid-cols-12 gap-8 items-center pt-4">
+            <div class="lg:col-span-7 space-y-5">
+                <div>
+                    <span data-i18n="evalBadge" class="text-xs font-semibold text-yoedo-700 bg-yoedo-100/80 px-3 py-1 rounded-full">
+                        ผลการทดลองและการนำไปใช้งานบนมือถือ
+                    </span>
+                    <h2 data-i18n="evalTitle" class="text-2xl font-bold text-stone-900 leading-[1.4] mt-3 mb-2">
+                        ประสิทธิภาพของโมเดล YOLO26-OBB และการแปลงสู่ TensorFlow Lite
+                    </h2>
+                    <p data-i18n="evalDesc" class="text-sm sm:text-base text-stone-600 leading-[1.85]">
+                        จากการประเมินโมเดลบนชุดข้อมูลใบทุเรียนในสภาพแวดล้อมธรรมชาติที่ซับซ้อน
+                        โมเดล <strong class="font-semibold text-stone-800">YOLO26-OBB</strong> ให้ค่าความแม่นยำเฉลี่ยการตรวจจับ
+                        และถูกแปลงด้วย <strong class="font-semibold text-stone-800">TensorFlow Lite (Quantized)</strong>
+                        เพื่อรันบนแอปพลิเคชัน Android (Kotlin) แบบออฟไลน์ 100% ได้อย่างลื่นไหล
+                    </p>
+                </div>
+
+                <!-- Verified Metrics Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="bg-white/95 rounded-2xl p-6 border border-[#C8E3D4]">
+                        <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">mAP@0.5</div>
+                        <div class="text-3xl sm:text-4xl font-bold text-yoedo-700 mb-1.5">0.664</div>
+                        <p data-i18n="map50Desc" class="text-xs text-stone-600 leading-relaxed">
+                            ความแม่นยำเฉลี่ยในการตรวจจับตำแหน่งกรอบเอียงและแยกประเภทโรคที่เกณฑ์ IoU 0.50
+                        </p>
+                    </div>
+
+                    <div class="bg-white/95 rounded-2xl p-6 border border-[#E2E8E3]">
+                        <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">mAP@0.5:0.95</div>
+                        <div class="text-3xl sm:text-4xl font-bold text-stone-900 mb-1.5">0.507</div>
+                        <p data-i18n="map5095Desc" class="text-xs text-stone-600 leading-relaxed">
+                            ค่าเฉลี่ยความแม่นยำข้ามช่วงเกณฑ์การซ้อนทับ IoU ตั้งแต่ 0.50 ถึง 0.95
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Links to Research Papers & Repo -->
+                <div class="bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] space-y-2.5 text-xs sm:text-sm">
+                    <div data-i18n="paperHeading" class="font-bold text-stone-900">เอกสารวิจัยและซอร์สโค้ดอ้างอิง</div>
+                    <ul class="space-y-1.5 text-stone-600">
+                        <li>
+                            <a href="https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB"
+                                target="_blank" rel="noopener noreferrer" class="text-yoedo-700 hover:underline font-medium">
+                                • YOEDO: A Real-Time Mobile Application for Durian Leaf Disease Detection Using YOLO-OBB (TJ-SIF 2026)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.researchgate.net/publication/416823038_Durian_Leaf_Disease_Detection_Using_CNNs_with_Oriented_Bounding_Boxes_on_Drone-Simulated_Imagery"
+                                target="_blank" rel="noopener noreferrer" class="text-yoedo-700 hover:underline font-medium">
+                                • Durian Leaf Disease Detection Using CNNs with Oriented Bounding Boxes on Drone-Simulated Imagery (AMM 2026, pp. 303–309)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
+                                class="text-stone-700 hover:text-yoedo-700 hover:underline">
+                                • GitHub Repository: marsfinncode/cnn-durian (Android Kotlin &amp; TFLite)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://docs.ultralytics.com/tasks/obb" target="_blank" rel="noopener noreferrer"
+                                class="text-yoedo-700 hover:underline font-medium">
+                                • Ultralytics YOLO OBB Documentation (docs.ultralytics.com/tasks/obb)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Real App Inference Showcase -->
+            <div class="lg:col-span-5 flex flex-col items-center">
+                <div class="w-[240px] sm:w-[255px] bg-stone-900 rounded-[2.4rem] p-2.5 shadow-xl border-[3px] border-stone-800">
+                    <div class="relative aspect-[460/1024] rounded-[1.85rem] overflow-hidden bg-white">
+                        <img src="./assets/screen-en-live.jpg" alt="Real-time YOLO26-OBB detection on Android"
+                            class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <p data-i18n="liveCap" class="text-xs text-stone-500 text-center mt-3 max-w-xs leading-relaxed">
+                    ตัวอย่างผลลัพธ์การตรวจจับแบบเรียลไทม์บนมือถือ Android ด้วยโมเดลที่แปลงเป็น TensorFlow Lite
+                </p>
+            </div>
+        </section>
+
+        <!-- Bottom CTA -->
+        <section class="reveal rounded-3xl bg-gradient-to-br from-[#EAF5EF] via-[#F2F8F4] to-[#E6F3EC] border border-[#C8E3D4] p-8 sm:p-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-7 text-center md:text-left">
+                <div class="flex flex-col sm:flex-row items-center gap-5">
+                    <img src="./assets/yoedo-logo.png" alt="YOEDO Durian Leaf Scanner"
+                        class="w-16 h-16 rounded-2xl shadow-sm shrink-0">
+                    <div>
+                        <h2 data-i18n="ctaTitle" class="text-xl sm:text-2xl font-bold text-stone-900 mb-1.5">
+                            ลองใช้งานจริงบนสมาร์ตโฟน Android ได้เลย
+                        </h2>
+                        <p data-i18n="ctaDesc" class="text-stone-600 text-sm sm:text-base max-w-lg">
+                            ดาวน์โหลดแอป YOEDO ฟรี พร้อมเมนูภาษาไทย-อังกฤษ ใช้งานได้ทันทีกลางสวนโดยไม่ต้องต่อเน็ต
+                        </p>
+                    </div>
+                </div>
+
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" aria-label="Get it on Google Play"
+                    class="shrink-0 inline-block transition transform hover:-translate-y-0.5 hover:scale-[1.02]">
+                    <img src="./assets/google-play-badge.png" alt="Get it on Google Play"
+                        class="h-14 sm:h-[58px] w-auto rounded-xl shadow-md">
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[#DFE7E1] bg-white/90">
+        <div
+            class="max-w-5xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+            <div class="flex items-center gap-2.5">
+                <img src="./assets/cateatmars-logo.jpg" alt="cateatmars.dev" class="w-7 h-7 rounded-lg object-cover shadow-sm">
+                <span>© 2026 cateatmars.dev • Open source under Apache-2.0 License.</span>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
+                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
+                    rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
+                <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-yoedo-600 transition">GitHub</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="text-yoedo-600 font-semibold">ทำงานอย่างไร</a>
+                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const howI18n = {
+            th: {
+                pageTitle: 'ทำงานอย่างไร - เบื้องหลังโมเดล YOLO26-OBB และการทดลอง | YOEDO App',
+                brandSub: 'สแกนโรคใบทุเรียน',
+                navHome: 'หน้าแรก',
+                navDiseases: 'โรคใบทุเรียน',
+                navHowWorks: 'ทำงานอย่างไร',
+                navAbout: 'เกี่ยวกับ',
+                navPrivacy: 'ความเป็นส่วนตัว',
+                navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
+                heroBadge: 'เบื้องหลังการทำงานและการทดลองโมเดล',
+                heroTitle: 'YOEDO ทำงานอย่างไร<span class="block text-yoedo-600 mt-1">จากภาพใบทุเรียนในสวน สู่การตรวจจับบนมือถือ</span>',
+                heroDesc: 'หน้านี้สรุปแนวคิดและขั้นตอนการทดลองวิจัยเบื้องหลังแอปพลิเคชัน <strong class="font-semibold text-stone-800">YOEDO</strong> ตั้งแต่การสร้างชุดข้อมูลในสภาพสวนจริง การเลือกใช้กรอบตรวจจับแบบหมุนตามแนวใบ (<strong class="font-semibold text-stone-800">YOLO26-OBB</strong>) การแก้ปัญหาจำนวนข้อมูลแต่ละโรคไม่เท่ากัน ไปจนถึงการย่อโมเดลให้ทำงานแบบออฟไลน์บนสมาร์ตโฟน Android',
+                pipeTitle: 'ภาพรวมกระบวนการพัฒนาโมเดล (4 ขั้นตอน)',
+                pipeSubtitle: 'ทุกขั้นตอนถูกออกแบบให้รองรับสภาพแสง ฉากหลังซับซ้อน และข้อจำกัดของมือถือที่ใช้งานจริงในสวน',
+                p1Title: 'เก็บข้อมูลและติดป้าย OBB',
+                p1Desc: 'รวบรวมภาพใบทุเรียนจริงและมุมจำลอง 4,668 ตัวอย่าง ครอบคลุม 7 ประเภท',
+                p2Title: 'ถ่วงสมดุลด้วย E-IRFS + Optuna',
+                p2Desc: 'ช่วยเพิ่มความแม่นยำในโรคที่พบตัวอย่างน้อย และปรับจูนพารามิเตอร์อัตโนมัติ',
+                p3Title: 'วัดผลด้วย YOLO26-OBB',
+                p3Desc: 'ประเมินความแม่นยำการตรวจจับบนชุดทดสอบ ได้ mAP@0.5 = 0.664 และ mAP@0.5:0.95 = 0.507',
+                p4Title: 'แปลงเป็น TensorFlow Lite',
+                p4Desc: 'Quantize โมเดลให้เบาและเร็วพอสำหรับรันออฟไลน์บนแอป Android (Kotlin)',
+                obbBadge: 'แนวคิดสำคัญ • Oriented Bounding Box (OBB)',
+                obbTitle: 'ทำไมต้องใช้ YOLO26-OBB แทนกรอบสี่เหลี่ยมแนวนอนทั่วไป?',
+                obbP1: 'ใบทุเรียนบนต้นจริงไม่ได้วางเรียงตัวในแนวตั้งหรือแนวนอนเสมอไป แต่มักห้อยเอียงเป็นมุมต่างๆ และซ้อนทับกันเป็นพุ่ม หากใช้กรอบสี่เหลี่ยมแนวตรงแบบเดิม (Horizontal Bounding Box) กรอบจะกว้างเกินจำเป็นจนติดพื้นหลัง กิ่งไม้ หรือใบข้างเคียงเข้ามาปะปน ทำให้โมเดลสับสนได้ง่าย',
+                obbP2: 'กรอบแบบ OBB (Oriented Bounding Box) จึงเพิ่มมุมเอียงเข้ามาในกรอบตรวจจับ ทำให้กรอบหมุนแนบไปตามทรงใบทุเรียนแต่ละใบ ลดสัญญาณรบกวนจากฉากหลัง และแยกใบที่ซ้อนทับกันในพุ่มได้อย่างชัดเจน',
+                obbDocLink: 'ศึกษาเพิ่มเติมเกี่ยวกับโมเดล: Ultralytics YOLO OBB Documentation →',
+                hbbLabel: 'กรอบแนวนอนทั่วไป (HBB)',
+                hbbNote: 'กินพื้นที่ฉากหลังและใบข้างเคียงมาก',
+                obbLabel: 'กรอบหมุนตามใบ (YOLO-OBB)',
+                obbNote: 'แนบสนิทตามมุมเอียง ลดฉากหลังรบกวน',
+                obbPhotoCap: 'ตัวอย่างการตีกรอบเอียง (OBB) บนใบทุเรียนจริงที่ซ้อนกันในสวน',
+                trainBadge: 'การสร้างชุดข้อมูลและการฝึกสอนโมเดล',
+                trainTitle: 'แก้ปัญหาโรคที่พบน้อยด้วย E-IRFS และจูนโมเดลด้วย Optuna',
+                trainP1: 'ในชุดข้อมูลจริงจำนวน <strong class="font-semibold text-stone-800">4,668 ตัวอย่าง</strong> จำนวนใบของแต่ละโรคในธรรมชาติไม่ได้เท่ากัน (Class Imbalance) บางอาการพบมากในสวน ขณะที่บางโรคพบน้อยกว่า หากเทรนตรงๆ โมเดลมักเอียงไปทายกลุ่มที่พบบ่อยได้ดีแต่พลาดในโรคที่พบน้อย',
+                trainP2: 'งานวิจัยนี้จึงนำเทคนิค <strong class="font-semibold text-stone-800">E-IRFS (Exponentially Weighted Instance-Aware Repeat Factor Sampling)</strong> มาช่วยจัดสัดส่วนการสุ่มภาพระหว่างฝึกสอน โดยคำนวณน้ำหนักซ้ำตามจำนวนชิ้นใบ (Instance) ในแต่ละคลาส ควบคู่กับการใช้เฟรมเวิร์ก <strong class="font-semibold text-stone-800">Optuna</strong> เพื่อค้นหาค่า Hyperparameters ที่เหมาะสมที่สุดสำหรับชุดข้อมูลใบทุเรียน',
+                dsStat1Title: 'จำนวนตัวอย่างใบทุเรียน',
+                dsStat1Desc: 'ภาพจากสวนจริงและมุมมองจำลอง ครอบคลุมแสง เงา และการซ้อนทับของใบ',
+                dsStat2Val: '7 กลุ่ม',
+                dsStat2Title: 'คลาสการตรวจจับ',
+                dsStat2Desc: 'Phytophthora, Anthracnose, Rhizoctonia, Phomopsis, Algal Spot, Healthy และ Others',
+                dsStat3Title: 'Instance-Aware Sampling',
+                dsStat3Desc: 'สุ่มถ่วงน้ำหนักแบบเอกซ์โพเนนเชียล ลดความลำเอียงต่อโรคที่พบน้อย',
+                dsStat4Title: 'Hyperparameter Tuning',
+                dsStat4Desc: 'ปรับจูนค่าการเรียนรู้และการขยายข้อมูลอย่างเป็นระบบก่อนแปลงสู่ TFLite',
+                evalBadge: 'ผลการทดลองและการนำไปใช้งานบนมือถือ',
+                evalTitle: 'ประสิทธิภาพของโมเดล YOLO26-OBB และการแปลงสู่ TensorFlow Lite',
+                evalDesc: 'จากการประเมินโมเดลบนชุดข้อมูลใบทุเรียนในสภาพแวดล้อมธรรมชาติที่ซับซ้อน โมเดล YOLO26-OBB ให้ค่าความแม่นยำเฉลี่ยการตรวจจับ และถูกแปลงด้วย TensorFlow Lite (Quantized) เพื่อรันบนแอปพลิเคชัน Android (Kotlin) แบบออฟไลน์ 100% ได้อย่างลื่นไหล',
+                map50Desc: 'ความแม่นยำเฉลี่ยในการตรวจจับตำแหน่งกรอบเอียงและแยกประเภทโรคที่เกณฑ์ IoU 0.50',
+                map5095Desc: 'ค่าเฉลี่ยความแม่นยำข้ามช่วงเกณฑ์การซ้อนทับ IoU ตั้งแต่ 0.50 ถึง 0.95',
+                paperHeading: 'เอกสารวิจัยและซอร์สโค้ดอ้างอิง',
+                liveCap: 'ตัวอย่างผลลัพธ์การตรวจจับแบบเรียลไทม์บนมือถือ Android ด้วยโมเดลที่แปลงเป็น TensorFlow Lite',
+                ctaTitle: 'ลองใช้งานจริงบนสมาร์ตโฟน Android ได้เลย',
+                ctaDesc: 'ดาวน์โหลดแอป YOEDO ฟรี พร้อมเมนูภาษาไทย-อังกฤษ ใช้งานได้ทันทีกลางสวนโดยไม่ต้องต่อเน็ต'
+            },
+            en: {
+                pageTitle: 'How YOEDO Works - YOLO26-OBB Model & Experiments | YOEDO App',
+                brandSub: 'Durian Leaf Scanner',
+                navHome: 'Home',
+                navDiseases: 'Leaf Diseases',
+                navHowWorks: 'How It Works',
+                navAbout: 'About',
+                navPrivacy: 'Privacy',
+                navPrivacyFull: 'Privacy Policy',
+                heroBadge: 'Model Architecture & Experiments',
+                heroTitle: 'How YOEDO Works<span class="block text-yoedo-600 mt-1">From Orchard Leaves to Offline Mobile Detection</span>',
+                heroDesc: 'An overview of the research and engineering pipeline behind <strong class="font-semibold text-stone-800">YOEDO</strong>—from real orchard data curation and rotated <strong class="font-semibold text-stone-800">YOLO26-OBB</strong> detection to class-imbalance handling and TensorFlow Lite deployment on Android.',
+                pipeTitle: 'End-to-End Pipeline (4 Stages)',
+                pipeSubtitle: 'Every stage is built to handle orchard lighting, overlapping foliage, and mobile hardware limits.',
+                p1Title: 'Dataset & OBB Annotation',
+                p1Desc: '4,668 annotated durian leaf instances across 7 classes from real orchards and drone-simulated angles.',
+                p2Title: 'E-IRFS + Optuna Training',
+                p2Desc: 'Balances rare disease instances during training and systematically tunes hyperparameters.',
+                p3Title: 'YOLO26-OBB Evaluation',
+                p3Desc: 'Achieved mAP@0.5 of 0.664 and mAP@0.5:0.95 of 0.507 under complex orchard backgrounds.',
+                p4Title: 'TensorFlow Lite Export',
+                p4Desc: 'Quantized for lightweight, 100% offline real-time inference inside the Android (Kotlin) app.',
+                obbBadge: 'Core Concept • Oriented Bounding Box (OBB)',
+                obbTitle: 'Why YOLO26-OBB Instead of Standard Horizontal Boxes?',
+                obbP1: 'In real orchards, durian leaves hang at arbitrary angles and frequently overlap in dense canopies. Standard axis-aligned boxes (HBB) include large areas of background sky, branches, or neighboring leaves, confusing the classifier.',
+                obbP2: 'Oriented Bounding Boxes (OBB) add rotation angle prediction so each detection frame wraps tightly along the leaf axis—minimizing background noise and separating overlapping leaves accurately.',
+                obbDocLink: 'Learn more about the model: Ultralytics YOLO OBB Documentation →',
+                hbbLabel: 'Standard Horizontal Box (HBB)',
+                hbbNote: 'Captures excess background and adjacent leaves',
+                obbLabel: 'Oriented Bounding Box (YOLO-OBB)',
+                obbNote: 'Fits leaf angle tightly with minimal noise',
+                obbPhotoCap: 'Example of oriented bounding boxes tightly framing overlapping orchard leaves.',
+                trainBadge: 'Dataset Curation & Training Strategy',
+                trainTitle: 'Handling Class Imbalance with E-IRFS & Tuning via Optuna',
+                trainP1: 'Across <strong class="font-semibold text-stone-800">4,668 annotated instances</strong>, natural disease occurrences vary significantly—some leaf conditions appear far less often than others, causing standard training to favor majority classes.',
+                trainP2: 'Our study applies <strong class="font-semibold text-stone-800">E-IRFS (Exponentially Weighted Instance-Aware Repeat Factor Sampling)</strong> to balance per-instance sampling frequencies during training, paired with <strong class="font-semibold text-stone-800">Optuna</strong> for automated hyperparameter optimization.',
+                dsStat1Title: 'Annotated Leaf Instances',
+                dsStat1Desc: 'Real orchard and drone-simulated imagery with natural shadows and foliage overlap.',
+                dsStat2Val: '7 Classes',
+                dsStat2Title: 'Detection Categories',
+                dsStat2Desc: 'Phytophthora, Anthracnose, Rhizoctonia, Phomopsis, Algal Spot, Healthy, and Others.',
+                dsStat3Title: 'Instance-Aware Sampling',
+                dsStat3Desc: 'Exponential repeat-factor weighting to boost rare disease detection.',
+                dsStat4Title: 'Hyperparameter Tuning',
+                dsStat4Desc: 'Systematic search for optimal training parameters before mobile export.',
+                evalBadge: 'Experimental Results & On-Device Deployment',
+                evalTitle: 'YOLO26-OBB Benchmark & TensorFlow Lite Quantization',
+                evalDesc: 'Evaluated on challenging orchard foliage, YOLO26-OBB delivers strong localization and classification accuracy, then converts to a quantized TensorFlow Lite (.tflite) model for smooth 100% offline Android inference.',
+                map50Desc: 'Mean Average Precision across 7 classes at IoU threshold 0.50.',
+                map5095Desc: 'Mean Average Precision averaged across IoU thresholds from 0.50 to 0.95.',
+                paperHeading: 'Publications & Source Code',
+                liveCap: 'Real-time on-device YOLO26-OBB inference running offline inside the Android app.',
+                ctaTitle: 'Try YOEDO Free on Your Android Phone',
+                ctaDesc: 'Bilingual Thai & English UI, ready to scan offline anywhere in your orchard.'
+            }
+        };
+
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let isMobileMenuOpen = false;
+
+        function setMobileMenu(open) {
+            if (!mobileMenu) return;
+            isMobileMenuOpen = open;
+            if (open) {
+                mobileMenu.classList.remove('max-h-0', 'opacity-0', 'border-transparent');
+                mobileMenu.classList.add('max-h-96', 'opacity-100', 'border-linen-200');
+            } else {
+                mobileMenu.classList.add('max-h-0', 'opacity-0', 'border-transparent');
+                mobileMenu.classList.remove('max-h-96', 'opacity-100', 'border-linen-200');
+            }
+        }
+
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => setMobileMenu(!isMobileMenuOpen));
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => setMobileMenu(false));
+            });
+        }
+
+        const siteLangBtns = document.querySelectorAll('.site-lang-btn');
+
+        function setSiteLanguage(lang, persist = true) {
+            if (!howI18n[lang]) return;
+            if (persist) {
+                try {
+                    localStorage.setItem('yoedo_lang', lang);
+                } catch (_) {}
+            }
+
+            document.documentElement.lang = lang;
+            document.title = howI18n[lang].pageTitle;
+
+            document.querySelectorAll('[data-i18n]').forEach((el) => {
+                const key = el.dataset.i18n;
+                if (howI18n[lang][key] !== undefined) {
+                    el.textContent = howI18n[lang][key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+                const key = el.dataset.i18nHtml;
+                if (howI18n[lang][key] !== undefined) {
+                    el.innerHTML = howI18n[lang][key];
+                }
+            });
+
+            siteLangBtns.forEach((btn) => {
+                const isActive = btn.dataset.setLang === lang;
+                btn.className = isActive
+                    ? 'site-lang-btn px-2 py-1 rounded-md bg-yoedo-600 text-white transition'
+                    : 'site-lang-btn px-2 py-1 rounded-md text-stone-600 hover:text-yoedo-600 transition';
+            });
+
+            document.body.classList.remove('lang-fade');
+            void document.body.offsetWidth;
+            document.body.classList.add('lang-fade');
+        }
+
+        siteLangBtns.forEach((btn) => {
+            btn.addEventListener('click', () => setSiteLanguage(btn.dataset.setLang));
+        });
+
+        const urlLang = new URLSearchParams(window.location.search).get('lang');
+        let savedLang = 'th';
+        try {
+            savedLang = localStorage.getItem('yoedo_lang') || 'th';
+        } catch (_) {}
+        const initialLang = urlLang === 'en' || urlLang === 'th' ? urlLang : savedLang;
+        if (initialLang === 'en') {
+            setSiteLanguage('en', false);
+        }
+
+        // Scroll-reveal observer
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const delay = entry.target.dataset.delay;
+                            if (delay) {
+                                entry.target.style.transitionDelay = delay + 'ms';
+                            }
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+            );
+            revealEls.forEach((el) => revealObserver.observe(el));
+        } else {
+            revealEls.forEach((el) => el.classList.add('is-visible'));
+        }
+    </script>
+</body>
+
+</html>
+

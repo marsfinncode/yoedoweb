@@ -107,6 +107,14 @@
                 "@type": "Answer",
                 "text": "ดาวน์โหลดและใช้งานได้ฟรีทั้งหมด ไม่ต้องสมัครสมาชิก รองรับมือถือระบบ Android ผ่าน Google Play Store"
               }
+            },
+            {
+              "@type": "Question",
+              "name": "โรคใบทุเรียนที่พบบ่อยมีอะไรบ้าง?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "5 โรคใบทุเรียนสำคัญที่พบบ่อยในสวนไทย ได้แก่ รากเน่าโคนเน่า (Phytophthora), แอนแทรคโนส (Colletotrichum), ใบติด (Rhizoctonia), ใบจุดโฟมอปซิส (Phomopsis) และจุดสาหร่าย (Cephaleuros) ดูภาพตัวอย่างอาการและวิธีป้องกันกำจัดได้ที่ https://yoedo.vercel.app/diseases"
+              }
             }
           ]
         }
@@ -114,10 +122,10 @@
     }
     </script>
 
-    <!-- Google Fonts (Sarabun) -->
+    <!-- Google Fonts (Sarabun + IBM Plex Sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -153,6 +161,11 @@
     <style>
         body {
             font-family: 'Sarabun', sans-serif;
+        }
+
+        html[lang="en"],
+        html[lang="en"] body {
+            font-family: 'IBM Plex Sans', 'Sarabun', sans-serif;
         }
 
         details summary::-webkit-details-marker {
@@ -260,8 +273,8 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
                 <a href="#features" data-i18n="navFeatures" class="hover:text-yoedo-600 transition">ช่วยอะไรได้บ้าง</a>
-                <a href="#how-it-works" data-i18n="navHow" class="hover:text-yoedo-600 transition">วิธีใช้งาน</a>
                 <a href="#diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคที่ตรวจได้</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
                 <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
                 <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
             </div>
@@ -301,7 +314,9 @@
                 <a href="#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
                 <a href="#how-it-works" data-i18n="navHow" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">วิธีใช้งาน</a>
                 <a href="#diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคที่ตรวจได้</a>
+                <a href="./diseases.html" data-i18n="navDiseaseGuide" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">คู่มือโรคใบทุเรียน</a>
                 <a href="#faq" data-i18n="navFaq" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">คำถามที่พบบ่อย</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ทำงานอย่างไร</a>
                 <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
                 <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
             </div>
@@ -357,7 +372,7 @@
                             <svg class="w-4 h-4 text-yoedo-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                             </svg>
-                            <span data-i18n="check1">ทำงานออฟไลน์ในสวนลึก</span>
+                            <span data-i18n="check1">ทำงานได้ในสวนที่ห่างไกล</span>
                         </span>
                         <span class="inline-flex items-center gap-2">
                             <svg class="w-4 h-4 text-yoedo-600 shrink-0" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
@@ -372,6 +387,9 @@
                             <span data-i18n="check3">ฟรี ไม่มีโฆษณา</span>
                         </span>
                     </div>
+                    <p data-i18n="heroCollab" class="text-xs text-stone-500 mt-3.5">
+                        ความร่วมมือระหว่างมหาวิทยาลัยบูรพากับโรงเรียนมหิดลวิทยานุสรณ์
+                    </p>
                 </div>
 
                 <!-- Right Real App UI Showcase -->
@@ -534,23 +552,36 @@
                     </p>
                 </div>
             </div>
+
+            <div class="mt-8 text-center sm:text-left reveal">
+                <a href="./how-it-works.html" data-i18n="howTechLink"
+                    class="inline-flex items-center gap-1.5 text-sm font-medium text-yoedo-700 hover:underline">
+                    อยากรู้จักเบื้องหลังโมเดลและการทดลอง? อ่านหน้าทำงานอย่างไร →
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Supported Diseases Section -->
     <section id="diseases" class="max-w-5xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
-        <div class="max-w-2xl mb-10 reveal">
-            <h2 data-i18n="diseasesTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
-                โรคและอาการบนใบทุเรียนที่แอปช่วยสังเกต
-            </h2>
-            <p data-i18n="diseasesSubtitle" class="text-stone-600 text-sm sm:text-base leading-relaxed">
-                ครอบคลุม 5 โรคใบทุเรียนที่พบบ่อยในสวนไทย รวมถึงใบปกติและอาการผิดปกติอื่นๆ
-            </p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 reveal">
+            <div class="max-w-2xl">
+                <h2 data-i18n="diseasesTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
+                    โรคใบทุเรียนที่พบบ่อยและวิธีสังเกตอาการ
+                </h2>
+                <p data-i18n="diseasesSubtitle" class="text-stone-600 text-sm sm:text-base leading-relaxed">
+                    ครอบคลุม 5 โรคใบทุเรียนที่พบบ่อยในสวนไทย รวมถึงใบปกติและอาการผิดปกติอื่นๆ
+                </p>
+            </div>
+            <a href="./diseases.html" data-i18n="diseasesGuideBtn"
+                class="inline-flex items-center gap-1.5 text-sm font-semibold text-yoedo-700 hover:text-yoedo-800 bg-yoedo-50 hover:bg-yoedo-100/80 border border-yoedo-200 px-4 py-2.5 rounded-xl transition shrink-0 self-start md:self-auto">
+                ดูคู่มืออาการ วิธีป้องกัน และภาพตัวอย่างทั้งหมด →
+            </a>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- 1. Phytophthora -->
-            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
+            <a href="./diseases.html#phytophthora" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -559,13 +590,14 @@
                     <span data-i18n="sevCritical" class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 text-xs font-semibold shrink-0">รุนแรง</span>
                 </div>
                 <p class="text-xs text-stone-400 mb-2">Phytophthora palmivora</p>
-                <p data-i18n="d1Desc" class="text-sm text-stone-600 leading-relaxed">
+                <p data-i18n="d1Desc" class="text-sm text-stone-600 leading-relaxed mb-3">
                     ช่วยสังเกตใบเหลืองซีดหรือจุดแผลช้ำลามเร็ว ซึ่งมักพบคู่กับปัญหาเชื้อไฟทอปธอรา
                 </p>
-            </div>
+                <span data-i18n="readGuide" class="text-xs font-semibold text-yoedo-700">ดูวิธีสังเกตและป้องกันกำจัด →</span>
+            </a>
 
             <!-- 2. Anthracnose -->
-            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="60">
+            <a href="./diseases.html#anthracnose" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="60">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -574,13 +606,14 @@
                     <span data-i18n="sevCritical" class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 text-xs font-semibold shrink-0">รุนแรง</span>
                 </div>
                 <p class="text-xs text-stone-400 mb-2">Colletotrichum spp.</p>
-                <p data-i18n="d2Desc" class="text-sm text-stone-600 leading-relaxed">
+                <p data-i18n="d2Desc" class="text-sm text-stone-600 leading-relaxed mb-3">
                     ใบมีแผลสีน้ำตาลเข้มถึงดำ ขอบแผลชัด มักเริ่มจากปลายใบหรือขอบใบแล้วลามเข้าด้านใน
                 </p>
-            </div>
+                <span data-i18n="readGuide" class="text-xs font-semibold text-yoedo-700">ดูวิธีสังเกตและป้องกันกำจัด →</span>
+            </a>
 
             <!-- 3. Rhizoctonia -->
-            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="120">
+            <a href="./diseases.html#rhizoctonia" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="120">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
@@ -589,13 +622,14 @@
                     <span data-i18n="sevWarning" class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold shrink-0">ระวัง</span>
                 </div>
                 <p class="text-xs text-stone-400 mb-2">Rhizoctonia solani</p>
-                <p data-i18n="d3Desc" class="text-sm text-stone-600 leading-relaxed">
+                <p data-i18n="d3Desc" class="text-sm text-stone-600 leading-relaxed mb-3">
                     ใบไหม้เป็นหย่อมคล้ายน้ำร้อนลวกและแห้งสีน้ำตาล มีเส้นใยรารัดใบติดกันเป็นกระจุก
                 </p>
-            </div>
+                <span data-i18n="readGuide" class="text-xs font-semibold text-yoedo-700">ดูวิธีสังเกตและป้องกันกำจัด →</span>
+            </a>
 
             <!-- 4. Phomopsis -->
-            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="180">
+            <a href="./diseases.html#phomopsis" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="180">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
@@ -604,13 +638,14 @@
                     <span data-i18n="sevWarning" class="px-2.5 py-0.5 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold shrink-0">ระวัง</span>
                 </div>
                 <p class="text-xs text-stone-400 mb-2">Phomopsis spp.</p>
-                <p data-i18n="d4Desc" class="text-sm text-stone-600 leading-relaxed">
+                <p data-i18n="d4Desc" class="text-sm text-stone-600 leading-relaxed mb-3">
                     เกิดจุดแผลแห้งสีน้ำตาลอ่อนถึงเข้มกระจายบนแผ่นใบ มักมีขอบแผลสีเข้มล้อมรอบ
                 </p>
-            </div>
+                <span data-i18n="readGuide" class="text-xs font-semibold text-yoedo-700">ดูวิธีสังเกตและป้องกันกำจัด →</span>
+            </a>
 
             <!-- 5. Algal Spot -->
-            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="240">
+            <a href="./diseases.html#algal-spot" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="240">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 shrink-0"></span>
@@ -619,13 +654,14 @@
                     <span data-i18n="sevMonitor" class="px-2.5 py-0.5 rounded-full bg-sky-50 text-sky-700 text-xs font-semibold shrink-0">เฝ้าดู</span>
                 </div>
                 <p class="text-xs text-stone-400 mb-2">Cephaleuros virescens</p>
-                <p data-i18n="d5Desc" class="text-sm text-stone-600 leading-relaxed">
+                <p data-i18n="d5Desc" class="text-sm text-stone-600 leading-relaxed mb-3">
                     จุดกลมคล้ายกำมะหยี่สีเขียวเทาหรือส้มสนิมบนผิวใบ พบมากในพุ่มทึบที่อับชื้น
                 </p>
-            </div>
+                <span data-i18n="readGuide" class="text-xs font-semibold text-yoedo-700">ดูวิธีสังเกตและป้องกันกำจัด →</span>
+            </a>
 
             <!-- 6. Healthy -->
-            <div class="reveal bg-[#EAF5EF]/80 rounded-2xl p-5 border border-[#C8E3D4] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="300">
+            <a href="./diseases.html#healthy" class="reveal block bg-[#EAF5EF]/80 rounded-2xl p-5 border border-[#C8E3D4] hover:border-yoedo-500 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="300">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-yoedo-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-yoedo-600 shrink-0"></span>
@@ -634,13 +670,14 @@
                     <span data-i18n="sevNormal" class="px-2.5 py-0.5 rounded-full bg-yoedo-100 text-yoedo-800 text-xs font-semibold shrink-0">ปกติ</span>
                 </div>
                 <p class="text-xs text-yoedo-700/80 mb-2">Healthy</p>
-                <p data-i18n="d6Desc" class="text-sm text-yoedo-900/85 leading-relaxed">
+                <p data-i18n="d6Desc" class="text-sm text-yoedo-900/85 leading-relaxed mb-3">
                     ใบสีเขียวเข้มสม่ำเสมอ ผิวใบเรียบสมบูรณ์ ไม่พบร่องรอยแผลจากเชื้อราหรือจุดโรค
                 </p>
-            </div>
+                <span data-i18n="readGuideHealthy" class="text-xs font-semibold text-yoedo-800">ดูแนวทางดูแลเชิงป้องกัน →</span>
+            </a>
 
             <!-- 7. Others -->
-            <div class="reveal sm:col-span-2 lg:col-span-3 bg-[#EDF1EE]/80 rounded-2xl p-5 border border-[#DFE7E1] flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:shadow-sm transition-all duration-300" data-delay="120">
+            <a href="./diseases.html#others" class="reveal sm:col-span-2 lg:col-span-3 bg-[#EDF1EE]/80 rounded-2xl p-5 border border-[#DFE7E1] hover:border-yoedo-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:shadow-sm transition-all duration-300" data-delay="120">
                 <div>
                     <div class="flex items-center gap-2 mb-1">
                         <span class="w-2.5 h-2.5 rounded-full bg-stone-500 shrink-0"></span>
@@ -650,7 +687,8 @@
                         สำหรับร่องรอยบนใบที่ไม่ตรงกับ 5 โรคหลัก เช่น รอยแมลงกัด อาการขาดธาตุอาหาร หรือใบไหม้แดด
                     </p>
                 </div>
-            </div>
+                <span data-i18n="readGuideOthers" class="text-xs font-semibold text-yoedo-700 shrink-0">วิธีแยกแมลง/ขาดธาตุอาหาร →</span>
+            </a>
         </div>
 
         <p data-i18n="diseasesNote" class="text-xs sm:text-sm text-stone-500 mt-6">
@@ -751,6 +789,16 @@
                     แอปช่วยคัดกรองเบื้องต้นให้เห็นความผิดปกติเร็วขึ้นระหว่างเดินสำรวจสวน หากพบอาการหนักหรือยังไม่แน่ใจ ควรปรึกษานักวิชาการเกษตรหรือเจ้าหน้าที่ใกล้บ้านร่วมด้วยครับ
                 </p>
             </details>
+
+            <details class="group bg-white border border-linen-200 rounded-2xl p-5 transition">
+                <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold text-stone-900">
+                    <span data-i18n="q5">โรคใบทุเรียนที่พบบ่อยมีอะไรบ้าง และสังเกตอาการต่างกันอย่างไร?</span>
+                    <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+                </summary>
+                <p data-i18n-html="a5" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
+                    5 โรคหลักที่พบบ่อย ได้แก่ รากเน่าโคนเน่า (แผลฉ่ำน้ำลามไว), แอนแทรคโนส (แผลน้ำตาลแดงเป็นวงซ้อน), ใบติด (มีเส้นใยขาวรัดใบเป็นกระจุก), ใบจุดโฟมอปซิส (แผลมีวงเหลืองล้อมและจุดดำตรงกลาง) และจุดสาหร่าย (ขุยกำมะหยี่สีส้มสนิม) สามารถดูภาพตัวอย่างและวิธีจัดการละเอียดได้ในหน้า <a href="./diseases.html" class="text-yoedo-600 hover:underline">คู่มือโรคใบทุเรียน</a>
+                </p>
+            </details>
         </div>
     </section>
 
@@ -795,6 +843,8 @@
                 <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
                     class="hover:text-yoedo-600 transition">GitHub</a>
                 <a href="#faq" data-i18n="navFaq" class="hover:text-yoedo-600 transition">คำถามที่พบบ่อย</a>
+                <a href="./diseases.html" data-i18n="navDiseaseGuide" class="hover:text-yoedo-600 transition">คู่มือโรคใบทุเรียน</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
                 <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
                 <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
             </div>
@@ -809,7 +859,9 @@
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navFeatures: 'ช่วยอะไรได้บ้าง',
                 navHow: 'วิธีใช้งาน',
+                navHowWorks: 'ทำงานอย่างไร',
                 navDiseases: 'โรคที่ตรวจได้',
+                navDiseaseGuide: 'คู่มือโรคใบทุเรียน',
                 navFaq: 'คำถามที่พบบ่อย',
                 navAbout: 'เกี่ยวกับ',
                 navPrivacy: 'ความเป็นส่วนตัว',
@@ -818,9 +870,10 @@
                 heroTitle: 'ส่องกล้องตรวจใบทุเรียน<span class="block text-yoedo-600 mt-1.5 sm:mt-2">รู้โรคไว ใช้ได้แม้ไม่มีเน็ต</span>',
                 heroDesc: 'เดินดูสวนแล้วเจอใบจุด ใบเหลือง หรือใบไหม้ ไม่ต้องเดาเองหรือรอสัญญาณเน็ต แค่เปิดแอป <strong class="font-semibold text-stone-800">YOEDO</strong> ส่องไปที่ใบทุเรียน แอปจะช่วยบอกชื่อโรคที่น่าจะเป็น พร้อมวิธีดูแลเบื้องต้นให้ทันที',
                 heroHowBtn: 'ดูวิธีใช้งานง่ายๆ',
-                check1: 'ทำงานออฟไลน์ในสวนลึก',
+                check1: 'ทำงานได้ในสวนที่ห่างไกล',
                 check2: 'รองรับภาษาไทยและอังกฤษ',
                 check3: 'ฟรี ไม่มีโฆษณา',
+                heroCollab: 'ความร่วมมือระหว่างมหาวิทยาลัยบูรพากับโรงเรียนมหิดลวิทยานุสรณ์',
                 featuresTitle: 'แอปนี้ช่วยชาวสวนทุเรียนเรื่องอะไรบ้าง',
                 featuresSubtitle: 'ออกแบบให้ใช้งานง่ายเหมือนถ่ายรูปทั่วไป ไม่ต้องมีความรู้ด้านคอมพิวเตอร์ก็ใช้ได้ทันที',
                 f1Tag: '01 • ใช้ได้แม้สวนอับสัญญาณ',
@@ -843,8 +896,13 @@
                 step2Desc: 'แอปจะตีกรอบรอบใบและแสดงชื่อโรคพร้อมเปอร์เซ็นต์ความมั่นใจให้ดูได้ทันที',
                 step3Title: 'อ่านคำแนะนำเพื่อดูแลต้น',
                 step3Desc: 'เปิดดูข้อมูลเชื้อสาเหตุ ระดับความรุนแรง และวิธีจัดการเบื้องต้นเพื่อลดการลุกลามไปยังต้นอื่น',
-                diseasesTitle: 'โรคและอาการบนใบทุเรียนที่แอปช่วยสังเกต',
+                howTechLink: 'อยากรู้จักเบื้องหลังโมเดลและการทดลอง? อ่านหน้าทำงานอย่างไร →',
+                diseasesTitle: 'โรคใบทุเรียนที่พบบ่อยและวิธีสังเกตอาการ',
                 diseasesSubtitle: 'ครอบคลุม 5 โรคใบทุเรียนที่พบบ่อยในสวนไทย รวมถึงใบปกติและอาการผิดปกติอื่นๆ',
+                diseasesGuideBtn: 'ดูคู่มืออาการ วิธีป้องกัน และภาพตัวอย่างทั้งหมด →',
+                readGuide: 'ดูวิธีสังเกตและป้องกันกำจัด →',
+                readGuideHealthy: 'ดูแนวทางดูแลเชิงป้องกัน →',
+                readGuideOthers: 'วิธีแยกแมลง/ขาดธาตุอาหาร →',
                 sevCritical: 'รุนแรง',
                 sevWarning: 'ระวัง',
                 sevMonitor: 'เฝ้าดู',
@@ -881,6 +939,8 @@
                 a3: 'ดาวน์โหลดและใช้งานได้ฟรีทั้งหมด ไม่ต้องสมัครสมาชิก รองรับมือถือระบบ Android ผ่าน Google Play Store',
                 q4: 'ผลจากแอปเชื่อถือได้แค่ไหน ใช้แทนการปรึกษาผู้เชี่ยวชาญได้ไหม?',
                 a4: 'แอปช่วยคัดกรองเบื้องต้นให้เห็นความผิดปกติเร็วขึ้นระหว่างเดินสำรวจสวน หากพบอาการหนักหรือยังไม่แน่ใจ ควรปรึกษานักวิชาการเกษตรหรือเจ้าหน้าที่ใกล้บ้านร่วมด้วยครับ',
+                q5: 'โรคใบทุเรียนที่พบบ่อยมีอะไรบ้าง และสังเกตอาการต่างกันอย่างไร?',
+                a5: '5 โรคหลักที่พบบ่อย ได้แก่ รากเน่าโคนเน่า (แผลฉ่ำน้ำลามไว), แอนแทรคโนส (แผลน้ำตาลแดงเป็นวงซ้อน), ใบติด (มีเส้นใยขาวรัดใบเป็นกระจุก), ใบจุดโฟมอปซิส (แผลมีวงเหลืองล้อมและจุดดำตรงกลาง) และจุดสาหร่าย (ขุยกำมะหยี่สีส้มสนิม) สามารถดูภาพตัวอย่างและวิธีจัดการละเอียดได้ในหน้า <a href="./diseases.html" class="text-yoedo-600 hover:underline">คู่มือโรคใบทุเรียน</a>',
                 ctaTitle: 'โหลดแอป YOEDO ติดเครื่องไว้ใช้ในสวนได้เลย',
                 ctaDesc: 'ฟรี ใช้งานง่าย มีทั้งภาษาไทยและภาษาอังกฤษ เปิดสแกนได้ทันทีแม้ไม่มีอินเทอร์เน็ต'
             },
@@ -889,7 +949,9 @@
                 brandSub: 'Durian Leaf Scanner',
                 navFeatures: 'Features',
                 navHow: 'How to Use',
+                navHowWorks: 'How It Works',
                 navDiseases: 'Diseases',
+                navDiseaseGuide: 'Leaf Disease Guide',
                 navFaq: 'FAQ',
                 navAbout: 'About',
                 navPrivacy: 'Privacy',
@@ -901,6 +963,7 @@
                 check1: '100% offline in deep orchards',
                 check2: 'Thai & English interface',
                 check3: 'Free, no ads',
+                heroCollab: 'In collaboration between Burapha University and Mahidol Wittayanusorn School',
                 featuresTitle: 'How YOEDO Helps Durian Growers',
                 featuresSubtitle: 'Designed to be as simple as taking a photo—no technical background needed.',
                 f1Tag: '01 • Works Without Signal',
@@ -923,8 +986,13 @@
                 step2Desc: 'The app frames each leaf and displays the detected disease name along with a confidence percentage immediately.',
                 step3Title: 'Review Care Tips & Take Action',
                 step3Desc: 'Check severity levels, causal pathogens, and recommended care steps to help prevent spread across your orchard.',
-                diseasesTitle: '7 Durian Leaf Conditions Detected',
+                howTechLink: 'Curious about the AI model and experiments? Read How It Works →',
+                diseasesTitle: 'Common Durian Leaf Diseases & Symptoms',
                 diseasesSubtitle: 'Covers 5 major foliar diseases found in durian orchards, plus Healthy leaves and Others.',
+                diseasesGuideBtn: 'View Full 7-Class Disease Guide & Care →',
+                readGuide: 'View symptoms & treatment →',
+                readGuideHealthy: 'View preventive care guide →',
+                readGuideOthers: 'Pests & nutrient checks →',
                 sevCritical: 'Critical',
                 sevWarning: 'Warning',
                 sevMonitor: 'Monitor',
@@ -961,6 +1029,8 @@
                 a3: 'Yes, it is completely free with no account required, available for Android devices on Google Play.',
                 q4: 'Can the app replace an agricultural specialist?',
                 a4: 'YOEDO is designed as a fast field-screening tool to help spot symptoms early. For severe outbreaks or complex cases, please consult an agricultural specialist.',
+                q5: 'What are the most common durian leaf diseases and how do they differ?',
+                a5: 'The 5 major diseases are Phytophthora (water-soaked dark lesions), Anthracnose (concentric reddish-brown rings), Rhizoctonia (white fungal threads binding leaves), Phomopsis (brown spots with yellow halos), and Algal Spot (velvety rust-orange cushions). See sample photos and treatments in our <a href="./diseases.html?lang=en" class="text-yoedo-600 hover:underline">Durian Leaf Disease Guide</a>.',
                 ctaTitle: 'Take YOEDO With You Into the Orchard',
                 ctaDesc: 'Free, bilingual (Thai & English), and ready to scan offline anytime.'
             }

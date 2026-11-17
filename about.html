@@ -46,7 +46,6 @@
     }
     </script>
 
-    <!-- Google Fonts (Sarabun) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -85,6 +84,11 @@
     <style>
         body {
             font-family: 'Sarabun', sans-serif;
+        }
+
+        html[lang="en"],
+        html[lang="en"] body {
+            font-family: 'IBM Plex Sans', 'Sarabun', sans-serif;
         }
 
         @keyframes langFade {
@@ -163,8 +167,8 @@
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
                 <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./index.html#features" data-i18n="navFeatures" class="hover:text-yoedo-600 transition">ช่วยอะไรได้บ้าง</a>
-                <a href="./index.html#diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคที่ตรวจได้</a>
+                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
                 <a href="./about.html" data-i18n="navAbout" class="text-yoedo-600 font-semibold">เกี่ยวกับ</a>
                 <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
             </div>
@@ -203,7 +207,8 @@
             <div class="py-4 space-y-1.5">
                 <a href="./index.html" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
                 <a href="./index.html#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
-                <a href="./index.html#diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคที่ตรวจได้</a>
+                <a href="./diseases.html" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ทำงานอย่างไร</a>
                 <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">เกี่ยวกับ</a>
                 <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
             </div>
@@ -235,6 +240,82 @@
 
     <!-- Story & Fieldwork Timeline -->
     <main class="max-w-5xl mx-auto px-5 sm:px-6 py-14 sm:py-16 space-y-16">
+
+        <!-- Why Durian & Why YOEDO (Export Stats + Environmental Vulnerability) -->
+        <section class="reveal space-y-7 pb-10 border-b border-[#DFE7E1]">
+            <div class="max-w-3xl">
+                <span data-i18n="whyBadge" class="text-xs font-semibold text-yoedo-700 bg-yoedo-100/80 px-3 py-1 rounded-full">
+                    ที่มาและความสำคัญ • เศรษฐกิจทุเรียนไทย
+                </span>
+                <h2 data-i18n="whyTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mt-3 mb-3">
+                    ทำไมการดูแล “ใบทุเรียน” ให้ทันเวลาจึงสำคัญต่อเกษตรกรไทย
+                </h2>
+                <p data-i18n-html="whyP1" class="text-sm sm:text-base text-stone-600 leading-[1.85] mb-3">
+                    <strong class="font-semibold text-stone-800">ทุเรียน</strong> เป็นพืชเศรษฐกิจอันดับต้นๆ ของประเทศไทยที่สร้างรายได้เข้าประเทศกว่าแสนล้านบาทต่อปี
+                    โดยผลผลิตส่วนใหญ่พึ่งพาตลาดส่งออกที่มีมาตรฐานคัดเกรดคุณภาพอย่างเข้มงวด
+                    ความเสียหายเพียงเล็กน้อยในแปลงปลูกจึงส่งผลโดยตรงต่อรายได้ของเกษตรกรและมูลค่าการส่งออกของประเทศ
+                </p>
+                <p data-i18n-html="whyP2" class="text-sm sm:text-base text-stone-600 leading-[1.85]">
+                    อย่างไรก็ตาม <strong class="font-semibold text-stone-800">ทุเรียนเป็นพืชที่อ่อนไหวต่อสภาพแวดล้อมสูง</strong>
+                    ทั้งความชื้นสะสม ฝนตกชุก อากาศถ่ายเทไม่สะดวก หรือทรงพุ่มที่ทึบ ล้วนเอื้อให้โรคทางใบ
+                    (เช่น รากเน่าโคนเน่าจากเชื้อไฟทอปธอรา แอนแทรคโนส ราใบติด ใบจุดโฟมอปซิส และจุดสาหร่าย) แพร่กระจายอย่างรวดเร็ว
+                    หากสังเกตเห็นช้าหรือรักษาไม่ทันท่วงที โรคจะทำลายพื้นที่ใบสำหรับสังเคราะห์แสง ทำให้ต้นโทรม ผลผลิตลดลง และไม่ผ่านเกรดส่งออก
+                    <strong class="font-semibold text-stone-800">จึงเกิดเป็นแอปพลิเคชัน YOEDO ขึ้น</strong> เพื่อเป็นเครื่องมือคัดกรองโรคบนใบอย่างรวดเร็วทันทีในสวน
+                </p>
+            </div>
+
+            <!-- Verified Export Statistics Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="bg-white/95 rounded-2xl p-6 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div data-i18n="stat1Value" class="text-2xl sm:text-3xl font-bold text-yoedo-700 mb-1">157,506 ล้านบาท</div>
+                    <div data-i18n="stat1Title" class="text-sm font-semibold text-stone-900 mb-1.5">มูลค่าส่งออกทุเรียนรวม ปี 2567</div>
+                    <p data-i18n="stat1Desc" class="text-xs text-stone-500 leading-relaxed">
+                        คิดเป็น 4,404.9 ล้านดอลลาร์สหรัฐ แบ่งเป็นทุเรียนสด 134,852 ล้านบาท (859,183 ตัน) และทุเรียนแช่แข็ง 22,654 ล้านบาท
+                    </p>
+                </div>
+
+                <div class="bg-white/95 rounded-2xl p-6 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div data-i18n="stat2Value" class="text-2xl sm:text-3xl font-bold text-yoedo-700 mb-1">979,045 ตัน</div>
+                    <div data-i18n="stat2Title" class="text-sm font-semibold text-stone-900 mb-1.5">ปริมาณส่งออกทุเรียนสด ปี 2568</div>
+                    <p data-i18n="stat2Desc" class="text-xs text-stone-500 leading-relaxed">
+                        สร้างมูลค่าส่งออกทุเรียนสดกว่า 125,737 ล้านบาท ตอกย้ำบทบาทของทุเรียนในฐานะสินค้าเกษตรส่งออกหลักของไทย
+                    </p>
+                </div>
+
+                <div class="bg-white/95 rounded-2xl p-6 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300">
+                    <div data-i18n="stat3Value" class="text-2xl sm:text-3xl font-bold text-yoedo-700 mb-1">72.9%</div>
+                    <div data-i18n="stat3Title" class="text-sm font-semibold text-stone-900 mb-1.5">สัดส่วนในตลาดผลไม้สดส่งออก</div>
+                    <p data-i18n="stat3Desc" class="text-xs text-stone-500 leading-relaxed">
+                        ทุเรียนสดครองสัดส่วน 72.9% ของมูลค่าผลไม้สดส่งออกทั้งหมดของไทย โดยมีตลาดจีนเป็นปลายทางหลักถึง 97.4% (ปี 2567)
+                    </p>
+                </div>
+            </div>
+
+            <!-- References -->
+            <div class="bg-[#EDF2EE]/75 rounded-2xl px-5 py-4 border border-[#DFE7E1] text-xs text-stone-600 space-y-1.5">
+                <div data-i18n="refHeading" class="font-semibold text-stone-800">แหล่งข้อมูลอ้างอิงสถิติการส่งออก:</div>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li>
+                        <a href="https://www.tpso.go.th/news/2503-0000000014" target="_blank" rel="noopener noreferrer"
+                            data-i18n="ref1" class="text-yoedo-700 hover:underline">
+                            สำนักงานนโยบายและยุทธศาสตร์การค้า (สนค.) กระทรวงพาณิชย์ — สถานการณ์การส่งออกทุเรียนไทย ปี 2567 และช่วงต้นปี 2568
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.tpso.go.th/news/2503-0000000006" target="_blank" rel="noopener noreferrer"
+                            data-i18n="ref2" class="text-yoedo-700 hover:underline">
+                            สำนักงานนโยบายและยุทธศาสตร์การค้า (สนค.) กระทรวงพาณิชย์ — โครงสร้างตลาดส่งออกทุเรียนสดไทย (สัดส่วนผลไม้สดและตลาดจีน)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://oae.go.th/uploads/files/2026/06/12/1dcd1b7b6cb2df56.pdf" target="_blank" rel="noopener noreferrer"
+                            data-i18n="ref3" class="text-yoedo-700 hover:underline">
+                            สำนักงานเศรษฐกิจการเกษตร (สศก.) กระทรวงเกษตรและสหกรณ์ — รายงานสถิติการค้าสินค้าเกษตรไทย ปี 2568 (ปริมาณ 979,045 ตัน / มูลค่า 125,737 ล้านบาท)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </section>
 
         <!-- Stage 1: Talking with Farmers -->
         <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start reveal">
@@ -460,6 +541,85 @@
             </div>
         </section>
 
+        <!-- Feedback / Contact Developers Section -->
+        <section id="feedback" class="reveal pt-10 border-t border-[#DFE7E1]">
+            <div class="bg-white/95 rounded-3xl p-6 sm:p-9 border border-[#E2E8E3] shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <div class="lg:col-span-5 space-y-3">
+                    <span data-i18n="fbBadge" class="inline-block text-xs font-semibold text-yoedo-700 bg-yoedo-100/80 px-3 py-1 rounded-full">
+                        ข้อเสนอแนะถึงทีมผู้พัฒนา
+                    </span>
+                    <h2 data-i18n="fbTitle" class="text-2xl font-bold text-stone-900 leading-[1.4]">
+                        มีคำแนะนำหรือพบปัญหาในการใช้งาน?
+                    </h2>
+                    <p data-i18n="fbDesc" class="text-sm sm:text-base text-stone-600 leading-[1.8]">
+                        ไม่ว่าจะเป็นข้อเสนอแนะจากชาวสวนทุเรียน ปัญหาการใช้งานแอป หรือการติดต่อสอบถามด้านงานวิจัย
+                        สามารถส่งข้อความตรงถึงทีมผู้พัฒนาได้ทางอีเมล
+                    </p>
+                    <div class="pt-2 flex flex-wrap items-center gap-2.5">
+                        <a href="mailto:plabooworld@outlook.com"
+                            class="inline-flex items-center gap-2 text-sm font-semibold text-yoedo-700 hover:underline">
+                            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            plabooworld@outlook.com
+                        </a>
+                        <button id="copyEmailBtn" type="button"
+                            class="px-2.5 py-1 rounded-lg bg-[#F5F7F4] hover:bg-yoedo-50 border border-[#DFE7E1] text-xs font-medium text-stone-600 hover:text-yoedo-700 transition">
+                            <span data-i18n="fbCopy">คัดลอกอีเมล</span>
+                        </button>
+                    </div>
+                </div>
+
+                <form id="feedbackForm" class="lg:col-span-7 space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="fbName" data-i18n="fbNameLabel" class="block text-xs font-semibold text-stone-700 mb-1.5">
+                                ชื่อ / ชื่อสวน (ไม่บังคับ)
+                            </label>
+                            <input id="fbName" type="text" placeholder="เช่น สวนทุเรียนลุงสมชาย"
+                                data-i18n-placeholder="fbNamePh"
+                                class="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F7F4] border border-[#DFE7E1] focus:border-yoedo-600 focus:bg-white focus:outline-none text-sm text-stone-800 transition">
+                        </div>
+                        <div>
+                            <label for="fbTopic" data-i18n="fbTopicLabel" class="block text-xs font-semibold text-stone-700 mb-1.5">
+                                หัวข้อเรื่อง
+                            </label>
+                            <select id="fbTopic"
+                                class="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F7F4] border border-[#DFE7E1] focus:border-yoedo-600 focus:bg-white focus:outline-none text-sm text-stone-800 transition">
+                                <option value="ข้อเสนอแนะการใช้งานแอป YOEDO" data-i18n="fbOpt1">ข้อเสนอแนะทั่วไป / เพิ่มฟีเจอร์</option>
+                                <option value="แจ้งปัญหาการใช้งานแอป YOEDO" data-i18n="fbOpt2">แจ้งปัญหาการใช้งาน</option>
+                                <option value="ติดต่อสอบถามด้านงานวิจัย YOEDO" data-i18n="fbOpt3">สอบถามข้อมูลงานวิจัย</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="fbMessage" data-i18n="fbMsgLabel" class="block text-xs font-semibold text-stone-700 mb-1.5">
+                            ข้อความ / ข้อเสนอแนะ
+                        </label>
+                        <textarea id="fbMessage" rows="4" required
+                            placeholder="พิมพ์ข้อเสนอแนะ อาการโรคที่อยากให้เพิ่มเติม หรือคำถามถึงผู้พัฒนาได้ที่นี่..."
+                            data-i18n-placeholder="fbMsgPh"
+                            class="w-full px-3.5 py-2.5 rounded-xl bg-[#F5F7F4] border border-[#DFE7E1] focus:border-yoedo-600 focus:bg-white focus:outline-none text-sm text-stone-800 transition resize-y"></textarea>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <span data-i18n="fbHelper" class="text-xs text-stone-500">
+                            เมื่อกดส่ง ระบบจะเปิดแอปอีเมลพร้อมกรอกข้อความให้โดยอัตโนมัติ
+                        </span>
+                        <button type="submit"
+                            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-yoedo-600 hover:bg-yoedo-700 text-white text-sm font-semibold shadow-sm transition">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                            </svg>
+                            <span data-i18n="fbSubmit">ส่งข้อเสนอแนะทางอีเมล</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
         <!-- Download CTA -->
         <section class="reveal rounded-3xl bg-gradient-to-br from-[#EAF5EF] via-[#F2F8F4] to-[#E6F3EC] border border-[#C8E3D4] p-8 sm:p-10">
             <div class="flex flex-col md:flex-row items-center justify-between gap-7 text-center md:text-left">
@@ -497,10 +657,12 @@
             </div>
             <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
                 <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
                 <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
                     rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
                 <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
                     class="hover:text-yoedo-600 transition">GitHub</a>
+                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
                 <a href="./about.html" data-i18n="navAbout" class="text-yoedo-600 font-semibold">เกี่ยวกับ</a>
                 <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
             </div>
@@ -514,13 +676,31 @@
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navHome: 'หน้าแรก',
                 navFeatures: 'ช่วยอะไรได้บ้าง',
-                navDiseases: 'โรคที่ตรวจได้',
+                navDiseases: 'โรคใบทุเรียน',
+                navHowWorks: 'ทำงานอย่างไร',
                 navAbout: 'เกี่ยวกับ',
                 navPrivacy: 'ความเป็นส่วนตัว',
                 navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
                 introKicker: 'เกี่ยวกับ YOEDO (You Only Eat Durian Once)',
                 introTitle: 'จากปัญหาที่เห็นในสวนทุเรียน<span class="block text-yoedo-600 mt-1">สู่แอปตรวจโรคใบทุเรียนที่ใช้งานได้จริง</span>',
                 introDesc: 'เวลาเดินสำรวจสวนทุเรียน ใบที่เป็นโรคหลายชนิดมักมีจุดหรือรอยไหม้ที่คล้ายกัน การดูด้วยตาเปล่าเพียงอย่างเดียวอาจสังเกตพลาดหรือแยกโรคได้ช้า โดยเฉพาะเมื่อใบอยู่ซ้อนกันหลายทิศทาง และในสวนส่วนใหญ่ก็มักไม่มีสัญญาณอินเทอร์เน็ต <strong class="font-semibold text-stone-800">YOEDO</strong> จึงถูกพัฒนาขึ้นเพื่อให้ชาวสวนใช้กล้องมือถือส่องตรวจใบทุเรียนได้ทันทีแบบออฟไลน์ 100% รู้ผลเร็ว พร้อมวิธีดูแลเบื้องต้นที่ช่วยลดความเสียหายในแปลงปลูกได้ทันท่วงที',
+                whyBadge: 'ที่มาและความสำคัญ • เศรษฐกิจทุเรียนไทย',
+                whyTitle: 'ทำไมการดูแล “ใบทุเรียน” ให้ทันเวลาจึงสำคัญต่อเกษตรกรไทย',
+                whyP1: '<strong class="font-semibold text-stone-800">ทุเรียน</strong> เป็นพืชเศรษฐกิจอันดับต้นๆ ของประเทศไทยที่สร้างรายได้เข้าประเทศกว่าแสนล้านบาทต่อปี โดยผลผลิตส่วนใหญ่พึ่งพาตลาดส่งออกที่มีมาตรฐานคัดเกรดคุณภาพอย่างเข้มงวด ความเสียหายเพียงเล็กน้อยในแปลงปลูกจึงส่งผลโดยตรงต่อรายได้ของเกษตรกรและมูลค่าการส่งออกของประเทศ',
+                whyP2: 'อย่างไรก็ตาม <strong class="font-semibold text-stone-800">ทุเรียนเป็นพืชที่อ่อนไหวต่อสภาพแวดล้อมสูง</strong> ทั้งความชื้นสะสม ฝนตกชุก อากาศถ่ายเทไม่สะดวก หรือทรงพุ่มที่ทึบ ล้วนเอื้อให้โรคทางใบ (เช่น รากเน่าโคนเน่าจากเชื้อไฟทอปธอรา แอนแทรคโนส ราใบติด ใบจุดโฟมอปซิส และจุดสาหร่าย) แพร่กระจายอย่างรวดเร็ว หากสังเกตเห็นช้าหรือรักษาไม่ทันท่วงที โรคจะทำลายพื้นที่ใบสำหรับสังเคราะห์แสง ทำให้ต้นโทรม ผลผลิตลดลง และไม่ผ่านเกรดส่งออก <strong class="font-semibold text-stone-800">จึงเกิดเป็นแอปพลิเคชัน YOEDO ขึ้น</strong> เพื่อเป็นเครื่องมือคัดกรองโรคบนใบอย่างรวดเร็วทันทีในสวน',
+                stat1Value: '157,506 ล้านบาท',
+                stat1Title: 'มูลค่าส่งออกทุเรียนรวม ปี 2567',
+                stat1Desc: 'คิดเป็น 4,404.9 ล้านดอลลาร์สหรัฐ แบ่งเป็นทุเรียนสด 134,852 ล้านบาท (859,183 ตัน) และทุเรียนแช่แข็ง 22,654 ล้านบาท',
+                stat2Value: '979,045 ตัน',
+                stat2Title: 'ปริมาณส่งออกทุเรียนสด ปี 2568',
+                stat2Desc: 'สร้างมูลค่าส่งออกทุเรียนสดกว่า 125,737 ล้านบาท ตอกย้ำบทบาทของทุเรียนในฐานะสินค้าเกษตรส่งออกหลักของไทย',
+                stat3Value: '72.9%',
+                stat3Title: 'สัดส่วนในตลาดผลไม้สดส่งออก',
+                stat3Desc: 'ทุเรียนสดครองสัดส่วน 72.9% ของมูลค่าผลไม้สดส่งออกทั้งหมดของไทย โดยมีตลาดจีนเป็นปลายทางหลักถึง 97.4% (ปี 2567)',
+                refHeading: 'แหล่งข้อมูลอ้างอิงสถิติการส่งออก:',
+                ref1: 'สำนักงานนโยบายและยุทธศาสตร์การค้า (สนค.) กระทรวงพาณิชย์ — สถานการณ์การส่งออกทุเรียนไทย ปี 2567 และช่วงต้นปี 2568',
+                ref2: 'สำนักงานนโยบายและยุทธศาสตร์การค้า (สนค.) กระทรวงพาณิชย์ — โครงสร้างตลาดส่งออกทุเรียนสดไทย (สัดส่วนผลไม้สดและตลาดจีน)',
+                ref3: 'สำนักงานเศรษฐกิจการเกษตร (สศก.) กระทรวงเกษตรและสหกรณ์ — รายงานสถิติการค้าสินค้าเกษตรไทย ปี 2568 (ปริมาณ 979,045 ตัน / มูลค่า 125,737 ล้านบาท)',
                 s1Badge: 'ก้าวที่ 1 • ลงพื้นที่รับฟังปัญหาจริง',
                 s1Title: 'พูดคุยกับเกษตรกรและเจ้าหน้าที่ผู้เชี่ยวชาญ',
                 s1P1: 'ทีมผู้พัฒนาได้ลงพื้นที่พูดคุยแลกเปลี่ยนกับเกษตรกรและเจ้าหน้าที่ ณ <strong class="font-semibold text-stone-800">ศูนย์พัฒนาไม้ผลตามพระราชดำริจังหวัดจันทบุรี</strong> เพื่อทำความเข้าใจโรคใบทุเรียนที่พบบ่อยในสวนจริง ปัญหาในการจำแนกอาการแต่ละระยะ รวมถึงข้อจำกัดเรื่องสัญญาณอินเทอร์เน็ตและการใช้งานมือถือของชาวสวน',
@@ -556,6 +736,21 @@
                 adv2Affil: 'สาขาวิชาฟิสิกส์<br>โรงเรียนมหิดลวิทยานุสรณ์',
                 adv3Name: 'รองศาสตราจารย์ ดร.ภัทราพร ทองนิ่ม',
                 adv3Affil: 'ภาควิชาคณิตศาสตร์ คณะวิทยาศาสตร์<br>มหาวิทยาลัยบูรพา',
+                fbBadge: 'ข้อเสนอแนะถึงทีมผู้พัฒนา',
+                fbTitle: 'มีคำแนะนำหรือพบปัญหาในการใช้งาน?',
+                fbDesc: 'ไม่ว่าจะเป็นข้อเสนอแนะจากชาวสวนทุเรียน ปัญหาการใช้งานแอป หรือการติดต่อสอบถามด้านงานวิจัย สามารถส่งข้อความตรงถึงทีมผู้พัฒนาได้ทางอีเมล',
+                fbCopy: 'คัดลอกอีเมล',
+                fbCopied: 'คัดลอกแล้ว ✓',
+                fbNameLabel: 'ชื่อ / ชื่อสวน (ไม่บังคับ)',
+                fbNamePh: 'เช่น สวนทุเรียนลุงสมชาย',
+                fbTopicLabel: 'หัวข้อเรื่อง',
+                fbOpt1: 'ข้อเสนอแนะทั่วไป / เพิ่มฟีเจอร์',
+                fbOpt2: 'แจ้งปัญหาการใช้งาน',
+                fbOpt3: 'สอบถามข้อมูลงานวิจัย',
+                fbMsgLabel: 'ข้อความ / ข้อเสนอแนะ',
+                fbMsgPh: 'พิมพ์ข้อเสนอแนะ อาการโรคที่อยากให้เพิ่มเติม หรือคำถามถึงผู้พัฒนาได้ที่นี่...',
+                fbHelper: 'เมื่อกดส่ง ระบบจะเปิดแอปอีเมลพร้อมกรอกข้อความให้โดยอัตโนมัติ',
+                fbSubmit: 'ส่งข้อเสนอแนะทางอีเมล',
                 ctaTitle: 'ทดลองใช้งานแอป YOEDO ได้ฟรีบนมือถือ Android',
                 ctaDesc: 'พร้อมเมนูภาษาไทยและภาษาอังกฤษ ฐานข้อมูลโรค 7 ประเภท ใช้งานได้ทันทีกลางสวนโดยไม่ต้องต่ออินเทอร์เน็ต'
             },
@@ -564,13 +759,31 @@
                 brandSub: 'Durian Leaf Scanner',
                 navHome: 'Home',
                 navFeatures: 'Features',
-                navDiseases: 'Diseases',
+                navDiseases: 'Leaf Diseases',
+                navHowWorks: 'How It Works',
                 navAbout: 'About',
                 navPrivacy: 'Privacy',
                 navPrivacyFull: 'Privacy Policy',
                 introKicker: 'About YOEDO (You Only Eat Durian Once)',
                 introTitle: 'From Real Orchard Challenges<span class="block text-yoedo-600 mt-1">to a Practical Offline Leaf Scanner</span>',
                 introDesc: 'In real durian orchards, many leaf diseases share similar spots or blights, making visual inspection slow and error-prone—especially when foliage overlaps at natural angles and cellular coverage is unavailable. <strong class="font-semibold text-stone-800">YOEDO</strong> was built so growers can point their phone camera at a leaf and get fast, 100% offline screening with practical early care guidance.',
+                whyBadge: 'Background & Significance • Thailand Durian Economy',
+                whyTitle: 'Why Timely Durian Leaf Care Matters for Thai Growers',
+                whyP1: '<strong class="font-semibold text-stone-800">Durian</strong> is one of Thailand’s highest-value agricultural exports, generating well over 100 billion baht annually. Because most production serves strict export quality standards, even localized orchard damage directly impacts growers’ livelihoods and national export value.',
+                whyP2: 'At the same time, <strong class="font-semibold text-stone-800">durian trees are highly sensitive to environmental conditions</strong>. Heavy rainfall, high humidity, poor airflow, and dense canopies allow foliar pathogens (such as Phytophthora, Anthracnose, Rhizoctonia, Phomopsis, and Algal Leaf Spot) to spread rapidly. Without prompt detection and treatment, leaf damage reduces photosynthesis, weakens trees, and severely cuts marketable yields—<strong class="font-semibold text-stone-800">which is why YOEDO was created</strong> as a fast, offline field-screening tool.',
+                stat1Value: '157.5B THB',
+                stat1Title: 'Total Durian Exports (2024)',
+                stat1Desc: 'Equivalent to USD 4,404.9M—comprising 134,852M THB in fresh durian (859,183 tonnes) and 22,654M THB in frozen durian.',
+                stat2Value: '979,045 Tonnes',
+                stat2Title: 'Fresh Durian Export Volume (2025)',
+                stat2Desc: 'Generated over 125,737M THB in fresh durian export value, underscoring durian’s role as Thailand’s flagship fruit export.',
+                stat3Value: '72.9%',
+                stat3Title: 'Share of Fresh Fruit Exports',
+                stat3Desc: 'Fresh durian accounted for 72.9% of Thailand’s total fresh fruit export value in 2024, with China as the top destination (97.4%).',
+                refHeading: 'Export Statistics References:',
+                ref1: 'Trade Policy and Strategy Office (TPSO), Ministry of Commerce — Thailand Durian Export Report (2024 & Early 2025)',
+                ref2: 'Trade Policy and Strategy Office (TPSO), Ministry of Commerce — Fresh Durian Export Share & Key Markets (2024)',
+                ref3: 'Office of Agricultural Economics (OAE), Ministry of Agriculture and Cooperatives — Thailand Agricultural Trade Statistics (2025)',
                 s1Badge: 'Step 1 • Field Visits & Grower Interviews',
                 s1Title: 'Listening to Durian Growers and Orchard Specialists',
                 s1P1: 'Our team visited growers and specialists at the <strong class="font-semibold text-stone-800">Chanthaburi Royal-Initiated Fruit Development Center</strong> to understand the foliar diseases most frequently encountered in orchards, diagnostic pain points, and connectivity constraints in the field.',
@@ -606,6 +819,21 @@
                 adv2Affil: 'Department of Physics<br>Mahidol Wittayanusorn School',
                 adv3Name: 'Assoc. Prof. Dr. Pattharaporn Thongnim',
                 adv3Affil: 'Department of Mathematics, Faculty of Science<br>Burapha University',
+                fbBadge: 'Feedback to Developers',
+                fbTitle: 'Have Suggestions or Found an Issue?',
+                fbDesc: 'Whether you are a durian grower with app feedback, bug reports, or a researcher with questions, you can send a message directly to the development team.',
+                fbCopy: 'Copy email',
+                fbCopied: 'Copied ✓',
+                fbNameLabel: 'Name / Orchard (optional)',
+                fbNamePh: 'e.g., Somchai Durian Orchard',
+                fbTopicLabel: 'Topic',
+                fbOpt1: 'General Feedback / Feature Idea',
+                fbOpt2: 'Report an App Issue',
+                fbOpt3: 'Research Inquiry',
+                fbMsgLabel: 'Message / Suggestion',
+                fbMsgPh: 'Write your suggestion, feedback, or question for the developers here...',
+                fbHelper: 'Submitting opens your email app pre-filled with your message to plabooworld@outlook.com.',
+                fbSubmit: 'Send via Email',
                 ctaTitle: 'Try YOEDO Free on Android',
                 ctaDesc: 'Bilingual Thai & English UI with a 7-class disease guide, ready to scan offline in any orchard.'
             }
@@ -661,6 +889,13 @@
                 }
             });
 
+            document.querySelectorAll('[data-i18n-placeholder]').forEach((el) => {
+                const key = el.dataset.i18nPlaceholder;
+                if (aboutI18n[lang][key] !== undefined) {
+                    el.placeholder = aboutI18n[lang][key];
+                }
+            });
+
             siteLangBtns.forEach((btn) => {
                 const isActive = btn.dataset.setLang === lang;
                 btn.className = isActive
@@ -685,6 +920,45 @@
         const initialLang = urlLang === 'en' || urlLang === 'th' ? urlLang : savedLang;
         if (initialLang === 'en') {
             setSiteLanguage('en', false);
+        }
+
+        // Feedback form -> prefilled mailto + copy email helper
+        const feedbackForm = document.getElementById('feedbackForm');
+        const copyEmailBtn = document.getElementById('copyEmailBtn');
+
+        if (feedbackForm) {
+            feedbackForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = (document.getElementById('fbName')?.value || '').trim();
+                const topicSelect = document.getElementById('fbTopic');
+                const topic = topicSelect ? topicSelect.options[topicSelect.selectedIndex].textContent.trim() : 'YOEDO Feedback';
+                const msg = (document.getElementById('fbMessage')?.value || '').trim();
+                if (!msg) return;
+
+                const senderLine = name ? (document.documentElement.lang === 'en' ? `From: ${name}\n\n` : `จาก: ${name}\n\n`) : '';
+                const subject = encodeURIComponent(`[YOEDO] ${topic}`);
+                const body = encodeURIComponent(`${senderLine}${msg}`);
+                window.location.href = `mailto:plabooworld@outlook.com?subject=${subject}&body=${body}`;
+            });
+        }
+
+        if (copyEmailBtn) {
+            copyEmailBtn.addEventListener('click', async () => {
+                const lang = document.documentElement.lang === 'en' ? 'en' : 'th';
+                const labelEl = copyEmailBtn.querySelector('span');
+                try {
+                    await navigator.clipboard.writeText('plabooworld@outlook.com');
+                    if (labelEl) {
+                        labelEl.textContent = aboutI18n[lang].fbCopied;
+                        setTimeout(() => {
+                            const activeLang = document.documentElement.lang === 'en' ? 'en' : 'th';
+                            labelEl.textContent = aboutI18n[activeLang].fbCopy;
+                        }, 2000);
+                    }
+                } catch (_) {
+                    window.location.href = 'mailto:plabooworld@outlook.com';
+                }
+            });
         }
 
         // Scroll-reveal observer

@@ -4,6 +4,8 @@
 
 ## Key Facts
 - **Website:** https://yoedo.vercel.app/
+- **Durian Leaf Diseases Guide (TH/EN):** https://yoedo.vercel.app/diseases
+- **How It Works (Model & Experiments):** https://yoedo.vercel.app/how-it-works
 - **About & Research Page:** https://yoedo.vercel.app/about
 - **Privacy Policy:** https://yoedo.vercel.app/privacy-policy
 - **App Name:** YOEDO (Durian Leaf Scanner)
@@ -12,8 +14,9 @@
 - **Open-Source Repository (Apache-2.0):** https://github.com/marsfinncode/cnn-durian
 - **Research Paper (ResearchGate):** https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB
 - **Languages Supported in App:** Thai and English
-- **Operation:** 100% on-device offline AI inference using YOLO-OBB quantized to TensorFlow Lite (LiteRT)
-- **Dataset:** 4,668 annotated durian leaf instances collected from real orchard environments
+- **Operation:** 100% on-device offline AI inference using YOLO26-OBB quantized to TensorFlow Lite (LiteRT)
+- **Dataset:** 4,668 annotated durian leaf instances collected from real orchard environments, balanced with E-IRFS and tuned with Optuna
+- **Benchmark Metrics:** mAP@0.5 = 0.664, mAP@0.5:0.95 = 0.507
 
 ## Supported Detection Classes (7 Classes)
 1. **Phytophthora Root & Stem Rot** (*Phytophthora palmivora*) — Critical

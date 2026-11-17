@@ -2,6 +2,8 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
     { "source": "/about", "destination": "/about.html" },
+    { "source": "/diseases", "destination": "/diseases.html" },
+    { "source": "/how-it-works", "destination": "/how-it-works.html" },
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" }
   ],
   "headers": [
