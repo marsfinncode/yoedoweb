@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต</title>
+    <title>YOEDO App - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต</title>
     <meta name="description"
         content="YOEDO (Durian Leaf Scanner) แอปช่วยชาวสวนทุเรียนตรวจดูโรคใบทุเรียนจากกล้องมือถือ ใช้งานได้ทันทีกลางสวนแม้ไม่มีสัญญาณอินเทอร์เน็ต ดาวน์โหลดฟรีบน Google Play">
     <meta name="keywords"
@@ -14,19 +14,22 @@
     <meta name="theme-color" content="#028c57">
     <link rel="canonical" href="https://yoedo.vercel.app/">
 
-    <!-- Favicon & App Icon -->
-    <link rel="icon" type="image/png" href="./assets/yoedo-logo.png">
-    <link rel="apple-touch-icon" href="./assets/yoedo-logo.png">
+    <!-- Favicon & App Icon (48px multiples for Google Search) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/assets/favicon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192x192.png">
 
     <!-- Open Graph & Twitter -->
     <meta property="og:url" content="https://yoedo.vercel.app/">
-    <meta property="og:title" content="YOEDO - Real-Time Offline Durian Leaf Disease Scanner">
+    <meta property="og:title" content="YOEDO App - Real-Time Offline Durian Leaf Disease Scanner">
     <meta property="og:description"
         content="Scan durian leaves offline with your smartphone camera. Instant disease identification and care guidance.">
     <meta property="og:image" content="https://yoedo.vercel.app/assets/yoedo-logo.png">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต">
+    <meta name="twitter:title" content="YOEDO App - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต">
     <meta name="twitter:description"
         content="Free offline Android app for durian leaf disease detection with 7 classes and care guidance.">
     <meta name="twitter:image" content="https://yoedo.vercel.app/assets/yoedo-logo.png">
@@ -37,10 +40,17 @@
       "@context": "https://schema.org",
       "@graph": [
         {
+          "@type": "WebSite",
+          "name": "YOEDO App",
+          "alternateName": ["YOEDO", "YOEDO Durian Leaf Scanner"],
+          "url": "https://yoedo.vercel.app/"
+        },
+        {
           "@type": "MobileApplication",
           "name": "YOEDO - Durian Leaf Scanner",
           "alternateName": "You Only Eat Durian Once",
           "url": "https://yoedo.vercel.app/",
+          "image": "https://yoedo.vercel.app/assets/favicon-192x192.png",
           "operatingSystem": "Android",
           "applicationCategory": "UtilitiesApplication",
           "description": "Free 100% offline Android application for real-time durian leaf disease detection using YOLO-OBB and TensorFlow Lite, supporting Thai and English across 7 leaf classes.",
@@ -54,7 +64,11 @@
           },
           "publisher": {
             "@type": "Organization",
-            "name": "cateatmars.dev"
+            "name": "cateatmars.dev",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://yoedo.vercel.app/assets/favicon-192x192.png"
+            }
           },
           "author": [
             { "@type": "Person", "name": "Suphanat Kladsa-Ard" },
@@ -172,13 +186,67 @@
         .lang-fade {
             animation: langFade 0.25s ease-out;
         }
+
+        .minimal-hero-bg {
+            background-color: #f5f7f4;
+            background-image:
+                radial-gradient(ellipse 70% 55% at 15% 15%, rgba(2, 140, 87, 0.075), transparent 70%),
+                radial-gradient(ellipse 55% 45% at 88% 20%, rgba(217, 119, 6, 0.04), transparent 70%);
+        }
+
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-enter {
+            animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .hero-enter-delay {
+            animation: heroEnter 0.75s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        details[open] > p {
+            animation: captionFadeIn 0.26s ease-out;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-enter,
+            .hero-enter-delay,
+            .reveal,
+            .caption-animate,
+            .lang-fade {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-linen-50 text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
+<body class="bg-[#F5F7F4] text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
 
     <!-- Navigation -->
-    <header class="sticky top-0 z-50 bg-linen-50/90 backdrop-blur-md border-b border-linen-200">
+    <header class="sticky top-0 z-50 bg-[#F5F7F4]/88 backdrop-blur-md border-b border-[#DFE7E1]">
         <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
             <a href="#" class="flex items-center gap-3 group shrink-0">
                 <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
@@ -241,12 +309,12 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="border-b border-linen-200 bg-gradient-to-b from-yoedo-50/60 to-linen-50">
+    <section class="border-b border-[#DFE7E1] minimal-hero-bg">
         <div class="max-w-5xl mx-auto px-5 sm:px-6 py-14 lg:py-20">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
                 <!-- Left Content -->
-                <div class="lg:col-span-7 text-center lg:text-left">
+                <div class="lg:col-span-7 text-center lg:text-left hero-enter">
                     <p class="inline-flex items-center gap-2 text-xs sm:text-sm font-medium text-yoedo-700 bg-yoedo-100/70 px-3.5 py-1 rounded-full mb-5">
                         <span class="w-1.5 h-1.5 rounded-full bg-yoedo-600"></span>
                         <span data-i18n="heroBadge">แอปฟรีสำหรับชาวสวนทุเรียน (Android)</span>
@@ -307,7 +375,7 @@
                 </div>
 
                 <!-- Right Real App UI Showcase -->
-                <div class="lg:col-span-5 flex flex-col items-center">
+                <div class="lg:col-span-5 flex flex-col items-center hero-enter-delay">
                     <div class="relative flex flex-col items-center w-full max-w-[340px]">
 
                         <!-- Phone Frame with Prev/Next Controls -->
@@ -385,7 +453,7 @@
 
     <!-- What YOEDO Helps With -->
     <section id="features" class="max-w-5xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
-        <div class="max-w-xl mb-10">
+        <div class="max-w-xl mb-10 reveal">
             <h2 data-i18n="featuresTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
                 แอปนี้ช่วยชาวสวนทุเรียนเรื่องอะไรบ้าง
             </h2>
@@ -395,7 +463,7 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-6 sm:p-7 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
                 <div data-i18n="f1Tag" class="text-sm font-semibold text-yoedo-600 mb-2">01 • ใช้ได้แม้สวนอับสัญญาณ</div>
                 <h3 data-i18n="f1Title" class="text-lg font-bold text-stone-900 mb-2">ไม่ต้องต่ออินเทอร์เน็ตขณะสแกน</h3>
                 <p data-i18n="f1Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -403,7 +471,7 @@
                 </p>
             </div>
 
-            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-6 sm:p-7 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="70">
                 <div data-i18n="f2Tag" class="text-sm font-semibold text-yoedo-600 mb-2">02 • แม่นยำแม้ใบเอียงหรือซ้อนกัน</div>
                 <h3 data-i18n="f2Title" class="text-lg font-bold text-stone-900 mb-2">กรอบตรวจจับหมุนตามทรงใบจริง</h3>
                 <p data-i18n="f2Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -411,7 +479,7 @@
                 </p>
             </div>
 
-            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-6 sm:p-7 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="140">
                 <div data-i18n="f3Tag" class="text-sm font-semibold text-yoedo-600 mb-2">03 • ดูภาพรวมทั้งต้นได้</div>
                 <h3 data-i18n="f3Title" class="text-lg font-bold text-stone-900 mb-2">เดินสแกนรอบต้น สรุปเป็นกราฟดูง่าย</h3>
                 <p data-i18n="f3Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -419,7 +487,7 @@
                 </p>
             </div>
 
-            <div class="bg-white rounded-2xl p-6 sm:p-7 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-6 sm:p-7 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="210">
                 <div data-i18n="f4Tag" class="text-sm font-semibold text-yoedo-600 mb-2">04 • มีคู่มือติดเครื่อง</div>
                 <h3 data-i18n="f4Title" class="text-lg font-bold text-stone-900 mb-2">บอกสาเหตุและวิธีดูแลเบื้องต้นทันที</h3>
                 <p data-i18n="f4Desc" class="text-stone-600 text-sm sm:text-base leading-relaxed">
@@ -430,9 +498,9 @@
     </section>
 
     <!-- How It Works -->
-    <section id="how-it-works" class="bg-white border-y border-linen-200 py-16 sm:py-20">
+    <section id="how-it-works" class="bg-[#ECF2EE]/75 border-y border-[#DFE7E1] py-16 sm:py-20">
         <div class="max-w-5xl mx-auto px-5 sm:px-6">
-            <div class="max-w-xl mb-10">
+            <div class="max-w-xl mb-10 reveal">
                 <h2 data-i18n="howTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
                     เริ่มต้นใช้งานง่ายๆ ใน 3 ขั้นตอน
                 </h2>
@@ -442,7 +510,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="p-6 rounded-2xl bg-linen-50 border border-linen-200">
+                <div class="reveal p-6 rounded-2xl bg-white/95 border border-[#DFE7E1] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
                     <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yoedo-600 text-white text-sm font-bold mb-4">1</span>
                     <h3 data-i18n="step1Title" class="text-base sm:text-lg font-bold text-stone-900 mb-2">เปิดแอปแล้วส่องไปที่ใบ</h3>
                     <p data-i18n="step1Desc" class="text-sm text-stone-600 leading-relaxed">
@@ -450,7 +518,7 @@
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-linen-50 border border-linen-200">
+                <div class="reveal p-6 rounded-2xl bg-white/95 border border-[#DFE7E1] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="80">
                     <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yoedo-600 text-white text-sm font-bold mb-4">2</span>
                     <h3 data-i18n="step2Title" class="text-base sm:text-lg font-bold text-stone-900 mb-2">รอผลขึ้นบนหน้าจอทันที</h3>
                     <p data-i18n="step2Desc" class="text-sm text-stone-600 leading-relaxed">
@@ -458,7 +526,7 @@
                     </p>
                 </div>
 
-                <div class="p-6 rounded-2xl bg-linen-50 border border-linen-200">
+                <div class="reveal p-6 rounded-2xl bg-white/95 border border-[#DFE7E1] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="160">
                     <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-yoedo-600 text-white text-sm font-bold mb-4">3</span>
                     <h3 data-i18n="step3Title" class="text-base sm:text-lg font-bold text-stone-900 mb-2">อ่านคำแนะนำเพื่อดูแลต้น</h3>
                     <p data-i18n="step3Desc" class="text-sm text-stone-600 leading-relaxed">
@@ -471,7 +539,7 @@
 
     <!-- Supported Diseases Section -->
     <section id="diseases" class="max-w-5xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
-        <div class="max-w-2xl mb-10">
+        <div class="max-w-2xl mb-10 reveal">
             <h2 data-i18n="diseasesTitle" class="text-2xl sm:text-3xl font-bold text-stone-900 leading-[1.4] mb-3">
                 โรคและอาการบนใบทุเรียนที่แอปช่วยสังเกต
             </h2>
@@ -482,7 +550,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- 1. Phytophthora -->
-            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -497,7 +565,7 @@
             </div>
 
             <!-- 2. Anthracnose -->
-            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="60">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -512,7 +580,7 @@
             </div>
 
             <!-- 3. Rhizoctonia -->
-            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="120">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
@@ -527,7 +595,7 @@
             </div>
 
             <!-- 4. Phomopsis -->
-            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="180">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
@@ -542,7 +610,7 @@
             </div>
 
             <!-- 5. Algal Spot -->
-            <div class="bg-white rounded-2xl p-5 border border-linen-200">
+            <div class="reveal bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="240">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 shrink-0"></span>
@@ -557,7 +625,7 @@
             </div>
 
             <!-- 6. Healthy -->
-            <div class="bg-yoedo-50/70 rounded-2xl p-5 border border-yoedo-200">
+            <div class="reveal bg-[#EAF5EF]/80 rounded-2xl p-5 border border-[#C8E3D4] hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="300">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-yoedo-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-yoedo-600 shrink-0"></span>
@@ -572,7 +640,7 @@
             </div>
 
             <!-- 7. Others -->
-            <div class="sm:col-span-2 lg:col-span-3 bg-linen-100/70 rounded-2xl p-5 border border-linen-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="reveal sm:col-span-2 lg:col-span-3 bg-[#EDF1EE]/80 rounded-2xl p-5 border border-[#DFE7E1] flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:shadow-sm transition-all duration-300" data-delay="120">
                 <div>
                     <div class="flex items-center gap-2 mb-1">
                         <span class="w-2.5 h-2.5 rounded-full bg-stone-500 shrink-0"></span>
@@ -591,9 +659,9 @@
     </section>
 
     <!-- Origin / Team Section (Warm & Understated) -->
-    <section id="research" class="bg-white border-y border-linen-200 py-14 sm:py-16">
+    <section id="research" class="bg-[#ECF2EE]/75 border-y border-[#DFE7E1] py-14 sm:py-16">
         <div class="max-w-5xl mx-auto px-5 sm:px-6">
-            <div class="bg-linen-50 rounded-3xl p-6 sm:p-9 border border-linen-200 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="reveal bg-white/95 rounded-3xl p-6 sm:p-9 border border-[#DFE7E1] shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <div class="lg:col-span-7">
                     <h2 data-i18n="originTitle" class="text-xl sm:text-2xl font-bold text-stone-900 mb-3 leading-[1.4]">
                         พัฒนาจากปัญหาในสวนจริง สู่งานวิจัยระดับนานาชาติ
@@ -639,11 +707,11 @@
 
     <!-- FAQ Section -->
     <section id="faq" class="max-w-3xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
-        <div class="text-center mb-10">
+        <div class="text-center mb-10 reveal">
             <h2 data-i18n="faqTitle" class="text-2xl sm:text-3xl font-bold text-stone-900">คำถามที่พบบ่อย</h2>
         </div>
 
-        <div class="space-y-3">
+        <div class="space-y-3 reveal">
             <details class="group bg-white border border-linen-200 rounded-2xl p-5 transition" open>
                 <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold text-stone-900">
                     <span data-i18n="q1">เดินเข้าสวนลึกไม่มีสัญญาณเน็ต แอปยังใช้งานได้ไหม?</span>
@@ -688,7 +756,7 @@
 
     <!-- Calm Bottom Download Card -->
     <section class="max-w-5xl mx-auto px-5 sm:px-6 pb-16">
-        <div class="rounded-3xl bg-yoedo-50 border border-yoedo-200 p-8 sm:p-10">
+        <div class="reveal rounded-3xl bg-gradient-to-br from-[#EAF5EF] via-[#F2F8F4] to-[#E6F3EC] border border-[#C8E3D4] p-8 sm:p-10">
             <div class="flex flex-col md:flex-row items-center justify-between gap-7 text-center md:text-left">
                 <div class="flex flex-col sm:flex-row items-center gap-5">
                     <img src="./assets/yoedo-logo.png" alt="YOEDO Durian Leaf Scanner"
@@ -714,7 +782,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-linen-200 bg-white">
+    <footer class="border-t border-[#DFE7E1] bg-white/90">
         <div
             class="max-w-5xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
             <div class="flex items-center gap-2.5">
@@ -737,7 +805,7 @@
     <script>
         const i18n = {
             th: {
-                pageTitle: 'YOEDO - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต',
+                pageTitle: 'YOEDO App - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต',
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navFeatures: 'ช่วยอะไรได้บ้าง',
                 navHow: 'วิธีใช้งาน',
@@ -1104,6 +1172,29 @@
         const initialLang = urlLang === 'en' || urlLang === 'th' ? urlLang : savedLang;
         if (initialLang === 'en') {
             setSiteLanguage('en', false);
+        }
+
+        // Scroll-reveal observer
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            const delay = entry.target.dataset.delay;
+                            if (delay) {
+                                entry.target.style.transitionDelay = delay + 'ms';
+                            }
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+            );
+            revealEls.forEach((el) => revealObserver.observe(el));
+        } else {
+            revealEls.forEach((el) => el.classList.add('is-visible'));
         }
     </script>
 </body>

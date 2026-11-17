@@ -12,9 +12,12 @@
     <link rel="canonical" href="https://yoedo.vercel.app/privacy-policy">
     <meta property="og:url" content="https://yoedo.vercel.app/privacy-policy">
 
-    <!-- Favicon & App Icon -->
-    <link rel="icon" type="image/png" href="./assets/yoedo-logo.png">
-    <link rel="apple-touch-icon" href="./assets/yoedo-logo.png">
+    <!-- Favicon & App Icon (48px multiples for Google Search) -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="144x144" href="/assets/favicon-144x144.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192x192.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="/assets/favicon-192x192.png">
 
     <!-- Google Fonts (Sarabun) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,13 +87,58 @@
         .lang-fade {
             animation: langFade 0.25s ease-out;
         }
+
+        .minimal-hero-bg {
+            background-color: #f5f7f4;
+            background-image:
+                radial-gradient(ellipse 65% 55% at 20% 20%, rgba(2, 140, 87, 0.07), transparent 70%),
+                radial-gradient(ellipse 45% 40% at 82% 20%, rgba(217, 119, 6, 0.03), transparent 70%);
+        }
+
+        @keyframes heroEnter {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-enter {
+            animation: heroEnter 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hero-enter,
+            .reveal,
+            .policy-fade-in,
+            .lang-fade {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 
-<body class="bg-linen-50 text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
+<body class="bg-[#F5F7F4] text-stone-800 antialiased selection:bg-yoedo-100 selection:text-yoedo-900">
 
     <!-- Sticky Glass Navigation -->
-    <header class="sticky top-0 z-50 bg-linen-50/90 backdrop-blur-md border-b border-linen-200">
+    <header class="sticky top-0 z-50 bg-[#F5F7F4]/88 backdrop-blur-md border-b border-[#DFE7E1]">
         <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
             <a href="./index.html" class="flex items-center gap-3 group shrink-0">
                 <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
@@ -151,8 +199,8 @@
     </header>
 
     <!-- Header Banner -->
-    <section class="border-b border-linen-200 bg-gradient-to-b from-yoedo-50/60 to-linen-50">
-        <div class="max-w-4xl mx-auto px-5 sm:px-6 pt-12 pb-12 text-center">
+    <section class="border-b border-[#DFE7E1] minimal-hero-bg">
+        <div class="max-w-4xl mx-auto px-5 sm:px-6 pt-12 pb-12 text-center hero-enter">
             <h1 data-i18n-html="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.4] mb-3">
                 นโยบายความเป็นส่วนตัว
                 <span class="block sm:inline text-yoedo-600">/ Privacy Policy</span>
@@ -184,7 +232,7 @@
 
         <!-- Thai Policy Card -->
         <article id="thai"
-            class="policy-card policy-fade-in bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm mb-8">
+            class="policy-card policy-fade-in bg-white/95 rounded-3xl p-6 sm:p-10 border border-[#E2E8E3] shadow-sm mb-8">
             <div class="flex items-center gap-3 pb-4 mb-6 border-b border-yoedo-100">
                 <span class="text-2xl">🇹🇭</span>
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-900">นโยบายความเป็นส่วนตัว (ภาษาไทย)</h2>
@@ -303,7 +351,7 @@
 
         <!-- English Policy Card -->
         <article id="english"
-            class="hidden policy-card policy-fade-in bg-white rounded-3xl p-6 sm:p-10 border border-slate-200/80 shadow-sm mb-8">
+            class="hidden policy-card policy-fade-in bg-white/95 rounded-3xl p-6 sm:p-10 border border-[#E2E8E3] shadow-sm mb-8">
             <div class="flex items-center gap-3 pb-4 mb-6 border-b border-yoedo-100">
                 <span class="text-2xl">🇺🇸</span>
                 <h2 class="text-xl sm:text-2xl font-bold text-slate-900">Privacy Policy (English)</h2>
@@ -418,9 +466,9 @@
         </article>
 
         <!-- Back to Home Button -->
-        <div class="text-center pt-2">
+        <div class="text-center pt-2 reveal">
             <a href="./index.html"
-                class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-linen-200 hover:border-yoedo-500 text-stone-700 hover:text-yoedo-700 font-medium text-sm shadow-sm hover:shadow transition">
+                class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/95 border border-[#E2E8E3] hover:border-yoedo-500 text-stone-700 hover:text-yoedo-700 font-medium text-sm shadow-sm hover:shadow transition-all duration-200">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
@@ -430,7 +478,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-linen-200 bg-white mt-8">
+    <footer class="border-t border-[#DFE7E1] bg-white/90 mt-8">
         <div
             class="max-w-5xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-stone-500">
             <div class="flex items-center gap-2.5">
@@ -582,6 +630,25 @@
 
         if (window.location.hash === '#english' || urlLang === 'en' || (!urlLang && savedLang === 'en')) {
             setPolicyLang('english', false);
+        }
+
+        // Scroll-reveal observer
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver(
+                (entries, observer) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+            );
+            revealEls.forEach((el) => revealObserver.observe(el));
+        } else {
+            revealEls.forEach((el) => el.classList.add('is-visible'));
         }
     </script>
 </body>
