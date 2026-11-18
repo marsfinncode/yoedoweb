@@ -374,8 +374,8 @@
         </section>
 
         <!-- Category Filter Bar -->
-        <section class="reveal space-y-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DFE7E1] pb-4">
+        <section class="space-y-6">
+            <div class="reveal flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#DFE7E1] pb-4">
                 <div>
                     <h2 data-i18n="guideListTitle" class="text-xl sm:text-2xl font-bold text-stone-900">
                         รายละเอียดทั้ง 7 ประเภทในฐานข้อมูล YOEDO
@@ -1874,7 +1874,7 @@
                         }
                     });
                 },
-                { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+                { threshold: 0.01, rootMargin: '0px 0px 40px 0px' }
             );
             revealEls.forEach((el) => revealObserver.observe(el));
         } else {
