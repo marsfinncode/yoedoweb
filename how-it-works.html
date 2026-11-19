@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ทำงานอย่างไร - เบื้องหลังโมเดล YOLO26-OBB และการทดลอง | YOEDO App</title>
+    <title>โมเดลทำงานอย่างไร | YOEDO App</title>
     <meta name="description"
         content="เจาะลึกเบื้องหลังการทำงานของแอป YOEDO ตั้งแต่ชุดข้อมูลใบทุเรียน 4,668 ตัวอย่าง โมเดล YOLO26-OBB เทคนิค E-IRFS และ Optuna ผลทดสอบ mAP@0.5 0.664 จนถึงการรันออฟไลน์ด้วย TensorFlow Lite">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -20,7 +20,7 @@
 
     <!-- Open Graph -->
     <meta property="og:url" content="https://yoedo.vercel.app/how-it-works">
-    <meta property="og:title" content="How YOEDO Works - YOLO26-OBB Model & Experiments">
+    <meta property="og:title" content="โมเดลทำงานอย่างไร | YOEDO App">
     <meta property="og:description"
         content="How YOEDO detects durian leaf diseases offline using YOLO26-OBB, E-IRFS sampling, Optuna tuning, and TensorFlow Lite quantization.">
     <meta property="og:image" content="https://yoedo.vercel.app/assets/about-field-data.jpg">
@@ -30,16 +30,36 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "TechArticle",
-      "url": "https://yoedo.vercel.app/how-it-works",
-      "headline": "How YOEDO Works - YOLO26-OBB Durian Leaf Disease Detection Model & Experiments",
-      "description": "Technical overview of the YOEDO dataset (4,668 instances), YOLO26-OBB architecture, E-IRFS class balancing, Optuna hyperparameter tuning, mAP evaluation, and TensorFlow Lite mobile deployment.",
-      "about": {
-        "@type": "MobileApplication",
-        "name": "YOEDO - Durian Leaf Scanner",
-        "operatingSystem": "Android"
-      },
-      "citation": "https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://yoedo.vercel.app/#website",
+          "url": "https://yoedo.vercel.app/",
+          "name": "YOEDO App"
+        },
+        {
+          "@type": "TechArticle",
+          "@id": "https://yoedo.vercel.app/how-it-works#webpage",
+          "url": "https://yoedo.vercel.app/how-it-works",
+          "name": "โมเดลทำงานอย่างไร | YOEDO App",
+          "headline": "โมเดลทำงานอย่างไร",
+          "isPartOf": { "@id": "https://yoedo.vercel.app/#website" },
+          "description": "Technical overview of the YOEDO dataset (4,668 instances), YOLO26-OBB architecture, E-IRFS class balancing, Optuna hyperparameter tuning, mAP evaluation, and TensorFlow Lite mobile deployment.",
+          "about": {
+            "@type": "MobileApplication",
+            "name": "YOEDO - Durian Leaf Scanner",
+            "operatingSystem": "Android"
+          },
+          "citation": "https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "YOEDO App", "item": "https://yoedo.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "โมเดลทำงานอย่างไร", "item": "https://yoedo.vercel.app/how-it-works" }
+          ]
+        }
+      ]
     }
     </script>
 
@@ -153,7 +173,7 @@
     <!-- Navigation -->
     <header class="sticky top-0 z-50 bg-[#F5F7F4]/88 backdrop-blur-md border-b border-[#DFE7E1]">
         <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-            <a href="./index.html" class="flex items-center gap-3 group shrink-0">
+            <a href="/" class="flex items-center gap-3 group shrink-0">
                 <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
                     class="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
                 <div class="leading-tight">
@@ -164,11 +184,11 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
-                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="text-yoedo-600 font-semibold">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
+                <a href="/" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="text-yoedo-600 font-semibold">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
             </div>
 
             <!-- Action Buttons -->
@@ -203,11 +223,11 @@
         <div id="mobileMenu"
             class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent bg-white px-5 text-sm">
             <div class="py-4 space-y-1.5">
-                <a href="./index.html" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </header>
@@ -219,10 +239,13 @@
                 เบื้องหลังการทำงานและการทดลองโมเดล
             </span>
 
-            <h1 data-i18n-html="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.42] mb-5">
-                YOEDO ทำงานอย่างไร
-                <span class="block text-yoedo-600 mt-1">จากภาพใบทุเรียนในสวน สู่การตรวจจับบนมือถือ</span>
+            <h1 data-i18n="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.35] mb-3">
+                โมเดลทำงานอย่างไร
             </h1>
+
+            <p data-i18n="heroSub" class="text-xl sm:text-2xl font-bold text-yoedo-600 leading-[1.45] mb-5">
+                จากภาพใบทุเรียนในสวน สู่การตรวจจับบนมือถือ
+            </p>
 
             <p data-i18n-html="heroDesc" class="text-base sm:text-lg text-stone-600 leading-[1.85] max-w-3xl">
                 หน้านี้สรุปแนวคิดและขั้นตอนการทดลองวิจัยเบื้องหลังแอปพลิเคชัน <strong class="font-semibold text-stone-800">YOEDO</strong>
@@ -527,15 +550,15 @@
                 <span>© 2026 cateatmars.dev • Open source under Apache-2.0 License.</span>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
-                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="/" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
                 <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
                     rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
                 <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
                     class="hover:text-yoedo-600 transition">GitHub</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="text-yoedo-600 font-semibold">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="text-yoedo-600 font-semibold">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </footer>
@@ -543,16 +566,17 @@
     <script>
         const howI18n = {
             th: {
-                pageTitle: 'ทำงานอย่างไร - เบื้องหลังโมเดล YOLO26-OBB และการทดลอง | YOEDO App',
+                pageTitle: 'โมเดลทำงานอย่างไร | YOEDO App',
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navHome: 'หน้าแรก',
                 navDiseases: 'โรคใบทุเรียน',
-                navHowWorks: 'ทำงานอย่างไร',
+                navHowWorks: 'โมเดลทำงานอย่างไร',
                 navAbout: 'เกี่ยวกับ',
                 navPrivacy: 'ความเป็นส่วนตัว',
                 navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
                 heroBadge: 'เบื้องหลังการทำงานและการทดลองโมเดล',
-                heroTitle: 'YOEDO ทำงานอย่างไร<span class="block text-yoedo-600 mt-1">จากภาพใบทุเรียนในสวน สู่การตรวจจับบนมือถือ</span>',
+                heroTitle: 'โมเดลทำงานอย่างไร',
+                heroSub: 'จากภาพใบทุเรียนในสวน สู่การตรวจจับบนมือถือ',
                 heroDesc: 'หน้านี้สรุปแนวคิดและขั้นตอนการทดลองวิจัยเบื้องหลังแอปพลิเคชัน <strong class="font-semibold text-stone-800">YOEDO</strong> ตั้งแต่การสร้างชุดข้อมูลในสภาพสวนจริง การเลือกใช้กรอบตรวจจับแบบหมุนตามแนวใบ (<strong class="font-semibold text-stone-800">YOLO26-OBB</strong>) การแก้ปัญหาจำนวนข้อมูลแต่ละโรคไม่เท่ากัน ไปจนถึงการย่อโมเดลให้ทำงานแบบออฟไลน์บนสมาร์ตโฟน Android',
                 pipeTitle: 'ภาพรวมกระบวนการพัฒนาโมเดล (4 ขั้นตอน)',
                 pipeSubtitle: 'ทุกขั้นตอนถูกออกแบบให้รองรับสภาพแสง ฉากหลังซับซ้อน และข้อจำกัดของมือถือที่ใช้งานจริงในสวน',
@@ -598,7 +622,7 @@
                 ctaDesc: 'ดาวน์โหลดแอป YOEDO ฟรี พร้อมเมนูภาษาไทย-อังกฤษ ใช้งานได้ทันทีกลางสวนโดยไม่ต้องต่อเน็ต'
             },
             en: {
-                pageTitle: 'How YOEDO Works - YOLO26-OBB Model & Experiments | YOEDO App',
+                pageTitle: 'How the Model Works | YOEDO App',
                 brandSub: 'Durian Leaf Scanner',
                 navHome: 'Home',
                 navDiseases: 'Leaf Diseases',
@@ -607,7 +631,8 @@
                 navPrivacy: 'Privacy',
                 navPrivacyFull: 'Privacy Policy',
                 heroBadge: 'Model Architecture & Experiments',
-                heroTitle: 'How YOEDO Works<span class="block text-yoedo-600 mt-1">From Orchard Leaves to Offline Mobile Detection</span>',
+                heroTitle: 'How the Model Works',
+                heroSub: 'From Orchard Leaves to Offline Mobile Detection',
                 heroDesc: 'An overview of the research and engineering pipeline behind <strong class="font-semibold text-stone-800">YOEDO</strong>—from real orchard data curation and rotated <strong class="font-semibold text-stone-800">YOLO26-OBB</strong> detection to class-imbalance handling and TensorFlow Lite deployment on Android.',
                 pipeTitle: 'End-to-End Pipeline (4 Stages)',
                 pipeSubtitle: 'Every stage is built to handle orchard lighting, overlapping foliage, and mobile hardware limits.',

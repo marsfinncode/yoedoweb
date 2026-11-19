@@ -4,13 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>นโยบายความเป็นส่วนตัว (Privacy Policy) - YOEDO</title>
+    <title>นโยบายความเป็นส่วนตัว | YOEDO App</title>
     <meta name="description"
         content="นโยบายความเป็นส่วนตัวของแอปพลิเคชัน YOEDO (You Only Eat Durian Once) ประมวลผล AI บนเครื่อง 100% ไม่เก็บหรือส่งต่อข้อมูลส่วนบุคคล">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#028c57">
     <link rel="canonical" href="https://yoedo.vercel.app/privacy-policy">
     <meta property="og:url" content="https://yoedo.vercel.app/privacy-policy">
+    <meta property="og:title" content="นโยบายความเป็นส่วนตัว | YOEDO App">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://yoedo.vercel.app/#website",
+          "url": "https://yoedo.vercel.app/",
+          "name": "YOEDO App"
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://yoedo.vercel.app/privacy-policy#webpage",
+          "url": "https://yoedo.vercel.app/privacy-policy",
+          "name": "นโยบายความเป็นส่วนตัว | YOEDO App",
+          "isPartOf": { "@id": "https://yoedo.vercel.app/#website" }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "YOEDO App", "item": "https://yoedo.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "นโยบายความเป็นส่วนตัว", "item": "https://yoedo.vercel.app/privacy-policy" }
+          ]
+        }
+      ]
+    }
+    </script>
 
     <!-- Favicon & App Icon (48px multiples for Google Search) -->
     <link rel="icon" href="/favicon.ico" sizes="48x48">
@@ -145,7 +175,7 @@
     <!-- Sticky Glass Navigation -->
     <header class="sticky top-0 z-50 bg-[#F5F7F4]/88 backdrop-blur-md border-b border-[#DFE7E1]">
         <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-            <a href="./index.html" class="flex items-center gap-3 group shrink-0">
+            <a href="/" class="flex items-center gap-3 group shrink-0">
                 <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
                     class="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
                 <div class="leading-tight">
@@ -156,11 +186,11 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
-                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="text-yoedo-600 font-semibold">ความเป็นส่วนตัว</a>
+                <a href="/" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacy" class="text-yoedo-600 font-semibold">ความเป็นส่วนตัว</a>
             </div>
 
             <!-- Action Buttons -->
@@ -194,12 +224,12 @@
         <div id="mobileMenu"
             class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent bg-white px-5 text-sm">
             <div class="py-4 space-y-1.5">
-                <a href="./index.html" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
-                <a href="./index.html#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
+                <a href="/#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
+                <a href="/diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </header>
@@ -207,9 +237,8 @@
     <!-- Header Banner -->
     <section class="border-b border-[#DFE7E1] minimal-hero-bg">
         <div class="max-w-4xl mx-auto px-5 sm:px-6 pt-12 pb-12 text-center hero-enter">
-            <h1 data-i18n-html="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.4] mb-3">
+            <h1 data-i18n="heroTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.4] mb-3">
                 นโยบายความเป็นส่วนตัว
-                <span class="block sm:inline text-yoedo-600">/ Privacy Policy</span>
             </h1>
 
             <p class="text-stone-600 text-base sm:text-lg mb-2.5">
@@ -473,7 +502,7 @@
 
         <!-- Back to Home Button -->
         <div class="text-center pt-2 reveal">
-            <a href="./index.html"
+            <a href="/"
                 class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white/95 border border-[#E2E8E3] hover:border-yoedo-500 text-stone-700 hover:text-yoedo-700 font-medium text-sm shadow-sm hover:shadow transition-all duration-200">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -492,15 +521,15 @@
                 <span>© 2026 cateatmars.dev • Open source under Apache-2.0 License.</span>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
-                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="/" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
                 <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
                     rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
                 <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
                     class="hover:text-yoedo-600 transition">GitHub</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="text-yoedo-600 font-semibold">นโยบายความเป็นส่วนตัว</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="text-yoedo-600 font-semibold">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </footer>
@@ -509,22 +538,22 @@
     <script>
         const privacyI18n = {
             th: {
-                pageTitle: 'นโยบายความเป็นส่วนตัว (Privacy Policy) - YOEDO',
+                pageTitle: 'นโยบายความเป็นส่วนตัว | YOEDO App',
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navHome: 'หน้าแรก',
                 navFeatures: 'ช่วยอะไรได้บ้าง',
                 navDiseases: 'โรคใบทุเรียน',
-                navHowWorks: 'ทำงานอย่างไร',
+                navHowWorks: 'โมเดลทำงานอย่างไร',
                 navAbout: 'เกี่ยวกับ',
                 navPrivacy: 'ความเป็นส่วนตัว',
                 navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
-                heroTitle: 'นโยบายความเป็นส่วนตัว<span class="block sm:inline text-yoedo-600"> / Privacy Policy</span>',
+                heroTitle: 'นโยบายความเป็นส่วนตัว',
                 heroAppPrefix: 'แอปพลิเคชัน',
                 effectiveDate: 'วันที่มีผลบังคับใช้ (Effective Date): 2 พฤศจิกายน 2569 / November 2, 2026',
                 backHome: 'กลับไปหน้าแนะนำแอป YOEDO'
             },
             en: {
-                pageTitle: 'Privacy Policy - YOEDO',
+                pageTitle: 'Privacy Policy | YOEDO App',
                 brandSub: 'Durian Leaf Scanner',
                 navHome: 'Home',
                 navFeatures: 'Features',

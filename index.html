@@ -41,9 +41,18 @@
       "@graph": [
         {
           "@type": "WebSite",
+          "@id": "https://yoedo.vercel.app/#website",
           "name": "YOEDO App",
-          "alternateName": ["YOEDO", "YOEDO Durian Leaf Scanner"],
-          "url": "https://yoedo.vercel.app/"
+          "alternateName": ["YOEDO", "YOEDO Durian Leaf Scanner", "แอป YOEDO"],
+          "url": "https://yoedo.vercel.app/",
+          "inLanguage": ["th", "en"]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://yoedo.vercel.app/#webpage",
+          "url": "https://yoedo.vercel.app/",
+          "name": "YOEDO App - แอปสแกนโรคใบทุเรียน ใช้งานกลางสวนได้ไม่ต้องมีเน็ต",
+          "isPartOf": { "@id": "https://yoedo.vercel.app/#website" }
         },
         {
           "@type": "MobileApplication",
@@ -274,9 +283,9 @@
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
                 <a href="#features" data-i18n="navFeatures" class="hover:text-yoedo-600 transition">ช่วยอะไรได้บ้าง</a>
                 <a href="#diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคที่ตรวจได้</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
             </div>
 
             <!-- Action Buttons -->
@@ -314,11 +323,11 @@
                 <a href="#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
                 <a href="#how-it-works" data-i18n="navHow" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">วิธีใช้งาน</a>
                 <a href="#diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคที่ตรวจได้</a>
-                <a href="./diseases.html" data-i18n="navDiseaseGuide" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">คู่มือโรคใบทุเรียน</a>
+                <a href="/diseases" data-i18n="navDiseaseGuide" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">คู่มือโรคใบทุเรียน</a>
                 <a href="#faq" data-i18n="navFaq" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">คำถามที่พบบ่อย</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </header>
@@ -554,7 +563,7 @@
             </div>
 
             <div class="mt-8 text-center sm:text-left reveal">
-                <a href="./how-it-works.html" data-i18n="howTechLink"
+                <a href="/how-it-works" data-i18n="howTechLink"
                     class="inline-flex items-center gap-1.5 text-sm font-medium text-yoedo-700 hover:underline">
                     อยากรู้จักเบื้องหลังโมเดลและการทดลอง? อ่านหน้าทำงานอย่างไร →
                 </a>
@@ -573,7 +582,7 @@
                     ครอบคลุม 5 โรคใบทุเรียนที่พบบ่อยในสวนไทย รวมถึงใบปกติและอาการผิดปกติอื่นๆ
                 </p>
             </div>
-            <a href="./diseases.html" data-i18n="diseasesGuideBtn"
+            <a href="/diseases" data-i18n="diseasesGuideBtn"
                 class="inline-flex items-center gap-1.5 text-sm font-semibold text-yoedo-700 hover:text-yoedo-800 bg-yoedo-50 hover:bg-yoedo-100/80 border border-yoedo-200 px-4 py-2.5 rounded-xl transition shrink-0 self-start md:self-auto">
                 ดูคู่มืออาการ วิธีป้องกัน และภาพตัวอย่างทั้งหมด →
             </a>
@@ -581,7 +590,7 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <!-- 1. Phytophthora -->
-            <a href="./diseases.html#phytophthora" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
+            <a href="/diseases#phytophthora" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="0">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -597,7 +606,7 @@
             </a>
 
             <!-- 2. Anthracnose -->
-            <a href="./diseases.html#anthracnose" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="60">
+            <a href="/diseases#anthracnose" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="60">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-rose-500 shrink-0"></span>
@@ -613,7 +622,7 @@
             </a>
 
             <!-- 3. Rhizoctonia -->
-            <a href="./diseases.html#rhizoctonia" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="120">
+            <a href="/diseases#rhizoctonia" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="120">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
@@ -629,7 +638,7 @@
             </a>
 
             <!-- 4. Phomopsis -->
-            <a href="./diseases.html#phomopsis" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="180">
+            <a href="/diseases#phomopsis" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="180">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
@@ -645,7 +654,7 @@
             </a>
 
             <!-- 5. Algal Spot -->
-            <a href="./diseases.html#algal-spot" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="240">
+            <a href="/diseases#algal-spot" class="reveal block bg-white/95 rounded-2xl p-5 border border-[#E2E8E3] hover:border-yoedo-300 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="240">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-stone-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-sky-500 shrink-0"></span>
@@ -661,7 +670,7 @@
             </a>
 
             <!-- 6. Healthy -->
-            <a href="./diseases.html#healthy" class="reveal block bg-[#EAF5EF]/80 rounded-2xl p-5 border border-[#C8E3D4] hover:border-yoedo-500 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="300">
+            <a href="/diseases#healthy" class="reveal block bg-[#EAF5EF]/80 rounded-2xl p-5 border border-[#C8E3D4] hover:border-yoedo-500 hover:-translate-y-0.5 hover:shadow-md transition-all duration-300" data-delay="300">
                 <div class="flex items-center justify-between gap-2 mb-2">
                     <span class="inline-flex items-center gap-2 font-bold text-yoedo-900">
                         <span class="w-2.5 h-2.5 rounded-full bg-yoedo-600 shrink-0"></span>
@@ -677,7 +686,7 @@
             </a>
 
             <!-- 7. Others -->
-            <a href="./diseases.html#others" class="reveal sm:col-span-2 lg:col-span-3 bg-[#EDF1EE]/80 rounded-2xl p-5 border border-[#DFE7E1] hover:border-yoedo-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:shadow-sm transition-all duration-300" data-delay="120">
+            <a href="/diseases#others" class="reveal sm:col-span-2 lg:col-span-3 bg-[#EDF1EE]/80 rounded-2xl p-5 border border-[#DFE7E1] hover:border-yoedo-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2 hover:shadow-sm transition-all duration-300" data-delay="120">
                 <div>
                     <div class="flex items-center gap-2 mb-1">
                         <span class="w-2.5 h-2.5 rounded-full bg-stone-500 shrink-0"></span>
@@ -718,7 +727,7 @@
                         <strong class="font-semibold text-stone-700">อาจารย์ที่ปรึกษา:</strong> ดร.สิทธิโชค โสมอ่ำ • ดร.ธวัชชัย สุดใจ (มหิดลวิทยานุสรณ์) • รศ. ดร.ภัทราพร ทองนิ่ม (ม.บูรพา)
                     </p>
                     <div class="flex flex-wrap items-center gap-3 text-xs sm:text-sm">
-                        <a href="./about.html" data-i18n="originReadMore"
+                        <a href="/about" data-i18n="originReadMore"
                             class="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-yoedo-600 hover:bg-yoedo-700 text-white font-medium shadow-sm transition">
                             อ่านที่มาและดูภาพลงพื้นที่ →
                         </a>
@@ -730,7 +739,7 @@
                     </div>
                 </div>
                 <div class="lg:col-span-5">
-                    <a href="./about.html" class="block group rounded-2xl overflow-hidden border border-linen-200 bg-white shadow-sm">
+                    <a href="/about" class="block group rounded-2xl overflow-hidden border border-linen-200 bg-white shadow-sm">
                         <img src="./assets/about-itc-present.jpg" alt="YOEDO Research Presentation at ITC-CSCC 2026"
                             class="w-full h-52 sm:h-56 object-cover group-hover:scale-[1.02] transition-transform duration-300">
                         <div class="px-4 py-2.5 text-xs text-stone-500 flex items-center justify-between">
@@ -766,7 +775,7 @@
                     <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
                 </summary>
                 <p data-i18n-html="a2" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
-                    ไม่ส่งออกไปไหนเลยครับ ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของคุณเท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว (<a href="./privacy-policy.html" class="text-yoedo-600 hover:underline">อ่านรายละเอียดเพิ่ม</a>)
+                    ไม่ส่งออกไปไหนเลยครับ ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของคุณเท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว (<a href="/privacy-policy" class="text-yoedo-600 hover:underline">อ่านรายละเอียดเพิ่ม</a>)
                 </p>
             </details>
 
@@ -796,7 +805,7 @@
                     <span class="text-yoedo-600 transition-transform group-open:rotate-45 text-xl leading-none">+</span>
                 </summary>
                 <p data-i18n-html="a5" class="mt-3 text-sm sm:text-base text-stone-600 leading-relaxed">
-                    5 โรคหลักที่พบบ่อย ได้แก่ รากเน่าโคนเน่า (แผลฉ่ำน้ำลามไว), แอนแทรคโนส (แผลน้ำตาลแดงเป็นวงซ้อน), ใบติด (มีเส้นใยขาวรัดใบเป็นกระจุก), ใบจุดโฟมอปซิส (แผลมีวงเหลืองล้อมและจุดดำตรงกลาง) และจุดสาหร่าย (ขุยกำมะหยี่สีส้มสนิม) สามารถดูภาพตัวอย่างและวิธีจัดการละเอียดได้ในหน้า <a href="./diseases.html" class="text-yoedo-600 hover:underline">คู่มือโรคใบทุเรียน</a>
+                    5 โรคหลักที่พบบ่อย ได้แก่ รากเน่าโคนเน่า (แผลฉ่ำน้ำลามไว), แอนแทรคโนส (แผลน้ำตาลแดงเป็นวงซ้อน), ใบติด (มีเส้นใยขาวรัดใบเป็นกระจุก), ใบจุดโฟมอปซิส (แผลมีวงเหลืองล้อมและจุดดำตรงกลาง) และจุดสาหร่าย (ขุยกำมะหยี่สีส้มสนิม) สามารถดูภาพตัวอย่างและวิธีจัดการละเอียดได้ในหน้า <a href="/diseases" class="text-yoedo-600 hover:underline">คู่มือโรคใบทุเรียน</a>
                 </p>
             </details>
         </div>
@@ -843,10 +852,10 @@
                 <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
                     class="hover:text-yoedo-600 transition">GitHub</a>
                 <a href="#faq" data-i18n="navFaq" class="hover:text-yoedo-600 transition">คำถามที่พบบ่อย</a>
-                <a href="./diseases.html" data-i18n="navDiseaseGuide" class="hover:text-yoedo-600 transition">คู่มือโรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/diseases" data-i18n="navDiseaseGuide" class="hover:text-yoedo-600 transition">คู่มือโรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="hover:text-yoedo-600 transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </footer>
@@ -859,7 +868,7 @@
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navFeatures: 'ช่วยอะไรได้บ้าง',
                 navHow: 'วิธีใช้งาน',
-                navHowWorks: 'ทำงานอย่างไร',
+                navHowWorks: 'โมเดลทำงานอย่างไร',
                 navDiseases: 'โรคที่ตรวจได้',
                 navDiseaseGuide: 'คู่มือโรคใบทุเรียน',
                 navFaq: 'คำถามที่พบบ่อย',
@@ -934,13 +943,13 @@
                 q1: 'เดินเข้าสวนลึกไม่มีสัญญาณเน็ต แอปยังใช้งานได้ไหม?',
                 a1: 'ใช้งานได้เต็มรูปแบบครับ เพราะระบบตรวจโรคทำงานอยู่ในมือถือเครื่องนั้นเลย ไม่ต้องส่งรูปขึ้นอินเทอร์เน็ต จึงใช้ได้แม้ปิดเน็ตหรือไม่มีสัญญาณมือถือ',
                 q2: 'รูปที่สแกนหรือถ่ายไว้จะถูกส่งไปที่ไหนไหม?',
-                a2: 'ไม่ส่งออกไปไหนเลยครับ ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของคุณเท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว (<a href="./privacy-policy.html" class="text-yoedo-600 hover:underline">อ่านรายละเอียดเพิ่ม</a>)',
+                a2: 'ไม่ส่งออกไปไหนเลยครับ ภาพและประวัติการสแกนทั้งหมดจะอยู่แค่ในเครื่องของคุณเท่านั้น ไม่มีโฆษณา และไม่มีการเก็บข้อมูลส่วนตัว (<a href="/privacy-policy" class="text-yoedo-600 hover:underline">อ่านรายละเอียดเพิ่ม</a>)',
                 q3: 'ต้องเสียค่าใช้จ่ายหรือสมัครสมาชิกไหม ใช้กับมือถืออะไรได้บ้าง?',
                 a3: 'ดาวน์โหลดและใช้งานได้ฟรีทั้งหมด ไม่ต้องสมัครสมาชิก รองรับมือถือระบบ Android ผ่าน Google Play Store',
                 q4: 'ผลจากแอปเชื่อถือได้แค่ไหน ใช้แทนการปรึกษาผู้เชี่ยวชาญได้ไหม?',
                 a4: 'แอปช่วยคัดกรองเบื้องต้นให้เห็นความผิดปกติเร็วขึ้นระหว่างเดินสำรวจสวน หากพบอาการหนักหรือยังไม่แน่ใจ ควรปรึกษานักวิชาการเกษตรหรือเจ้าหน้าที่ใกล้บ้านร่วมด้วยครับ',
                 q5: 'โรคใบทุเรียนที่พบบ่อยมีอะไรบ้าง และสังเกตอาการต่างกันอย่างไร?',
-                a5: '5 โรคหลักที่พบบ่อย ได้แก่ รากเน่าโคนเน่า (แผลฉ่ำน้ำลามไว), แอนแทรคโนส (แผลน้ำตาลแดงเป็นวงซ้อน), ใบติด (มีเส้นใยขาวรัดใบเป็นกระจุก), ใบจุดโฟมอปซิส (แผลมีวงเหลืองล้อมและจุดดำตรงกลาง) และจุดสาหร่าย (ขุยกำมะหยี่สีส้มสนิม) สามารถดูภาพตัวอย่างและวิธีจัดการละเอียดได้ในหน้า <a href="./diseases.html" class="text-yoedo-600 hover:underline">คู่มือโรคใบทุเรียน</a>',
+                a5: '5 โรคหลักที่พบบ่อย ได้แก่ รากเน่าโคนเน่า (แผลฉ่ำน้ำลามไว), แอนแทรคโนส (แผลน้ำตาลแดงเป็นวงซ้อน), ใบติด (มีเส้นใยขาวรัดใบเป็นกระจุก), ใบจุดโฟมอปซิส (แผลมีวงเหลืองล้อมและจุดดำตรงกลาง) และจุดสาหร่าย (ขุยกำมะหยี่สีส้มสนิม) สามารถดูภาพตัวอย่างและวิธีจัดการละเอียดได้ในหน้า <a href="/diseases" class="text-yoedo-600 hover:underline">คู่มือโรคใบทุเรียน</a>',
                 ctaTitle: 'โหลดแอป YOEDO ติดเครื่องไว้ใช้ในสวนได้เลย',
                 ctaDesc: 'ฟรี ใช้งานง่าย มีทั้งภาษาไทยและภาษาอังกฤษ เปิดสแกนได้ทันทีแม้ไม่มีอินเทอร์เน็ต'
             },
@@ -1024,13 +1033,13 @@
                 q1: 'Can I still use the app deep inside an orchard with no internet?',
                 a1: 'Yes. All AI processing runs locally on your phone, so you can scan leaves and browse the disease database without mobile data or Wi-Fi.',
                 q2: 'Are my leaf photos or scan history uploaded anywhere?',
-                a2: 'Never. All camera frames, photos, and scan statistics stay strictly on your own device with zero ads or tracking (<a href="./privacy-policy.html" class="text-yoedo-600 hover:underline">read Privacy Policy</a>).',
+                a2: 'Never. All camera frames, photos, and scan statistics stay strictly on your own device with zero ads or tracking (<a href="/privacy-policy" class="text-yoedo-600 hover:underline">read Privacy Policy</a>).',
                 q3: 'Is YOEDO free to use, and which phones are supported?',
                 a3: 'Yes, it is completely free with no account required, available for Android devices on Google Play.',
                 q4: 'Can the app replace an agricultural specialist?',
                 a4: 'YOEDO is designed as a fast field-screening tool to help spot symptoms early. For severe outbreaks or complex cases, please consult an agricultural specialist.',
                 q5: 'What are the most common durian leaf diseases and how do they differ?',
-                a5: 'The 5 major diseases are Phytophthora (water-soaked dark lesions), Anthracnose (concentric reddish-brown rings), Rhizoctonia (white fungal threads binding leaves), Phomopsis (brown spots with yellow halos), and Algal Spot (velvety rust-orange cushions). See sample photos and treatments in our <a href="./diseases.html?lang=en" class="text-yoedo-600 hover:underline">Durian Leaf Disease Guide</a>.',
+                a5: 'The 5 major diseases are Phytophthora (water-soaked dark lesions), Anthracnose (concentric reddish-brown rings), Rhizoctonia (white fungal threads binding leaves), Phomopsis (brown spots with yellow halos), and Algal Spot (velvety rust-orange cushions). See sample photos and treatments in our <a href="/diseases?lang=en" class="text-yoedo-600 hover:underline">Durian Leaf Disease Guide</a>.',
                 ctaTitle: 'Take YOEDO With You Into the Orchard',
                 ctaDesc: 'Free, bilingual (Thai & English), and ready to scan offline anytime.'
             }

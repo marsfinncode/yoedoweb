@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เกี่ยวกับ YOEDO - ความเป็นมา งานวิจัย และทีมผู้พัฒนา</title>
+    <title>เกี่ยวกับ | YOEDO App</title>
     <meta name="description"
         content="ทำความรู้จักที่มาของแอปพลิเคชัน YOEDO การลงพื้นที่พูดคุยกับเกษตรกร เก็บข้อมูลใบทุเรียนจริง งานวิจัยบน ResearchGate เวทีระดับนานาชาติ ITC-CSCC 2026 และทีมผู้พัฒนา">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -20,7 +20,7 @@
 
     <!-- Open Graph -->
     <meta property="og:url" content="https://yoedo.vercel.app/about">
-    <meta property="og:title" content="About YOEDO - Story, Research, and Developers">
+    <meta property="og:title" content="เกี่ยวกับ | YOEDO App">
     <meta property="og:description"
         content="How Mahidol Wittayanusorn School students and Burapha University researchers built YOEDO from Chanthaburi durian orchards to ITC-CSCC 2026.">
     <meta property="og:image" content="https://yoedo.vercel.app/assets/about-itc-present.jpg">
@@ -30,18 +30,37 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "AboutPage",
-      "url": "https://yoedo.vercel.app/about",
-      "name": "About YOEDO - Story, Research, and Developers",
-      "description": "Background, orchard fieldwork, ITC-CSCC 2026 presentation, TJ-SIF 2026 paper, and development team of YOEDO Durian Leaf Scanner.",
-      "about": {
-        "@type": "MobileApplication",
-        "name": "YOEDO - Durian Leaf Scanner",
-        "operatingSystem": "Android"
-      },
-      "sameAs": [
-        "https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB",
-        "https://github.com/marsfinncode/cnn-durian"
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://yoedo.vercel.app/#website",
+          "url": "https://yoedo.vercel.app/",
+          "name": "YOEDO App"
+        },
+        {
+          "@type": "AboutPage",
+          "@id": "https://yoedo.vercel.app/about#webpage",
+          "url": "https://yoedo.vercel.app/about",
+          "name": "เกี่ยวกับ | YOEDO App",
+          "isPartOf": { "@id": "https://yoedo.vercel.app/#website" },
+          "description": "Background, orchard fieldwork, ITC-CSCC 2026 presentation, TJ-SIF 2026 paper, and development team of YOEDO Durian Leaf Scanner.",
+          "about": {
+            "@type": "MobileApplication",
+            "name": "YOEDO - Durian Leaf Scanner",
+            "operatingSystem": "Android"
+          },
+          "sameAs": [
+            "https://www.researchgate.net/publication/417063848_YOEDO_A_Real-Time_Mobile_Application_for_Durian_Leaf_Disease_Detection_Using_YOLO-OBB",
+            "https://github.com/marsfinncode/cnn-durian"
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "YOEDO App", "item": "https://yoedo.vercel.app/" },
+            { "@type": "ListItem", "position": 2, "name": "เกี่ยวกับ", "item": "https://yoedo.vercel.app/about" }
+          ]
+        }
       ]
     }
     </script>
@@ -155,7 +174,7 @@
     <!-- Navigation -->
     <header class="sticky top-0 z-50 bg-[#F5F7F4]/88 backdrop-blur-md border-b border-[#DFE7E1]">
         <nav class="max-w-5xl mx-auto px-5 sm:px-6 py-3.5 flex items-center justify-between gap-3">
-            <a href="./index.html" class="flex items-center gap-3 group shrink-0">
+            <a href="/" class="flex items-center gap-3 group shrink-0">
                 <img src="./assets/yoedo-logo.png" alt="YOEDO App Logo"
                     class="w-9 h-9 rounded-xl shadow-sm group-hover:scale-105 transition-transform object-cover">
                 <div class="leading-tight">
@@ -166,11 +185,11 @@
 
             <!-- Desktop Menu -->
             <div class="hidden md:flex items-center gap-6 text-sm font-medium text-stone-600">
-                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="text-yoedo-600 font-semibold">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
+                <a href="/" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="text-yoedo-600 font-semibold">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacy" class="hover:text-yoedo-600 transition">ความเป็นส่วนตัว</a>
             </div>
 
             <!-- Action Buttons -->
@@ -205,12 +224,12 @@
         <div id="mobileMenu"
             class="md:hidden overflow-hidden max-h-0 opacity-0 transition-all duration-300 ease-out border-t border-transparent bg-white px-5 text-sm">
             <div class="py-4 space-y-1.5">
-                <a href="./index.html" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
-                <a href="./index.html#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/" data-i18n="navHome" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">หน้าแรก</a>
+                <a href="/#features" data-i18n="navFeatures" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">ช่วยอะไรได้บ้าง</a>
+                <a href="/diseases" data-i18n="navDiseases" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โรคใบทุเรียน</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="block px-3 py-2.5 rounded-lg bg-yoedo-50 text-yoedo-700 font-semibold transition">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="block px-3 py-2.5 rounded-lg text-stone-700 hover:bg-yoedo-50 hover:text-yoedo-700 font-medium transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </header>
@@ -223,10 +242,14 @@
                 <span data-i18n="introKicker" class="text-sm font-semibold text-yoedo-700">เกี่ยวกับ YOEDO (You Only Eat Durian Once)</span>
             </div>
 
-            <h1 data-i18n-html="introTitle" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.42] mb-5">
+            <h1 data-i18n="pageHeading" class="text-3xl sm:text-4xl font-bold text-stone-900 leading-[1.35] mb-3">
+                เกี่ยวกับ
+            </h1>
+
+            <p data-i18n-html="introTitle" class="text-xl sm:text-2xl font-bold text-stone-800 leading-[1.45] mb-5">
                 จากปัญหาที่เห็นในสวนทุเรียน
                 <span class="block text-yoedo-600 mt-1">สู่แอปตรวจโรคใบทุเรียนที่ใช้งานได้จริง</span>
-            </h1>
+            </p>
 
             <p data-i18n-html="introDesc" class="text-base sm:text-lg text-stone-600 leading-[1.85] max-w-3xl">
                 เวลาเดินสำรวจสวนทุเรียน ใบที่เป็นโรคหลายชนิดมักมีจุดหรือรอยไหม้ที่คล้ายกัน
@@ -656,15 +679,15 @@
                 <span>© 2026 cateatmars.dev • Open source under Apache-2.0 License.</span>
             </div>
             <div class="flex flex-wrap items-center justify-center gap-5 font-medium">
-                <a href="./index.html" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
-                <a href="./diseases.html" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
+                <a href="/" data-i18n="navHome" class="hover:text-yoedo-600 transition">หน้าแรก</a>
+                <a href="/diseases" data-i18n="navDiseases" class="hover:text-yoedo-600 transition">โรคใบทุเรียน</a>
                 <a href="https://play.google.com/store/apps/details?id=com.cateatmars_dev.yoedodurian" target="_blank"
                     rel="noopener noreferrer" class="hover:text-yoedo-600 transition">Google Play</a>
                 <a href="https://github.com/marsfinncode/cnn-durian" target="_blank" rel="noopener noreferrer"
                     class="hover:text-yoedo-600 transition">GitHub</a>
-                <a href="./how-it-works.html" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">ทำงานอย่างไร</a>
-                <a href="./about.html" data-i18n="navAbout" class="text-yoedo-600 font-semibold">เกี่ยวกับ</a>
-                <a href="./privacy-policy.html" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
+                <a href="/how-it-works" data-i18n="navHowWorks" class="hover:text-yoedo-600 transition">โมเดลทำงานอย่างไร</a>
+                <a href="/about" data-i18n="navAbout" class="text-yoedo-600 font-semibold">เกี่ยวกับ</a>
+                <a href="/privacy-policy" data-i18n="navPrivacyFull" class="hover:text-yoedo-600 transition">นโยบายความเป็นส่วนตัว</a>
             </div>
         </div>
     </footer>
@@ -672,12 +695,13 @@
     <script>
         const aboutI18n = {
             th: {
-                pageTitle: 'เกี่ยวกับ YOEDO - ความเป็นมา งานวิจัย และทีมผู้พัฒนา',
+                pageTitle: 'เกี่ยวกับ | YOEDO App',
+                pageHeading: 'เกี่ยวกับ',
                 brandSub: 'สแกนโรคใบทุเรียน',
                 navHome: 'หน้าแรก',
                 navFeatures: 'ช่วยอะไรได้บ้าง',
                 navDiseases: 'โรคใบทุเรียน',
-                navHowWorks: 'ทำงานอย่างไร',
+                navHowWorks: 'โมเดลทำงานอย่างไร',
                 navAbout: 'เกี่ยวกับ',
                 navPrivacy: 'ความเป็นส่วนตัว',
                 navPrivacyFull: 'นโยบายความเป็นส่วนตัว',
@@ -755,7 +779,8 @@
                 ctaDesc: 'พร้อมเมนูภาษาไทยและภาษาอังกฤษ ฐานข้อมูลโรค 7 ประเภท ใช้งานได้ทันทีกลางสวนโดยไม่ต้องต่ออินเทอร์เน็ต'
             },
             en: {
-                pageTitle: 'About YOEDO - Story, Research, and Developers',
+                pageTitle: 'About | YOEDO App',
+                pageHeading: 'About',
                 brandSub: 'Durian Leaf Scanner',
                 navHome: 'Home',
                 navFeatures: 'Features',
